@@ -1,0 +1,29 @@
+# inversione azometano
+set size
+set nolabel
+set noarrow
+set grid
+set key top right
+set yrange [-0.40:4.80]
+set xrange [0.0:180.0]
+set xzeroaxis
+set colors classic
+#
+set ylabel 'energy, eV' offset 0,0
+set xlabel 'CNNC angle, degrees' offset 0,0.5
+set label 'cis' at 10, -0.2 center
+set label 'trans' at 170, -0.2 center
+set label 'S_0' at 30, 1.2 center
+set label 'S_1' at 30, 3.8 center
+set label 'S_0' at 150,0.6 center
+set label 'S_1' at 150,3.2 center
+plot  \
+'risu.scan.rot.s0.notrageo' u 5:6 title "S_0 optimized" w l lt 1 lc 1 lw 1.5, \
+'risu.scan.rot.s1.notrageo' u 5:6 notitle w l lt 1 lc 3 lw 1.5, \
+'risu.scan.rot.s1.notrageo' u 5:7 title "S_1 optimized" w l lt 1 lc 3 lw 1.5 , \
+'risu.scan.rot.s0.notrageo' u 5:7 notitle w l lt 1 lc 1 lw 1.5 
+
+set term pdf font "Times-Roman,8" color dashed lw 2
+set size 1.0,1.0
+set output 'fig.rot.pdf'
+replot

@@ -1,0 +1,33 @@
+set key right top spacing 1.5
+set xlabel 'CNNC angle, degrees'
+set ylabel 'energy, eV'
+set xrange [0:180]
+set yrange [-1:1] 
+#set yrange [-0.20:0.05] 
+set grid
+set colors classic
+
+
+rbest = 0
+plot \
+'zpe.rots0' u 5:($6-(rbest)) title 'Rotazione {S_{0}}' w l lt 1 lc 1 lw 2,\
+'zpe.rots1' u 5:($6-(rbest)) title 'Rotazione {S_{1}}' w l lt 1 lc 2 lw 2,\
+#'risu.rnc12.corr' u 1:($6-(rbest)) t 'symmetric dissoc.' w l lt 1 lc 4 lw 2
+# 'risu.rnc1.corr' u 1:($6-(rbest)) notitle w p pt 7 lc 1 ps 0.4, \
+# 'risu.rnc2.corr' u 2:($6-(rbest)) notitle w p pt 7 lc 3 ps 0.4, \
+# 'risu.rnc12.corr' u 1:($6-(rbest)) notitle w p pt 7 lc 4 ps 0.4
+# bar(x) notitle w l lt 1 lc 2 lw 1, \
+# add(x) notitle w l lt 1 lc 2 lw 1, \
+# bar(x)+add(x) notitle w l lt 1 lc 2 lw 1
+# 'risu.rnc2.best' u 2:($6-(rbest)+(corr2($2))) notitle w l lt 1 lc 2 lw 2, \
+# 'risu.rnc12.best0' u 1:($6-(rbest)+(corr12($1))) notitle w l lt 1 lc 4 lw 2, \
+
+# set term pslatex color dashed lw 3
+# set size 1.00,0.80
+# set output 'fig.onemode.q.wigner.tex'
+# replot
+
+set term pdf font "Times-Roman,10" color dashed lw 2
+set size 1.0,1.0
+set output 'fig.rot.pdf'
+replot
