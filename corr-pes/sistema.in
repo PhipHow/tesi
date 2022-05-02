@@ -6,8 +6,8 @@
 5.0000 1.4853 0 127.98 0 -0.3620 CH3NN+CH3
 5.0000 5.0000 0 0 0 -0.5407 N2+2CH3
 2.0750 2.0750 116.66 116.66 180 -0.2313 TS diss.symm.
-risu.rnc2
-zpe.rnc2
+risu.scan.rot.s0.notrageo
+zpe.rots0
 
 
 
