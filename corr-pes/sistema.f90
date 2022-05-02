@@ -50,7 +50,7 @@ do i = 1,n
     
     a(i,6) = cos(torad*cnnc)*carg1*carg2*(1.0_dpr-v1)*(1.0_dpr-v2)
     a(i,7) = cos(2.0_dpr*torad*cnnc)*carg1*carg2*(1.0_dpr-v1)*(1.0_dpr-v2)
-    a(i,8) = cos(3.0_dpr*torad*cnnc)*carg1*carg2*(1.0_dpr-v1)*(1.0_dpr-v2)
+    if (n > 7) a(i,8) = cos(3.0_dpr*torad*cnnc)*carg1*carg2*(1.0_dpr-v1)*(1.0_dpr-v2)
     if (n == 9) a(i,9) = cos(4.0_dpr*torad*cnnc)*carg1*carg2*(1.0_dpr-v1)*(1.0_dpr-v2)
     
     write(6,'(10f12.6)') a(i,1:n) 
@@ -115,7 +115,7 @@ do
     
         a(1,6) = cos(torad*cnnc)*carg1*carg2*(1.0_dpr-v1)*(1.0_dpr-v2)
         a(1,7) = cos(2.0_dpr*torad*cnnc)*carg1*carg2*(1.0_dpr-v1)*(1.0_dpr-v2)
-        a(1,8) = cos(3.0_dpr*torad*cnnc)*carg1*carg2*(1.0_dpr-v1)*(1.0_dpr-v2)
+        if (n > 7) a(1,8) = cos(3.0_dpr*torad*cnnc)*carg1*carg2*(1.0_dpr-v1)*(1.0_dpr-v2)
         if (n == 9) a(1,9) = cos(4.0_dpr*torad*cnnc)*carg1*carg2*(1.0_dpr-v1)*(1.0_dpr-v2)
 
         do j = 1,n

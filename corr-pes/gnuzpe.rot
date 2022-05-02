@@ -2,7 +2,7 @@ set key right top spacing 1.5
 set xlabel 'CNNC angle, degrees'
 set ylabel 'energy, eV'
 set xrange [0:180]
-set yrange [-1:1] 
+set yrange [-0.15:0.05] 
 #set yrange [-0.20:0.05] 
 set grid
 set colors classic
