@@ -5,8 +5,9 @@ implicit none
 integer :: i,j,n 
 integer, parameter :: dpr = kind(1.d0) 
 real (kind = dpr) :: r0, ra, theta0, r1, r2, ang1, ang2, cnnc, det, &
-                     k1, v1, v2, pi, torad, arg1, carg1, carg2, zp, ang1or
-real (kind = dpr), allocatable, dimension(:) :: zpe, par, w 
+                     k1, v1, v2, pi, torad, arg1, carg1, carg2, zp, ang1or, &
+                     e0, e1, e1z, f1, f2, zp1
+real (kind = dpr), allocatable, dimension(:) :: zpe, par, w, b1, b2
 real (kind = dpr), allocatable, dimension(:,:) :: a 
 integer, allocatable, dimension(:) :: iw 
 
@@ -22,7 +23,7 @@ ra = 3.5
 theta0 = 126.8176185 
 
 read(5,*) n 
-allocate(zpe(1:n), par(1:n), a(1:n,1:n), w(1:n), iw(1:n)) 
+allocate(zpe(1:n), par(1:n), a(1:n,1:n), w(1:n), iw(1:n), b1(0:9), b2(0:9)) 
 
 write(6,*) "MATRICE A" 
 
@@ -30,28 +31,7 @@ do i = 1,n
     
     read(5,*) r1, r2, ang1, ang2, cnnc, zpe(i) 
     
-    !calcolo dei coefficienti di A1,A2,A3 
-    call quartic(r1,v1)
-    call quartic(r2,v2) 
-
-    a(i,1) = v1 + v2 
-    a(i,2) = v1*v2 
-    a(i,3) = v1**2 + v2**2 
-
- 
-    !calcolo dei coefficienti di Ainv1,Ainv2,Ainv3 
-    a(i,4) = ((1.0_dpr-v1)*cos(torad*ang1))+((1.0_dpr-v2)*cos(torad*ang2)) 
-    a(i,5) = ((1.0_dpr-v1)*cos(2.0_dpr*torad*ang1))+((1.0_dpr-v2)*cos(2.0_dpr*torad*ang2)) 
-
-    !calcolo dei coefficienti di Arot1,Arot2,Arot3,Arot4
-    call cubic(ang1,carg1)
-    call cubic(ang2,carg2)
-    
-    
-    a(i,6) = cos(torad*cnnc)*carg1*carg2*(1.0_dpr-v1)*(1.0_dpr-v2)
-    a(i,7) = cos(2.0_dpr*torad*cnnc)*carg1*carg2*(1.0_dpr-v1)*(1.0_dpr-v2)
-    if (n > 7) a(i,8) = cos(3.0_dpr*torad*cnnc)*carg1*carg2*(1.0_dpr-v1)*(1.0_dpr-v2)
-    if (n == 9) a(i,9) = cos(4.0_dpr*torad*cnnc)*carg1*carg2*(1.0_dpr-v1)*(1.0_dpr-v2)
+    call coeff(n,a(i,1:n))
     
     write(6,'(10f12.6)') a(i,1:n) 
 
@@ -71,7 +51,8 @@ write(6,'(4f20.12)') par(1:3)
 write(6,'(4f20.12)') par(4:5) 
 write(6,'(4f20.12)') par(6:n)
 
-
+read(5,*) b1
+read(5,*) b2
 
 !CALCOLO ZPE ALLE GEOMETRIE FORNITE
 
@@ -88,7 +69,7 @@ do
     if (index(string, '.') == 0) then
         write(2,'(a80)') string
     else
-        read(string,*) r1, r2, ang1, ang2, cnnc
+        read(string,*) r1, r2, ang1, ang2, cnnc, e0, e1
 
         ang1or = ang1
 
@@ -100,38 +81,92 @@ do
 
         zp = 0.0_dpr
 
-        call quartic(r1,v1)
-        call quartic(r2,v2) 
+        call coeff(n,w)
+        
+        !call quartic(r1,v1)
+        !call quartic(r2,v2) 
 
-        a(1,1) = v1 + v2 
-        a(1,2) = v1*v2 
-        a(1,3) = v1**2 + v2**2
+        !a(1,1) = v1 + v2 
+        !a(1,2) = v1*v2 
+        !a(1,3) = v1**2 + v2**2
 
-        a(1,4) = ((1.0_dpr-v1)*cos(torad*ang1))+((1.0_dpr-v2)*cos(torad*ang2)) 
-        a(1,5) = ((1.0_dpr-v1)*cos(2.0_dpr*torad*ang1))+((1.0_dpr-v2)*cos(2.0_dpr*torad*ang2))
+        !a(1,4) = ((1.0_dpr-v1)*cos(torad*ang1))+((1.0_dpr-v2)*cos(torad*ang2)) 
+        !a(1,5) = ((1.0_dpr-v1)*cos(2.0_dpr*torad*ang1))+((1.0_dpr-v2)*cos(2.0_dpr*torad*ang2))
 
-        call cubic(ang1,carg1)
-        call cubic(ang2,carg2)
+        !call cubic(ang1,carg1)
+        !call cubic(ang2,carg2)
     
-        a(1,6) = cos(torad*cnnc)*carg1*carg2*(1.0_dpr-v1)*(1.0_dpr-v2)
-        a(1,7) = cos(2.0_dpr*torad*cnnc)*carg1*carg2*(1.0_dpr-v1)*(1.0_dpr-v2)
-        if (n > 7) a(1,8) = cos(3.0_dpr*torad*cnnc)*carg1*carg2*(1.0_dpr-v1)*(1.0_dpr-v2)
-        if (n == 9) a(1,9) = cos(4.0_dpr*torad*cnnc)*carg1*carg2*(1.0_dpr-v1)*(1.0_dpr-v2)
+        !a(1,6) = cos(torad*cnnc)*carg1*carg2*(1.0_dpr-v1)*(1.0_dpr-v2)
+        !a(1,7) = cos(2.0_dpr*torad*cnnc)*carg1*carg2*(1.0_dpr-v1)*(1.0_dpr-v2)
+        !if (n > 7) a(1,8) = cos(3.0_dpr*torad*cnnc)*carg1*carg2*(1.0_dpr-v1)*(1.0_dpr-v2)
+        !if (n == 9) a(1,9) = cos(4.0_dpr*torad*cnnc)*carg1*carg2*(1.0_dpr-v1)*(1.0_dpr-v2)
 
         do j = 1,n
-            zp = zp + a(1,j)*par(j)
+            zp = zp + w(j)*par(j)
         end do
 
-        write(2,'(6f12.6)') r1, r2, ang1or, ang2, cnnc, zp
+        f1 = b1(0)
+
+        call coeff(9,w)
+
+        do j = 1,9 
+            f1 = f1 + w(j)*b1(j)
+        end do
+
+        
+        f2 = b2(0)
+
+        do j = 1,9 
+            f2 = f2 + w(j)*b2(j)
+        end do
+
+        e1z = e0 + (e1 - e0)*(f2/f1)
+        zp1 = zp + e1z - e1
+        
+        write(2,'(7f12.6)') r1, r2, ang1or, ang2, cnnc, zp, zp1
     end if
 
 end do 
+
 
 99 stop
 
 
 !SUBROUTINES PER QUARTICA E CUBICA
 contains
+
+subroutine coeff(nn,ww)
+    
+    implicit none
+    
+    integer, intent(in) :: nn
+    real(kind = dpr), dimension(:), intent(out) :: ww
+
+    !calcolo dei coefficienti di A1,A2,A3 
+    call quartic(r1,v1)
+    call quartic(r2,v2) 
+
+    ww(1) = v1 + v2 
+    ww(2) = v1*v2 
+    ww(3) = v1**2 + v2**2 
+
+
+    !calcolo dei coefficienti di Ainv1,Ainv2,Ainv3 
+    ww(4) = ((1.0_dpr-v1)*cos(torad*ang1))+((1.0_dpr-v2)*cos(torad*ang2)) 
+    ww(5) = ((1.0_dpr-v1)*cos(2.0_dpr*torad*ang1))+((1.0_dpr-v2)*cos(2.0_dpr*torad*ang2)) 
+
+    !calcolo dei coefficienti di Arot1,Arot2,Arot3,Arot4
+    call cubic(ang1,carg1)
+    call cubic(ang2,carg2)
+
+
+    ww(6) = cos(torad*cnnc)*carg1*carg2*(1.0_dpr-v1)*(1.0_dpr-v2)
+    ww(7) = cos(2.0_dpr*torad*cnnc)*carg1*carg2*(1.0_dpr-v1)*(1.0_dpr-v2)
+    if (nn > 7) ww(8) = cos(3.0_dpr*torad*cnnc)*carg1*carg2*(1.0_dpr-v1)*(1.0_dpr-v2)
+    if (nn == 9) ww(9) = cos(4.0_dpr*torad*cnnc)*carg1*carg2*(1.0_dpr-v1)*(1.0_dpr-v2)
+
+end subroutine coeff
+
 
 subroutine quartic(r,qua)
  

@@ -11,7 +11,7 @@ set colors classic
 rbest = 0
 plot \
 'zpe.rots0' u 5:($6-(rbest)) title 'Rotazione {S_{0}}' w l lt 1 lc 1 lw 2,\
-'zpe.rots1' u 5:($6-(rbest)) title 'Rotazione {S_{1}}' w l lt 1 lc 2 lw 2,\
+'zpe.rots1' u 5:($7-(rbest)) title 'Rotazione {S_{1}}' w l lt 1 lc 2 lw 2,\
 #'risu.rnc12.corr' u 1:($6-(rbest)) t 'symmetric dissoc.' w l lt 1 lc 4 lw 2
 # 'risu.rnc1.corr' u 1:($6-(rbest)) notitle w p pt 7 lc 1 ps 0.4, \
 # 'risu.rnc2.corr' u 2:($6-(rbest)) notitle w p pt 7 lc 3 ps 0.4, \
