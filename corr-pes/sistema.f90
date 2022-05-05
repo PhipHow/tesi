@@ -6,7 +6,7 @@ integer :: i,j,n
 integer, parameter :: dpr = kind(1.d0) 
 real (kind = dpr) :: r0, ra, theta0, r1, r2, ang1, ang2, cnnc, det, &
                      k1, v1, v2, pi, torad, arg1, carg1, carg2, zp, ang1or, &
-                     e0, e1, e1z, f1, f2, zp1
+                     e0, e1, e0z, e1z, f1, f2, zp1
 real (kind = dpr), allocatable, dimension(:) :: zpe, par, w, b1, b2
 real (kind = dpr), allocatable, dimension(:,:) :: a 
 integer, allocatable, dimension(:) :: iw 
@@ -120,10 +120,12 @@ do
             f2 = f2 + w(j)*b2(j)
         end do
 
+        e0z = e0 + zp
         e1z = e0 + (e1 - e0)*(f2/f1)
         zp1 = zp + e1z - e1
         
-        write(2,'(7f12.6)') r1, r2, ang1or, ang2, cnnc, zp, zp1
+
+        write(2,'(9f12.6)') r1, r2, ang1or, ang2, cnnc, e0z, e1z, zp, zp1
     end if
 
 end do 

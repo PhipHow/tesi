@@ -1,0 +1,55 @@
+set size square
+set grid
+set nolabel
+set noarrow
+set nokey
+
+set xrange [0:180]
+set yrange [100:180]
+
+set view 0,0,1.0,1.0
+set nosurface
+set contour
+set noclabel
+set ztics
+set colors classic
+
+set table 'tab1'
+set cntrparam levels incremental  0.0,0.10,10.0
+# splot 'risu.map.cnnc.nnc.s0.combi' using 5:3:6
+splot 'zpe.map.invtors0' using 5:3:6
+unset table
+
+set table 'tab2'
+set cntrparam levels incremental  0.0,0.5,10.0
+# splot 'risu.map.cnnc.nnc.s0.combi' using 5:3:6
+splot 'zpe.map.invtors0' using 5:3:6
+unset table
+
+set xrange [0:180]
+set yrange [100:180]
+set xtics 0,30,180
+set ytics 100,20,180
+
+set label 'A' at 185.0, 114.0 center
+set label 'B' at  -5.0, 128.6 center
+
+set encoding iso_8859_1
+set xlabel 'CNNC, degrees' offset 0,0
+set ylabel 'NNC_1, degrees' offset 0,0
+set style textbox opaque noborder
+plot \
+'tab1'   u 1:2 with lines lt 1 lc 3 lw 0.5, \
+'tab2'   u 1:2 with lines lt 1 lc 1 lw 1.2, \
+'tab2' u 1:2:3 every 20 w labels boxed, \
+'crit.points.s0' u 1:2 w p pt 7 lc 3 ps 0.3
+
+# set term pslatex color dashed lw 2
+# set size 1.0,1.0
+# set output 'fig.map1.tex'
+# replot
+
+set term pdf font "Times-Roman,7" color dashed lw 2
+set size 1.2,1.0
+set output 'fig.map.invtorss0.tot.pdf'
+replot

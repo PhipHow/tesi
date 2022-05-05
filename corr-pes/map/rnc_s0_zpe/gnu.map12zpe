@@ -1,0 +1,47 @@
+set size square
+set grid
+set nolabel
+set noarrow
+set nokey
+
+set xrange [1.25:4.0]
+set yrange [1.25:4.0]
+
+set view 0,0,1.0,1.0
+set nosurface
+set contour
+set noclabel
+set ztics
+set colors classic
+
+set table 'tab1'
+set cntrparam levels incremental  -1.0,0.02,0.01
+splot 'zpe.map12' using 1:2:8
+unset table
+
+set table 'tab2'
+set cntrparam levels incremental  -1.0,0.1,0.01
+splot 'zpe.map12' using 1:2:8
+unset table
+
+# set xlabel '$R_1$, \AA' offset 0,1
+# set ylabel '$R_2$, \AA' offset 1,0
+
+set encoding iso_8859_1
+set xlabel 'R_{NC_1}, A' offset 0,0
+set ylabel 'R_{NC_2}, A' offset 0,0
+set style textbox opaque noborder
+plot \
+'tab1'   u 1:2 with lines lt 1 lc 3 lw 0.5, \
+'tab2'   u 1:2 with lines lt 1 lc 1 lw 1.2, \
+'tab2' u 1:2:3 every 20 w labels boxed
+
+# set term pslatex color dashed lw 2
+# set size 1.0,1.0
+# set output 'fig.map1.tex'
+# replot
+
+set term pdf font "Times-Roman,7" color dashed lw 2
+set size 1.0,1.0
+set output 'fig.map12zpe.pdf'
+replot
