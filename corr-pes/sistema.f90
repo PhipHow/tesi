@@ -17,7 +17,7 @@ character*80 :: string
 DATA PI,TORAD/ & 
 3.141592653589793D0,0.01745329251994329D0/
 
- 
+!PARAMETRI NON LINEARI UTILIZZATI
 r0 = 1.6 
 ra = 3.5
 theta0 = 126.8176185 
@@ -25,37 +25,45 @@ theta0 = 126.8176185
 read(5,*) n 
 allocate(zpe(1:n), par(1:n), a(1:n,1:n), w(1:n), iw(1:n), b1(0:9), b2(0:9)) 
 
+!INIZIO CALCOLO MATRICE A
 write(6,*) "MATRICE A" 
 
 do i = 1,n 
     
+    !LETTURA DELLA GEOMETRIA + ZPE
     read(5,*) r1, r2, ang1, ang2, cnnc, zpe(i) 
     
+    !CALCOLO DEGLI ELEMENTI DELLA MATRICE A
     call coeff(n,a(i,1:n))
     
+    !SCRITTURA DEGLI ELEMENTI DELLA MATRICE A
     write(6,'(10f12.6)') a(i,1:n) 
 
 end do 
+!FINE CALCOLO MATRICE A
 
 write(6,*)
+!SCRITTURA DEL VETTORE ZPE UTILIZZATO
 write(6,*) "ZPE"
 write(6,'(10f12.6)') zpe
 write(6,*)
 
 par = zpe 
 
+!RISOLUZIONE DEL SISTEMA TRAMITE ELIMINAZIONE DI GAUSS
 call elgau(1, n, n, a, par, det, w, iw) 
 
+!SCRITTURA DEI PARAMETRI
 write(6,*) "PARAMETRI"
-write(6,'(4f20.12)') par(1:3) 
-write(6,'(4f20.12)') par(4:5) 
-write(6,'(4f20.12)') par(6:n)
+write(6,'(4f20.12)') par(1:3) !A1, A2, A3
+write(6,'(4f20.12)') par(4:5) !Ainv1, Ainv2
+write(6,'(4f20.12)') par(6:n) !Arot1, Arot2, Arot3, Arot4
 
 read(5,*) b1
 read(5,*) b2
 
-!CALCOLO ZPE ALLE GEOMETRIE FORNITE
 
+!CALCOLO ZPE ALLE GEOMETRIE FORNITE
 read(5,*) string
 open(1,file = string, form = 'formatted', status = 'old')
 read(5,*) string
