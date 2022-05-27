@@ -140,8 +140,8 @@ do
         end do
 
         e0z = e0 + zp                   !S0 CORRETTA CON ZPE
-        e1z = e0 + (e1 - e0)*(f2/f1)    !S1 CORRETTA CON ZPE
-        zp1 = zp + e1z - e1             !CORREZIONE ZPE S1
+        e1z = e0z + (e1 - e0)*(f2/f1)    !S1 CORRETTA CON ZPE
+        zp1 = e1z - e1             !CORREZIONE ZPE S1
         
         !NEL FILE DEI RISULTATI VENGONO SCRITTI QUESTI VALORI
         write(2,'(9f12.6)') r1, r2, ang1or, ang2, cnnc, e0z, e1z, zp, zp1
