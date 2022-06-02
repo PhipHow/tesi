@@ -28,8 +28,8 @@ unset table
 # set ylabel '$R_2$, \AA' offset 1,0
 
 set encoding iso_8859_1
-set xlabel 'R_{NC_1}, A' offset 0,0
-set ylabel 'R_{NC_2}, A' offset 0,0
+set xlabel 'R_{NC_1}, {\305}' offset 0,0
+set ylabel 'R_{NC_2}, {\305}' offset 0,0
 set style textbox opaque noborder
 plot \
 'tab1'   u 1:2 with lines lt 1 lc 3 lw 0.5, \
