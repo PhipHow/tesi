@@ -1,0 +1,53 @@
+set key right top spacing 1.5
+set xlabel 'energy, eV'
+set noylabel
+set xrange [0.0:2.0]
+# set yrange [0.0:2.5]
+set grid
+set colors classic
+
+# energia iniziale
+Eini=0.1841920098
+
+#######################################################################
+#                       PARAMETRI DEL FIT
+#######################################################################
+n2av = 0.3
+n2max = 1.5
+n2std = 0.2
+n2(x) = n2max*x*exp(-(x-n2av)**2/2.0*(n2std)**2) 
+fit n2(x) 'histo.Ek_az' using 1:3 via n2av, n2max, n2std
+
+met2av = 0.3
+met2max = 1.5
+met2std = 0.2
+met2(x) = met2max*x*exp(-(x-met2av)**2/2.0*(met2std)**2) 
+fit met2(x) 'histo.Ek_met2' using 1:3 via met2av, met2max, met2std
+
+met1av = 0.3
+met1max = 1.5
+met1std = 0.2
+met1(x) = met1max*x*exp(-(x-met1av)**2/2.0*(met1std)**2) 
+fit met1(x) 'histo.Ek_met1' using 1:3 via met1av, met1max, met1std
+#######################################################################
+
+
+plot \
+n2(x) title 'N_2'  w l lt 1 lc 1 lw 1,\
+met1(x) title 'first CH_3' w l lt 1 lc 3 lw 1,\
+met2(x) title 'second CH_3' w l lt 1 lc 4 lw 1,\
+(met1(x)+met2(x))/2.0 title 'CH_3' w l lt 1 lc 7 lw 1,\
+#'histo.Ek_az' u 1:3 title 'N_2' w l lt 1 lc 1 lw 1
+#'histo.Ek_met' u 1:(($3+$6)/2.0) title 'CH_3' w l lt 1 lc 7 lw 1, \
+#'histo.Ek_met1' u 1:3 title 'first CH_3' w l lt 1 lc 3 lw 1, \
+#'histo.Ek_met2' u 1:3 title 'second CH_3' w l lt 1 lc 4 lw 1
+
+# set term pslatex color dashed lw 3
+# set size 1.00,0.80
+# set output 'fig.onemode.q.wigner.tex'
+# replot
+
+set term pdf font "Times-Roman,10" color dashed lw 2
+set size 1.0,1.0
+set output 'E_trasl.pdf'
+replot

@@ -5,14 +5,25 @@ set ylabel 'Energia, eV'
 set xrange [1.3:4.0]
 set yrange [-0.6:0.2]
 set grid
-set colors classic
+#set colors classic
 
+set border lc "black" lw 0.25  # thin lines for the tics
+set border 0                   # don't draw the normal border
+set tics scale 2.0             # longer than usual tics
+set obj 1 rectangle from graph 0,0 to graph 1,1
+set obj 1 lc "black" lw 1.0    # heavy line for the "border"
+set obj 1 fillstyle empty
+set grid x y
+
+
+set terminal cairolatex pdf color dashed lw 3
+set output "figdiss.tex"
 
 rbest = 0
 plot \
-'zpe.rnc1' u 1:($6-(rbest)) title 'Prima dissoc.' w l lt 1 lc 1 lw 2, \
-'zpe.rnc2' u 2:($6-(rbest)) title 'Seconda dissoc.' w l lt 1 lc 3 lw 2, \
-'zpe.rnc12' u 1:($6-(rbest)) title 'Dissoc. simmetrica' w l lt 1 lc 4 lw 2\
+'zpe.rnc1' u 1:($6-(rbest)) title 'Prima dissoc.' w l lt 1 lc 7 lw 1, \
+'zpe.rnc2' u 2:($6-(rbest)) title 'Seconda dissoc.' w l lt 1 lc 6 lw 1, \
+'zpe.rnc12' u 1:($6-(rbest)) title 'Dissoc. simmetrica' w l lt 1 lc 2 lw 1\
 
 # 'risu.rnc1.corr' u 1:($6-(rbest)) notitle w p pt 7 lc 1 ps 0.4, \
 # 'risu.rnc2.corr' u 2:($6-(rbest)) notitle w p pt 7 lc 3 ps 0.4, \
@@ -23,12 +34,14 @@ plot \
 # 'risu.rnc2.best' u 2:($6-(rbest)+(corr2($2))) notitle w l lt 1 lc 2 lw 2, \
 # 'risu.rnc12.best0' u 1:($6-(rbest)+(corr12($1))) notitle w l lt 1 lc 4 lw 2, \
 
-# set term pslatex color dashed lw 3
-# set size 1.00,0.80
-# set output 'fig.onemode.q.wigner.tex'
-# replot
 
-set term pdf font "Times-Roman,10" color dashed lw 2
-set size 1.0,1.0
-set output 'fig.diss.pdf'
-replot
+#set terminal cairolatex pdf font "default,12" color dashed lw 2
+#color dashed lw 2
+#set size 1.00,1.00
+#set output 'fig.diss.pdf'
+#replot
+
+#set term pdf font "Times-Roman,12" color dashed lw 2
+#set size 1.0,1.0
+#set output 'fig.diss.pdf'
+#replot

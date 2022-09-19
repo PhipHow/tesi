@@ -1,0 +1,48 @@
+MATTINA
+L'andamento dello ZPE, per la distanza, è molto regolare. Essendo simmetrica la dissociazione deve arrivare allo stesso asintoto della seconda dissociazione. La partenza della seconda deve corrispondere all'asintoto della prima. Questo non corrisponde proprio...perche? Il prof si rende conto che il file che mi ha passato è sbagliato (ciè l'ottimizzazione è stata fatta giusta (guardando le geometrie) ma l'angolo è stato trascritto sbagliato), per la seconda dissociazione. Il prof quindi mi fa estrarre da un file per fare la mappa l'ultimo blocco di dati che corrisponde al blocco giusto per fare il grafico per la seconda dissociazione. Visto che c'è mi passa anche un file gnuplot per fare le mappe.
+
+POMERIGGIO
+Il valore di zpe ottenuto alla fine della diss1 (dove viene ottimizzata la distanza 2, ovvero quando la distanza 2 ha il valore ottimale). Se quindi vado sul file della diss2, in corrispondenza della distanza ottimale per la distanza 2 ottimizzata nella diss1 alla fine, le due ZPE dovrebbero coincidere (infatti lo fanno). DA 1.6A in giu diventa molto sensibile dalla lughezza di legame e cambia e finisce dove deve.
+
+Dobbiamo passare a gli angoli perche li mau si aspetta di averepiu problemi, per prima cosa perceh le entrano in ballo i caloridi ZPE dello stato eccitato. Gli ZPE calcolati nello stati eccitato verranno attribuiti, siccome sono tutti a corte distanze (non c'è nessuna variazione possibile dovuta unicamete alle dstanze) verranno tutti attribuiti al fatto che questi punti nelle PES si trovano ad angoli diversi (angoli di legame e angoli di torsione). vanno a carico degli angoli automaticamente, A MENO CHE NON DECIDIAMO AD UN CERTO PUNTO DI DIFFERENZIARE VERAMENTE I DUE STATI E ALLORA IL CALCOLO DELLO ZPE PER LO STATO ECCITATO VIENE EFFETTUATO DIVERSAMENTE.
+
+
+MI DESCRIVE IL GRAFICO DELLA SCANSIONE SULL'INVERSIONE PER L'ENERGIA.
+>>La curva piu bassa (rossa) è la curva per la reazione di isomerizzazzione lungo il percorso di inversione all'azoto e quindi come coordinata di reazione c'è l'angolo di legame. 
+>>Partendo dal cis l'angolo di legame ottimale è circa 130, poi la curva sale e arriva a TS e poi scende giu al trans (intorno a 115gradi)(OSS: volendo qui mettere un unica coordinata di reazione è stato detto "vabbe, passati i 180 gradi alloa ci metto il complemento a 360" visto che un angolo di legame va da 0 a 180gradi)Quindi ad esempio l'angolo vero di legame a 245 gradi è 360-254 = 115. (questa cosa poi la devo impostare nel mio programma per calcolare la ZPE per angoli: cioè passato l'angolo di legame pari a 180,finiamo dalla parte del trans e quindi anche il diedro deve cambiare a 180).
+>> Se invece guardo lo stato eccitato (curva blu in alto) lì è stata effettuata l'ottimizzazzione dell'eneregia dello stato eccitato. Si vede benissimo che l'angolo di legame tende ad aprirsi parecchio (sia dalla parte del trans che dalla parte del cis): da 245 nel g.s. passa a 230. Dalla parte del cis idem: per la curva del g.s (la rossa piu bassa) l'angolo è circa125 e per la blu piu alta ho 150 c.a.
+Perché l'angolo si apre? Questione chimica molto semplice: lo stato eccitato è di tipo (n-pi) --> dato che impoverisco di carica elettronica i due doppietti liberi dei due atomi di azoto, i doppietti liberi occupano meno spazio e l'angolo di legame tende ad aprirsi.(vedi 25.00) succede uguale in tuttigli azocomposti (nell'azobenzene succede la stessa cosa) [vedi fino a 28.30, dice qualcosa sulla dinamica]
+>>Le due curve in basso sono relative allo stato fondamentale: la curva blu in basso è l'energia dello stato fondmantale calcolato alle geometrie per cui S1 è ottimizzato. le geometrie della curva piu bassa sono ottimizzateproprio per S0 ew quindi sono le piu basse possibili, la curva blu per forza ci sta sopra, perchè ha delle geometrie diverse (ottimali per S1) e di conseguenza con tutti i parametri un po diversi --> quindi la curva blu ha qualitaticamente lo stesso nadamento ma sta sempre  sopra ed è sempre diversa.
+>>Vale lo stesso ma con il viceversa per le due curve piu in alto: la curva blu sotto è quella di S1 ottimizzato, mentre quella rossa (la piu alta di tutte) ha le stesse geometrie che erano ottimali per S0. ORA: cos'è S1 alla geometria di S0 è importante! Perche io parto dal minimo del trans di S0 e con un fotone mando la molecoal nella stessa geometria essenziamente (eccitazione verticale) nella curva di energia potenziale dello stato eccitato: quindi sono nello stato eccitato non con la sua geometria ottimale, ma con la gometria ottimale per il g.s. 
+Da li poi lo stato eccitato si muove lungo tutte le coordinate e per l'angolo di legame va in disce (si vede bene) verso un minimo. Da uesto plot vedo l'eccesso di energia vibrazionale che ho quando sono nello stato eccitato.
+
+OSS: è vero ceh quando sono nello stato eccitato vado verso il minimo di quesat curva rossa in exc.state--> ma da li ho ancora da guadagnare lungo tutte le altre coordinate: il minimo vero, rilassandotutte le altre coordinate come piace ad S1, è ancora piu basso.
+
+a 35.00 dice qualcosa che non capisco. Parla dei campionamenti da qui in poi
+
+Se noi la ZPE la aggiungiamo alle curve (rendendo l'energia di dissociazione minore) mau spera che le traiettorie con energia solo termica rieascano a dissociare.
+
+
+Dal momento che vogliamo mantenere la giusta energia di transizione la correzione ZPE la applichiamo sia a S= che a S1 per ora. Anche se S1 ha la sua ZPE non è identica a quella di S0, ma la differenza è piccola (sono piu le differenza tra molecola dissociatata e non).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

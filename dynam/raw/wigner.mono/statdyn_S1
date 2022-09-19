@@ -1,0 +1,51 @@
+#!/bin/csh
+#
+#
+setenv progdir /home/gio/mopac2002/statdyn/fort
+setenv dyndir  .
+setenv molec   photo
+#
+#
+$progdir/statdyn <<EOF >statdyn.out
+ azobenzene
+ &FILES
+   FILE20='$dyndir/${molec}.dyn',
+   FILE07='Stat.pun.$molec',
+   FILE77='$dyndir/$molec.inf',
+   FILE02='Stat.inf.$molec',
+ &END
+ &INPUT
+   REC_SKIP=T, STEP_SKIP=1.0,
+   ZDYN_CHK=F,
+   NPRINT=0,
+   TOLE=200.005, 
+   IWRT=1,
+   TINIT=0.0, 
+   ISNAP=1, SNADEL=1, SNAMIN=0, SNAMAX=50000, ZSHARP=T,
+   JSNAP=2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,
+   ZSPEC=F,
+   DIHED=0,
+   ICON=-2, KCON=2,
+ &END
+titolo---- ivar irec ntest npath  fac           add              nhist xmin xmax          
+time        1    -1   -1    -1    1.0           0.0                0   0.0  0.0
+isurf      -4    -1   -1    -1    1.0           0.0                0   0.0  0.0
+irk        -5    -1   -1    -1    1.0           0.0                0   0.0  0.0
+Etot        4    -1   -1    -1    1.0           0.0               -1   0.0  0.0
+Ecin        2    -1   -1    -1    1.0           0.0               -1   0.0  0.0
+Epot        3    -1   -1    -1    1.0           0.0               -1   0.0  0.0
+rnn        65    -1   -1    -1    1.0           0.0                0   0.0  0.0
+rn1c1      66    -1   -1    -1    1.0           0.0                0   0.0  0.0
+rn2c2      67    -1   -1    -1    1.0           0.0                0   0.0  0.0
+rn1c2      68    -1   -1    -1    1.0           0.0                0   0.0  0.0
+rn2c1      69    -1   -1    -1    1.0           0.0                0   0.0  0.0
+n2n1c1     70    -1   -1    -1    1.0           0.0                0   0.0  0.0
+n1n2c2     71    -1   -1    -1    1.0           0.0                0   0.0  0.0
+@cnnc     3 1 2 7  -1  -1   -1    1.0           0.0                0   0.0  0.0
+cnnc       72    -1   -1    -1    1.0           0.0                0   0.0  0.0
+E0         73    -1   -1    -1    1.0           0.0                0   0.0  0.0
+E1         74    -1   -1    -1    1.0           0.0                0   0.0  0.0
+END
+EOF
+
+mv Stat.pun.photo Stat.pun.S1

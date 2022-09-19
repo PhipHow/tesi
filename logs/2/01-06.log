@@ -1,0 +1,89 @@
+				-------------------------------
+				| Data: 01-06                 |
+				| Origine: commento plot      |
+				-------------------------------
+				
+
+>> MAu mi passa le tabelle che ha fatto in cui ci devo aggiungere il mio contributo.
+
+>> Vediamo diss.pdf (zpe300):
+   Bisogna stare attenti a cosa vogliono dire queste varie cose: 
+    >> undissociated: sono le traiettorie che no nsono arrivate ancora a dissociare nemmeno un legame
+	>> first dissociation: traiettorei che hanno dissociato un solo legame e non l'altro ancora. Siccome il destino è comunque che quando parte un CH3 poi parte anche l'altro: il frammento CH3NN perde N2 con una minima barriera di attivazione e poi passata la barriera si scende ancora parecchio in energia al di sotto del minimo di CH3NN. --> Di conseguenza, siccome la barriera di attivazione è bassa e quel frammento viene prodotto con un bel po di energia vibrazionale in eccesso rispetto al semplice ZPE si scassa abbastanza rapidamente. Perciò la frazione di traiettorei che si trova li, con un CH3NN non a sua volta dissociato, è sempre piccola a tutti i tempi. Inizialmente c'è una crescita, naturalmente: la dissociazione asimmetrica o sequienziale (prima un legame e poi l'altro) è comunque preferita e quindi prima cresce il numero di traiettorie che hann odissociato un solo legame (per un brevissimo tempo è addirittura prevalente su quelel che hanno dissociato entrambi i legami) poi si accumulano quelle che ne hanno dissociati e superano di gran lunga quelle che ne hanno dissociato uno solo, perchè le due cose si susseguono a tempo brevissimo. Questo essenzialmente si vede in questi grafici, soprattutto in quello che ho fatto io (zpe300), guardando la differenza di tempo fra la crescita del numero di traiettorie che hanno dissociato un legame e quelle che ne hanno dissociati due --> la differenza di tempo iniziale (nei primi 200-300fs) è ancora piu piccola, qualcosa coem poche decine di fs. MA NOI NON STAMO AL MOMENTO CERCANDO DI QUANTIFICARE QUANTO SIA QUESAT DIFFERENZA IN MEDIA E ANCHE COME DISTRIBUZIONE:
+			>> Potrebbe essere una cosa interessante da fare, per dire quanto il meccanismo pende verso l'essere veramente sequenziale e quanto invece puuo somigliare a una dssociazione quasi simultanea di entrambi i legami.
+    
+	
+	>>OSS: per quanto riguarda i dati che stanno nel grafico bisogna stare attenti perche, come gia visto, dipendono da alcune soglie fissate da noi un po arbitrariamente per fare la conta: un legame viene dichiarato dissociato quando si allunga piu di 3.2A (3.2A perché praticamente a 3.2 siamo asintotici, le curve di energia potenziale non cambiano piu (diventano piatte) e quindi siamo tranquilli che da quel momento in poi ci sono due frammenti che non interagiscono). 
+	Parlando di cose sicure: d'altra parte se io prendo il mio report (o quello di Carlotta) nella curva di energia potenziale in funzione della distanza, per quanto riguarda la dissociazione del primo legame a 3 siamo quasi asistotitici e a 3.2 senz'altro (a dire il vero non c'è proprio piu nessuna variazione a 3.5A, perche c'è l'R_asynt e da li in poi non c'è piu nessuna dipendenza da quelle due distanze). Solo che una traiettoria che è arrivata a 2.5 con un po' di energia cientica sulal coordinata di allontanamento de idue frammenti dissocia di sicuro, e comunque ha fatto quasi tutta la salita quindi il legame è rotto molto prima di 3.2. Se poi vado lungo il percorso di doppia dissociazione simultanea (curva rosa) a 2.3A supero la barriera: dopo che l'ho superata dissocai, non c'è nessun dubbio --> quinid anche lì è molto prima il momento in cui dovrei dichiarare dissociata la molecola. Per quanto riguarda la seconda dissociazione (cioè partendo dai CH3NN a dissociare l'N2) la barriera è a 1.7A e da li in poi si va in discesa verso la dissociazione (ancora prima). Quindi noi siamo stai un po prudenti a dire 3.2A, ma in realtà si potrebbe dire ceh le molecole sono dissociate prima (poi facciamo finire le traiettorie addirittura a 4A, ma si poteva mettere una soglia più bassa).
+	Quindi a questo punto: se uno deve dire quanto tempo intercorre fra la prima dissociazione e la seconda dovrebbe mettere due soglie diverse e poi dire "Vediamo quanto ritardo c'è tra l'allungamento di un legame e l'allungamento dell'altro", ponendo qualche soglia ragionevole (2.5A per la prima e 1.7A per la seconda) e a questo punto si accorcerebbero ancora le distanze fra le due ,probabilmente. Inoltre il secondo metile va via piu veloce rispetto al primo e quindi se si aspetta chec arrivino entrambi a 3.2A riguadagna tempo, andando piu veloce (mediamente). Noi quinid abbiamo messo qualcosa di "prudenziale" oltre i lquale sicuramente i due frammenti sono belli liberi, ma quelle curve sono un po influenzate da questi parametri: potrei anche vedere come tempi quanto conta questa cosa, cioè se prendo la velocità media con cui i metili si allontanano dall'altro frammento posso scoprire quanto tempo mediamente ci mettono a percorrere la distanza tra 2A e 3.2A. La distanza 2A a sua volta è fissata come distanza a cui è ancora lecito dire che ho l'AZM intero (beh, anche questo è un po abbondante: l'allungamento del legame non sembra tanto da 1.5 a 2.0, ma come si vede è quasi 2/3 dell'energia di dissciazione e quando è a 2 non è piu tanto intero (legame per 2/3 rotto)).
+	
+	Un altro indizio della rapidità potrebbe essere questo: 
+	   Se io considero questi fenomeni come due reazioni consecutive (priam si rompe un legame e poi si rompe l'altro). Due reazioni consecutive se avessereo una cinetica del 1°ordine mi darebbero uan certa legge di concentrazione (frazione di molecole del reagente rimaste e poi dell'intermedio che sarebeb la priam dissociazione (CH3NN + CH3)). Questa cosa qui si complica naturalmente: se uno fa un fit delle moelcoel indissociate, come lo abbiamo fatto noi (poi bisognerebbe fare anche un fit di quelle comeptamente dissociate e di quelle che invece hanno perso un solo metile), potrebbe dare dei tempi (delle costanti di velocità o anche dei tempi). 
+	   
+	   GUARDIAMO MEGLIO COME FUNZIONA IL FIT PER DISS.PDF:
+	   >> La funzione fittante se x>td è una somma di due esponenziali (moltiplicati entrambi per un peso/coefficiente che sommati insieme fanno 1 --> il che vuol dire che quando gli esponenziali valgono 0 (x = td) la somma dei due termini vale 1 (quindi rimane w +(1-w))) 
+       >> Quel td ha i lsignificato di un tempo di ritardo durante il quale non succede praticamente niente	 (OSS: questo è un fit, non è detto ceh coincida esattamente con il tempo a cui la priam traiettoria dissocia). (Qui c'è da cheidersi: dentro a questo tempo di ritardo quanto ci gioca il tempo per passare da ragionevolmente 2.5A a 3.2A? Questo uno lo puo calcoalre e fare una stima).
+	   >> quindi td è un tempo di ritardo e dopodiche comincia un decadimento biesponenziale, cioè c'è un esponenziale veloce (quello di tau1) e uno lento (quello con tau2). A questo punto, come in molti fenomeni, io ho una decerescita veloce all'inizio e una decrescita piu lenta a tempi piu lunghi (chissa se quella piu lenta è uan decrescita felice...). Anyhow questo succede spessissimo e denuncia in primo luogo, la cosa piu facile, che ci siano all'interno del campione ceh sto osservando due gruppi di molecole in condizioni diverse: ad esempio potrebbero esserci moelcoel con un energia totale piu grande e molecole con enerrgia totale piu piccola --> non sono due gruppi ben separati, ma spesso un fit bi-esponenziale riesce grossomodo a rappresentare questa situazione molto meglio che un singolo esonenziale. Inoltre è ovvio che posso aggiungere espoenziali quanto voglio, ma al solito serve un compromesso tra la perfezione del fit e l'obbiettivo di ottenre dei paramentri che abbiano un senso (se ne metto troppi, un certo set di dati verrà fittato con parametri ceh non hanno nessun senso fisico, che non dicono niente sul meccanismo e su quello ceh sta succedendo ma serovno solo a passare esattamente per i dati). Qui il fit viene piuttosto bene. 
+	   
+	
+	>>Torniamo su diss.pdf:
+	  >>Mau qui non se lasente nemmeno di dire dove stanno i difetti, però se uno guarda nelal seconda metà dei tempi (4000fs in poi), la curva dei dati scende piu lentamente di quello che dice il fit. Segno che, se noi andassimo a tempi veramente molto piu lunghi (20000-30000fs) forse varrebbe la pena aggiungere un terzo esponenziale --> questo è un difetto/ problema costante per chi fitta fenomeni lenti con simulazioni che mi costano in proprzione al tempo totale della simulazione vede solo l'inizio di questi fenomeni, di conseguenza (che in questo caso quelle piu lente costituiscono 1/10 di tutte le traiettorie, poco, tenuto conto che invece dovrebeb essere quasi l'80% di cui vediamo solo il 10% e i lrestante 70% non si vede perche l nostra curva finisce con il 70% di molecoel no ndissociate e non sapremo mai quali tempi ci mettereanno (l'unica previsione che facciamo è che saranno probabilmente piu lunghi del nostro tempo lungo (tau2))).
+	  
+	  >> Uno all ostesso modo può tentare di rappresentare anche le altre curve: ad esempio quella verde, che dovrebbe dipendere da un terzo tau (che è il suo tempo di dissociazione, ammesso che ne basti uno) + gli altri (qui td praticamente è lo stesso per la comparsa dell'intermedio e la scomparsa della molecola indissociata). 
+	  
+      >> OSS: non posso utilizzare il modello delle reazioni successive della cinetica tal quale, perché normalmente viene fatto con una sola costante di velocità . qui dovrei, oltre a tenere di conto il tempo di ritardo, mettere due costanti di velocita per due reazioni: A --> B --> C. Però è come se avessi due reagenti A diversi (A e A'), uni che va a una certa velocità e uno che va ad un altra velocità. 
+	  
+	  >> C'è da ricordare che anche quando guardiamo la dissociazione lenta, un motivo possibile (MA MAU NON CI CREDE MOLTO) per cui probabilmente anche li ci vorrebbero due esponenziali (tau1, tau2, tau3) è che a quel punto si sono formati AZM-cis e AZM-trans nei loro due minimi e il cis ha un energia potenziale un po maggiroe del trans, ma un energia totale probabilmente simile. Fatto sta che il cis dissocia piu velocemente del trans. Se infatti guardo alle altre due curve (S0-cis e S0-trans) innanzitutto colpisce il fatto che laresa della fotoisomerizzazione è bella grande, ma non è cosi evidente da subito perchè mentre le molecoel isomerizzano cominciano anche a dissociare e quindi se io guardo al momento in cui il cis e il trans hanno raggiunto la loro massima frazione (a 1000fs) sono gia dissociate piu del 20% delle traiettorie. Quindi la resa di questi due non si puo dire. DICIAMO CHE RAGIONEVOLMENTE QUANDO SI è ESAURITA LA PRIMA ONDATA DI DISSOCIAZIONI VELOCI IO HO UNA FRAZIONE DI MOLECOLE IN CIS QUASI TRE VOLTE QUELLA DEL TRANS, PERCIò SICURALMENTE LA REAZIONE FOTOCHIMICA HA PRODOTTO MOLTO CIS (NON è COSI COMUNE CHE LA REASA DI UAN FOTOISOMERIZZAZIONE SIA COSI GRANDE [La piu famosa è quella della rodopsina, che però inizia da cis]). 
+	  
+	  >> Io quindi vedo che le molecole cis diminuiscono quasi parallelamente alal curva delel molecole non dissociate ,mentre le molecole trans non diminuiscono quasi per nienete: questo vuol dire che il cis è quasi l'unico che produce dissociazione (andrebbe anche accertato però quante molecole trans o cis isomerizzano durante tutto questo periodo (non sembra ad occhio e croce che isomerizzino --> l'interpretazione piu semplice qui sembrerebbe essere: le trans non fanno niente (ne dissociano, ne isomerizzano) le cis invece si, dissociano ma non isomerizzano perche non vediamo una crescita dei trans)).   
+	  
+	   MAU IL PROBLEMA DI REAZIONI CONSECUTIVE IN CUI LA PRIMA REAZIONE è UN PO PIU COMPLICATA DEL SOLITO L'AVEVA RISOLTO CON LA CONVOLUZIONE, INVECE CHE NEL MODO TRADIZIONALE DI RISOLVERE LE EQUAZIONI DIFFERENZIALI. VABBE PENSACI UN PO SE TI VIENE QUALCHE IDEA, SI PUO APPROFONDIRE UN PO L'ANALISI DI QUESTI RISULTATI.
+	   
+	   In ogni caso nella tabella che metto io nella tesi ci metto solo le tre simulazioni che ho fatto, mentre nell'articolo ci vanno tutte. Dovrei approfondire perche nella tesi tutto non c'entra, ma magari se viene fuori qualcosa di interessante dentro l'articolo ce lo possiamo anche scrivere.
+
+		
+		Posso confrontare diss.pdf con l'analogo wigner: nel caso di wigner però il trans dissocia: la curva rosa va in discesa anche a tempi lunghi. Però il cis dissocia piu rapidamente e proprio in extremis verso 10000fs si scambiano: C'è rimasto meno cis che trans. Inoltre la curva verde dell'intermedio sale, ma piu irregolarmente e non si riesce nemmeno a vedere bene come differisce da quella blu. Puo darsi che per esempio, con piu energia ci si avvicini o sia piu frequente la dissociazione simultanea rispetto a quella sequenziale, forse.
+		
+		
+>> Tentativi di dissociazione: ci sono anche in uan tabella, dice mau. Ma non mi dice altro
+
+-------------------------------------------------------------------
+
+
+>> Mau mi passa il .tex per la tabella  --> da qui in poi le modifico io.
+
+
+>> Guardiamo la prima tabella:
+   >> Qui ci sono i vari sampling fatti fino ad ora, in ordine: Wigner puro e semplice
+      con l'eccitazione a largo spettro, Wigner puro e semplice con luce monocromatica, Boltzmann classico ad ampio spettro, Boltzmann classico monocormatico.
+   
+   >> Si riportano i risultati dei fit del decadimento dello stato eccitato che ha anche
+      lui un tempo di delay (t_decay) e poi un tempo esponenziale (tau), e quelli dei tempi di dissociazione (delay della dissociazione + i due tau (corto e lungo) + peso del corto sul totale). 
+	  
+   >> Aggiungo quindi alla tabella i miei risultati dai risultati del fit da gnu.pop. 
+   
+
+>> Guardiamo adesso la seconda tabella
+   >> Qui ci sono le energie cientiche medie dei tre frammenti. Noi otteniamo un energia 
+      cinetica piu bassa per il primo frammento che per il secondo, ma la differenza non è mai cosi grande come dicono gli sperimentali. COn Boltzmann classico è un po piu grande forse che in altri casi: decisamente abbiamo l'energia piu piccola per il primo CH3 ma l'abbiamo un po piu piccola anche per il secondo. Se guardo le differenze di tutti rispetto a Boltzmann classico.
+
+      OSS: Classical (V = 0) nella tabella vuol dire dare a ciscuno oscillatore nelle coordinate normali lo ZPE giusto e usare la distribuzione classica di P e Q per quella data energia fissata (quindi l'energia è fissata ed esatta e la distribuzione di Q e P è completamente sbagliata: --> perche un oscillatore classico passa il minor tempo possibile nelal posizione di equilibrio e quinid ha la minima probabilità di trovarsi li, mentre ha la massima probabilità di trovarsi ai due estremi dell'oscillazione dove la velocità cade a 0 <-- esattamente il contrario di quello QM che mi dice che la massima probabilità ce l'ho nella posizione di equilibrio e poi va diminuendo). A noi in altri esempi ha dato risultati poco buoni, ma qui pare che sia abbastanza indifferente la distribuzione di P e Q.
+	  
+	  >> Mau crede che io abbia ottenuto di meglio; 
+	  >> Queste cose non vengono da un fit ma sono scritte in una delle uscite delle script che io ho usato --> azmkine.out è il file. 
+	  
+	  AZMKIN.OUT: >> Il primo calcolo fa il caso breve (dissociazione rapida, entro
+	                 600fs)
+				  >> Il Secondo calcolo fa il caso da 5000 a 10000fs
+				  >> Il terzo calcolo fa il caso completo: Per prima cosa noi mettiamo
+				     i risultati di quello completo:
+					 Su 102 traiettorie dissociate si ottiene 0.37, 0.34 e 0.56
+				  >> Poi segue un estrapolazione: ma dato che le traiettore dissociate
+				     nella seconda metà (negli ultimo 5000fs) sono pochissime, dell'
+					 estrapolazione non c'è prorio da fidarsi (since è basata sui dati
+					 di 6 traiettorie).
+					 
+    ---------------------
+	OSS: non ha tutto sto senso inseguire Wigner quando poi le cose piu imprtanti che
+	     mi interessano sono : avere la giusta ditribuzione delle geometrie, la giusta distribuzxione delel velocita (o impulsi), la giusta energia. Le prime due cose me le da anche una distribuzione scorrelata impulso-posizione (non importa che siano correlate come chiede Wigner per gli stati vibrazionali eccitati dell'oscillatore armonico), mentre la terza me la da solo in media, mentre si puo fare di meglio. Però siamo praticamente costretti a dire Wigner ma poi a precisare come effettivamente viene usato.
+		 

@@ -1,0 +1,97 @@
+					--------------------------------
+					| Data: 30-05-22			   |
+					| Origine: Analisi traiettorie |
+					--------------------------------
+
+
+>> Ci sono dei conti che non sono arrivati a 10ps: Nei calcoli necessari per le
+   traiettorie ci potrebbero essere difficoltà di qualunque genere per cui MOPAC non
+   riesce a trerminare una traiwettoria, che normalmente viene dichiarata bad e non
+   verrà considerata nell'analisi dei risultati.
+ 
+
+>> Diciaamo che però sicuramente è spiacevole che succeda troppo spesso, perchè
+   potrebbero esserci certe condizioni niziali o certi svilpuppi della traiettoria
+   (certe zone della traiettoria) in cui succede questa cosa, a certe geometrie ad
+   esempio --> eliminare sistematicamente quelle gewmetrie dall'analilsis dei
+   risultati perche la traiettoria non riesce a finire significa alterare
+   statisticamente i risultati.
+   
+>> Quindi controlliamo nei file sospetti (quelli che non hanno prodotto il .arc) se
+   sono andati a buon fine o meno.  Al prof vanno bene così, so do I.
+   
+>> Facciamo quindi un conto di quante bad traj. abbiamo --> 49.  Ci statisticamente
+
+>> Seguo il readme: statdyn_equi: lo devo modificare perche ci sono delle cose che
+   non tornano. Inoltre in questa script possiamo modificare alcune cose a seconda
+   che vogliamo i risultati in un certo modo: ad esempio c'è un opzione per
+   considerare il diedro sempre fra 0 e 180 gradi (per un diedro si potrebbero fare
+   tante scelte)
+
+>> Avendo fatto una traiettoria nel fondamentale abbiamo una distribuzione di
+   geoemtrie che dovrebbe rispettare boltzmann e con questa ci costruiamo uno spettro
+   facendo un istogramma (fatto da 20 caselle, parte da 2.8 e arriva a 4.2eV, e in
+   ogni casella ogni geometria nel .dyn aggiungerà un contributo che dipende dal
+   quadrato del dipolo di transizione che va ad incrementare l'epsilon in
+   quell'intervallo di energie); L'unica componente dello spettro che calcolerà
+   sarà quella di assorbimento a partire dal primo stato (il fondamentale) per
+   arrivare a gli stati compresi tra INIZIO e FINE (vedi la script) che sono 
+   entrambe settate a 2: in generale avevamo un maggior numero di scelte e
+   potevamo fare diversi spettri, diverse componenti dello spettro.
+   
+>> Segue un elenco delle variabili che vogliamo vedere:
+   > time: il tempo; questa variabile dopo aver guardato nel file .inf risulta
+     essere la variabile n.ro 1 che si trova nel vettore delle variabili in virgola
+     mobile (perche ci sono anche variabili intere e bisogna distinguere fra le due).
+   
+   > irec, ntest, npath non hanno importanza: sono delle variabili ceh dicono se
+     voglio avere quesat variabile solo per casi speciali; alla fine (vedi ultime
+     colonne) posso chiedere di fare un istogramma della mia variabile: lo chiedo per
+     l'energia cinetica, potenziale e totale.
+   
+   > isurf: un numero intero (ecco che che il suo numero di variabile che sta nel
+   vettore dei numeri interi per convenzione ha il segno -)
+   
+   > irk: variabile che segna eventi particolari, tipo un salto da una superficie
+          ad un altra: quando la traiettoria salta da uan superficie ad un'altra il 
+          programma lo scrive subito e queste sono scritture extra, non quelle 
+		  regolari ogni 1fs. Infatti, quando si fa una statistica a volte bisogna 
+		  tenerne di conto: facendo una statisitica che riguarda i tempi lo devo
+		  sapere che ci ho aggiunto dei dati in piu
+   
+   > Etot, Ecin, Epot
+   
+   > rnc: distanze rnc
+   
+   > nnc: angoli nnc
+   
+   > cnnc: diedro in 2 salse --> quella con la @ è quella hce è soggetta ad essere
+           ridotta nell intervallo 0-180, mentre l'altra no.
+		   
+   > Energie dei due stati: infatti, l'energia potenziale è l'energia dello stato
+                            corrente (quando sono nell'eccitato è l'energia
+							dell'eccitato e quando cado sul fondamentale è quella
+							del fondamentale) --> io le voglio entrambe comunque
+                            perchè ci puo interessare sapere quanto sono distanti i
+							due stati quando si cade nel fondamentale o cose di
+							questo genere.
+   
+>> Fatti i primi istogrammi mi copio da uan cartella del prof dei file gnu che mi
+   servono per fare gli istogrammi. --> trasferisco i file ceh mi servono da
+   elettra5 in locale, PER LAVORARE SUL MIO GNUPLOT
+
+>> VI statdyn_S1
+   fa lo stesso di statdyn_equi ma lo applica a photo.dyn: ci sono dentro le stesse
+   cose, c'è solo uan variabile in piu (rnn). La lancio. 
+  
+>> VI statdyn_S1
+   Anche qui non c'è niente di particolare da fare. La lancio.
+   >> Il prof pensa di aver fatto un errore: mi fa guaradre trans_equi.inf --> da
+      qui si vede che deve cambiare una cosa nel tabellone per fare gli istogrammi.
+  
+>> Si torna a statdyn_equi e si modifica una cosa: 
+   Prima colonna tabella da modificare: la prima distanza 65 è la distanza nn e quindi rn1c1 è 66 (non 65), rn2c2 è 67 (non 66), piu altre cosette simili.
+	
+>> Rilancio da statdyn_equi in poi, perche vanno eseguite nella giusta sequenza:
+   faccio anche statdyn_tot senza problemi.
+  

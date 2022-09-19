@@ -1,0 +1,62 @@
+PRIMA PARTE
+Grafico inversione:
+c'è una cosa che non torna dice maurice, perche per il trans S0 la correzione ZPE dovrebbe essere 0, alla sua geometria ottimale.
+Gli torna peò che S1 segua lo stesso andamento, con geometrie leggermete diverse ma essenzialemte da dx a sx essenzialmente cambia l'angolo. 
+magari c'è un problema sulla questione angolo (il fatto di aggiungere il complemetare)--> sistemo il programma e dico che dopo il TS dell'inversione il diedro deve cambiare.
+ |
+ v
+sistemo quesat cosa nel programma: rifaccio il plot ma non è migliorato.
+risistemo il fatto nel programma che, oltre a cnnc dobbiamo aggiustare ang1.
+ |
+ v
+Il plot che viene fuori: la curva di S0 passa per lo 0 di zpe all'angolo giusto (245 aka minimo di S0 trans)
+>>mau si chiede: quanto viene la correzione per S1 nell'inversione? guardando il grafico della scansione sull'inversione si vede che il minimo di S1 ottimizzato viene a 230gradi. Se vado a questo angolo sul grafico dello ZPE per l'inversioneS1 vedo che la correzione ZPE è +0.01 che non ci piace: doveva venire -0.1. Dalla figura si vede questa cosa. 
+
+
+grafico torsione:
+Per la torsione, a 180 gradi (geometria ottimizzata per s0) abbiamo esattamente 0 divZPE : qui torna!
+Poi cala parecchio ad angoli piccoli in una zona dove non abbiamo dati (verso 60 gradi non abbiamo nulla)
+Andando oltre i 90 scenda ancora, non è molto comvincente. Si nota che in S1 invece non scende.
+
+Guardo su zpe.rotS0:
+Gli angoli di legame restano sempre a valori ragionevoli: all'inizio quando siamo dalla parte del cis. Alcune bruttire del grafico sono giustificate dal fatto ceh l'ottimizzazzione improvvisamente tra 85 e 90 gradi cambia idea e da un angolo di 134 passa a 118. NON GRAVE, ma qui fa saltare un po lo ZPE.
+QUello che a mau non va bene sono i valori alti verso i 60 gradi di toriosione che non sono giustificati da niente, non abbiamo nessun dato ceh divce che a quell'angolo li lo ZPE deve essere cosi grande.
+
+Ritornando sul grafico torsione, non dice nulla.
+
+guardandola nuovamente, vedo che il grafico va male mostly perS0. I punti reativi ad S1 sono uno verso 130gradi (minS1) con ZPE -0.07. E nella figura torna. A 90 gradi (dato di S0) ho il TS della torsione con ZPE -.15 e si capisce perche lo trascina molto giu nella figura. 
+
+grafico scansione sulla torsione:
+>>in S0 ho un tranquillo TS. Se però ottimizzo S1 (la curva blu piu alta) è mo.lto piatta all'inizio a      80 g r adi, con un minimo accennato verso 130 gradi, poi risale in un TS e poi scende decisa e improvvisamente è degenere con il g.s (ho li un pezzetto di crossing seam, il punto piu basso di esso è la CoIn (cioè il minimo di energia per l'insieme dei punti per cui S0 e S1 sono degeneri)). Il momento angolare della torsione intorno al cdoppio legame mi porta p facilemte verso il cis che verso il trans --> poi nel g.s. inizia la dissociazione. 
+
+-------------------------------------------------------------------------------------------------------------------------
+SECONDA PARTE
+tra l'altro, il TS della torsione nessuno lo aveva calcolato e quindi non è stato molto curato: è venuto fuori dal PM3 che li c'è una sella, alla stessa altezza di quella dell'inversione. Ora: favorirla ulteriormente attribuendogli questo ZPE cosi basso a mau non piace, ma ancorqa meno gli piaceche poi in mancanza di dati a 60 gradi diventi ancora piu basso. Quello che possiamo fare è modifiacre quel dato li mettendo uno ZPE piccolo ma non piu di tanto
+|
+|
+v
+Se guardo i grafici di torsione (che tra l'altro manco avevo rifatto dopo la correzione fatta per l'angolo all'inizio del ragionamento di oggi) vedo che va ancora peggio: è vero che adesso sta piu su e poi perun motivo a doi ignoto scende ancora piu ripidamente. DOBBIAMO RASSEGNARCI AD UTILIZZARE QUALCHE FATTORE PER DISTINGUERE S1 da S0, modificando lo ZPE di S1 rispetto a quello di S0 :( :: quindi un procedimento potrebbe essere quello di ottimizzare prima i dati di s0 usando meno parametri e precisamente un minor numero di termini per l'angolo, che sono quelli che causano ilgrafico orribile di rotazione per s0 (uso funzioni che oscillano parecchio e poi a caso tutti idati negativi si sommano verso 60 gtradi e fanno quel minimo che nessuno ha mai visto). In sintesi: troppi parametri per pochi dati. <-- solita cosa che affligge le interpolazioni.
+
+Quindi se noi togliamo il dato di S1 a 140 gradi e contemporaneamente togliamo la funzione cos(4phi), probabilemte la curva viene molto meglio MA la curva per S1, naturalemtne, verrà peggio: abbiamo ancora 2 dati di S1 che potrebbero essere usati per determinare un fattore con cui aggiustare lo ZPE di S1.
+
+
+<<Tolgo dal programma minS1, metto n=8, e nel programma dico di calcolare a(1,9) se n=9>>
+	Il grafico viene fuori un troiaio. PAssa si per i tre punti, ma in modo orribile. Insomma non torna nulla.
+	Se ne riparla lunedi.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

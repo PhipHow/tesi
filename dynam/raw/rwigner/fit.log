@@ -1,0 +1,77 @@
+
+
+*******************************************************************************
+Sat Jul 23 17:04:48 2022
+
+
+FIT:    data read from 'azmtraj.pun' using 1:9
+        format = x:z
+        x range restricted to [1000.00 : 10000.0]
+        #datapoints = 4501
+        residuals are weighted equally (unit weight)
+
+function used for fitting: tra(x)
+	tra(x) = at * exp(-x/taut)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   at            taut         
+   0 1.4723825759e+00   0.00e+00  1.13e-01    2.000000e-01   2.000000e+04
+   7 8.6239579769e-03  -1.58e-02  1.13e-07    1.671783e-01   1.277882e+05
+
+After 7 iterations the fit converged.
+final sum of squares of residuals : 0.00862396
+rel. change during last iteration : -1.57789e-07
+
+degrees of freedom    (FIT_NDF)                        : 4499
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.00138451
+variance of residuals (reduced chisquare) = WSSR/ndf   : 1.91686e-06
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+at              = 0.167178         +/- 4.964e-05    (0.02969%)
+taut            = 127788           +/- 810.7        (0.6344%)
+
+correlation matrix of the fit parameters:
+                at     taut   
+at              1.000 
+taut           -0.901  1.000 
+
+
+*******************************************************************************
+Sat Jul 23 17:04:48 2022
+
+
+FIT:    data read from 'azmtraj.pun' using 1:3
+        format = x:z
+        #datapoints = 5001
+        residuals are weighted equally (unit weight)
+
+function used for fitting: und(x)
+	und(x) = x<td ? 1.0 : w*exp(-(x-td)/tau1) + (1-w)*exp(-(x-td)/tau2)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   td            tau1          tau2          w            
+   0 1.1933648994e+03   0.00e+00  6.87e-02    1.700000e+02   1.000000e+02   1.000000e+03   3.000000e-01
+   9 2.7437205410e-01  -4.73e-01  6.87e-08    1.396781e+02   2.445312e+02   3.694430e+04   3.737794e-01
+
+After 9 iterations the fit converged.
+final sum of squares of residuals : 0.274372
+rel. change during last iteration : -4.7318e-06
+
+degrees of freedom    (FIT_NDF)                        : 4997
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.00740995
+variance of residuals (reduced chisquare) = WSSR/ndf   : 5.49074e-05
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+td              = 139.678          +/- 0.8751       (0.6265%)
+tau1            = 244.531          +/- 1.395        (0.5707%)
+tau2            = 36944.3          +/- 109.6        (0.2967%)
+w               = 0.373779         +/- 0.0002828    (0.07565%)
+
+correlation matrix of the fit parameters:
+                td     tau1   tau2   w      
+td              1.000 
+tau1           -0.695  1.000 
+tau2           -0.146  0.399  1.000 
+w              -0.120  0.429  0.892  1.000 

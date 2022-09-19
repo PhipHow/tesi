@@ -1,0 +1,121 @@
+ File dyn: nintx           =        40
+ File dyn: nflo            =        89
+ Total number of atoms     =        10
+ QM/MM                     =         F
+
+     Variable        IVAR      IREC      NTEST     NPATH
+     time               1        -1        -1        -1
+     isurf             -4        -1        -1        -1
+     irk               -5        -1        -1        -1
+     Etot               4        -1        -1        -1
+     Ecin               2        -1        -1        -1
+     Epot               3        -1        -1        -1
+     rnn               65        -1        -1        -1
+     rn1c1             66        -1        -1        -1
+     rn2c2             67        -1        -1        -1
+     rn1c2             68        -1        -1        -1
+     rn2c1             69        -1        -1        -1
+     n2n1c1            70        -1        -1        -1
+     n1n2c2            71        -1        -1        -1
+     cnnc               0        -1        -1        -1
+     
+
+   No constraints
+Bad traj., time, Ein, Efi=   342     340.600000       0.278610     374.948303
+
+
+  TOTAL NUMBER OF TRAJECTORIES .........      393
+  NUMBER OF REACTIVE TRAJECTORIES ......      299
+  NUMBER OF BAD TRAJECTORIES ...........        1
+
+
+
+ Bad trajectories:
+    #    ntraj     why bad
+     1   342       energy  
+
+ Elapsed CPU time  (sec) =         11.884
+ Total CPU time    (sec) =         11.884
+
+ Snapshots for    392 good trajectories
+
+
+   Snapshots of isurf      vs time      
+   Reactive trajectories only (T/F): F
+   Data in file snap.time.isurf
+   Number of trajectories (min-max):      57     392
+
+
+   Snapshots of irk        vs time      
+   Reactive trajectories only (T/F): F
+   Data in file snap.time.irk
+   Number of trajectories (min-max):      57     392
+
+
+   Snapshots of Etot       vs time      
+   Reactive trajectories only (T/F): F
+   Data in file snap.time.Etot
+   Number of trajectories (min-max):      57     392
+
+
+   Snapshots of Ecin       vs time      
+   Reactive trajectories only (T/F): F
+   Data in file snap.time.Ecin
+   Number of trajectories (min-max):      57     392
+
+
+   Snapshots of Epot       vs time      
+   Reactive trajectories only (T/F): F
+   Data in file snap.time.Epot
+   Number of trajectories (min-max):      57     392
+
+
+   Snapshots of rnn        vs time      
+   Reactive trajectories only (T/F): F
+   Data in file snap.time.rnn
+   Number of trajectories (min-max):      57     392
+
+
+   Snapshots of rn1c1      vs time      
+   Reactive trajectories only (T/F): F
+   Data in file snap.time.rn1c1
+   Number of trajectories (min-max):      57     392
+
+
+   Snapshots of rn2c2      vs time      
+   Reactive trajectories only (T/F): F
+   Data in file snap.time.rn2c2
+   Number of trajectories (min-max):      57     392
+
+
+   Snapshots of rn1c2      vs time      
+   Reactive trajectories only (T/F): F
+   Data in file snap.time.rn1c2
+   Number of trajectories (min-max):      57     392
+
+
+   Snapshots of rn2c1      vs time      
+   Reactive trajectories only (T/F): F
+   Data in file snap.time.rn2c1
+   Number of trajectories (min-max):      57     392
+
+
+   Snapshots of n2n1c1     vs time      
+   Reactive trajectories only (T/F): F
+   Data in file snap.time.n2n1c1
+   Number of trajectories (min-max):      57     392
+
+
+   Snapshots of n1n2c2     vs time      
+   Reactive trajectories only (T/F): F
+   Data in file snap.time.n1n2c2
+   Number of trajectories (min-max):      57     392
+
+
+   Snapshots of cnnc       vs time      
+   Reactive trajectories only (T/F): F
+   Data in file snap.time.cnnc
+   Number of trajectories (min-max):      57     392
+
+ Elapsed CPU time  (sec) =          4.521
+ Total CPU time    (sec) =         16.405

@@ -1,0 +1,50 @@
+					--------------------------------
+					|Data: 03-06-22		           |
+					|Origine: zpe50mono            |
+					--------------------------------
+					
+					
+>> la simulazione di zpe300.mono è finita bene. Quindi in ordine faccio: mergedyn.x; statdyn_equi; statdyn_S1; statdyn_tot; --> poi continuo io in privato
+
+>> Mau non si aspetta che qui venga un risultato molto diverso. Invece un ultimo
+   tentativo di ottenere dei risultati per le energie traslazionali finali il più simili possibile a quelli sperimentali sarebbe di abbassare la temperatura.
+
+>> Diamo un occhiata all'articolo di North del 93
+   >> Sono stati misurati i tempi di volo: il tempo di volo è un modo di misurare la 
+      velocità di una molecola. Cioè se io produco dei frammenti molecolari con una fotodissociazione, o degli ioni con una fotoionizzazione, nel primo caso questi frammenti vengono espulsi nella dissociazione con unacerta velocità e vanno in moto rettilineo uniforme. Nel secondo caso se sono degli ioni, (ulteriore oerazione che è staat fatta anche sui frammenti originali non ionici) e viaggiano in un campo elettrico li quando si fa lo spettro di massa c'è un campo elettrico in una certa regione e poi non c'è più --> In ogni caso dal tempo di volo possono risalire alla loro velocità. Tempo di volo che ci si aspetta sia ben piu lungo del processo che li crea, quindi sul TOF non influisce sensibilmente il maggiore/minore ritardo con cui avviene la fotodissociazione (io ho visto che si ha la fotodissociazione in tempi che potrebbero essere ps o forse ns, poi se vado ai micros come tempo di volo esso è essenzialemnte dovuto alla velocità con cui viaggiano e non al piccolo ritardo dovuto alla fotodissociazione o altri processi (ionizzazione o altro)).
+	  
+   >> Come si vede, per quanto riguarda i metili, hanno un picco a tof brevi e poi un
+      altro a tof piu lunghi --> da cui loro inferiscono due curve (quello dei brevi e quello dei lunghi) che si sovrappongono però, e se si va all'energia traslazionale ho due curve dell'energia che se le sovrapponi devno dare due massimi. North dice che l'energia media è circa 4 kcal/mol per un metile --> noi ci crediamo però noi così bassa non riusciamo ad averla, ma magari se partiamo con un energia piu bassa si, magari viene.
+   
+   >> Quanto alla temepratura purtroppo loro non la dicono
+   
+   >> Dicono che "LA combinata energia rotazionale e vibrazionale dell AZM a
+      temepratura ambiente è stimata essere 1.7kcal/mol" e qui gia noi gli facciamo torto, perché noi lavoriamo classicamente e classicamente vale l'equipartizione quindi ogni moto vibrazinale ha la sua energia media di kT, ma quantisticamente non è mica vero: solo i modi vibrazionali di bassa frequenza hanno all'incirca quella energia media (al di sopra dello ZPE si intende) invece quelli di alta energia siccome gli stati vibrazionali eccitati non riescono ad essere popolati per niente o quasi hanno un energia media termica molto inferiore. Per le rotazioni con una molecoletta così c'è 1/2kT per ogni asse rotazionale.
+	  
+   >> Però poi North dice che "questa energia dovrebbe essere significativamente
+      ridotta dopo l'espansione supersonica": questi esperimenti vengono fatti in fasci molecolari. Un fascio molcolare si produce facendo espandere un gas che sta gia a temepratura relativamente bassa attraverso un ugello, il che produce un forte raffreddamento che mi produce molecole che dall'ugello si propagano un po in tutte le direzione --> dopo ci metto dei forellini ceh selezionano solo le molcole che si propagano in unna certa direzione (perpendicolari alla superficie del contenitore intorno al foro di uscita) e quindi riduco il tutto a un fascio di molecole che si muovono abbastanza velocemente come velocità media in una certa direzione ma sono molto fredde, quanto fredde purtroppo qui non lo dice. 
+	  Noi potremmo provare a mettere una temepratura veramente molto bassa per deu motivi:  
+	    1. Abbiamo gia fatto l'esperimento a Tamb --> potremmo fare qualcosa di molto 
+		   piu freddo proprio per distinguere molto bene le due simulazioni, altrimenti i risultati non saranno granche diversi; 
+	    2. Perchè la dinamica classica comporterebbe equipartizione e quindi in realtà
+   		   un contenuto energetico molto piu alto di quello che realmente deve avere la molecola.
+	  Molto piu bassa si intende di 300K: potremmo fare a 50K.
+	  
+   >> Quello che ci interessa è vedere se per caso ci si avvicina al risultato giusto,
+      poi tutto sommato non serve altro. 
+	  
+   >> Poi North et al hanno tutte le loro interpretazioni come al solito basate non su una dinamica ma su alcuni schemi energetici più qualche considerazione cinematica: Three body analysis vuol dire in che direzioni dovrebbero essere espulsi i frammenti, ma sono considerazioni sempre un po' qualitative. 
+   
+>> Quindi lancio un altra dinamica nello stato fondamentale dove cambio soltanto la temperatura a 50K. MA va cambiata in due punti diversi
+    --> TEMP = 50; TEMP è il parametro per la dinamica di Langevin, quello che
+	               determina la forza random che mantiene una certa energia cinetica a dispetto dell'attrito
+	--> MAXWELL = 50; MAXWELL prepara le condizioni iniziali di velocità in maniera
+	                  che l'enregia cientica sia subito, fin dall'inizio, quella giusta. Per quanto poi abbiamo visto che siccome parto da una geometria di equilibrio, si l'energia cinetica è giusta ma si va i nsalita e immediatametne questa energia cinetica viene ridotta a causa della crescita dell'energia potenziale e in piccola parte anche per l'attrito;
+
+>> .mono perché Nell'esperimento usano un laser (quindi luce monocromatica) e se il 
+   tentativo si fa per riprodurre al meglio quell'esperimento, allora facciamo così. Diciamo che in questa nostra serie di test per vedere l'effetto di diverse condizioni iniziali l'accento è sull'energia: cioè noi stamo dicendo "La distribuizione di energie che viene fuori da Wigner ha certamente qualche difetto, ma anche quella che viene fuori da Boltzmann ovviamente e vediamo un po' quale è peggio e come si possono correggere". 	Ora, nella distribuzione di energie però conta anche come faccio l'eccitazione, perche se accetto qualunque energia di eccitazione ho uan distribuzione di neergie di eccitazione la cui larghezza ulteriormente allarga la distribuzione di energie iniziali nello stato eccitato, ed è determianta la larghezza nelle energie di eccitazione essenzialmente proprio dalla distribuzione di coordiante iniziali  (non degli impulsi) perche a seconda della geoemtria cambia la differenza di energia tra g.s e exc. state. Se io pero faccio eccitazione  monocromatica l'energia di eccitazione la decido io. Difatti con luce monocromatica otteniamo uan distribuzione di energia nello stato eccitato leggermente piu stretta, però permane naturalmente di base l'energia iniziale nello stato fondamentale.	
+
+>> Negli output di MOPAC non è strano che degli orbitali di energia quasi uguale siano
+   un po' mescoalti e non rispettano perfettamente la simmetria, perchè non dimentichiamoci che se io fornisco a un qualsiasi calcolo una matrice che dovrebbe essere simmetrica (dovrebbe rispettare la simmetria, cioè gia diagonale a blocchi se prendo funzioni di base di simmetria) che sia la matrice dell hamiltoniano elettronico in una certa base oppure la matrice di Fock e la diagonalizzo.  E questa matrice ha qualche lieve dissimmetria, non è perfettamente diagonale a blocchi, non è gia blocchizzata (lo dico se la base fosse di simmetria, ma in realtà io uso la base delle funzioni atomiche che in generale non lo sono) mi vengono fuori degli autovettori che se sono ben isolati (cioè un autovettore che è lontano in energia da tutti gli altri) rispetterà molto bene la simmetria. Ma se è molto vicino a qualcun altro tende a mescolarsi e quindi non rispetta la simmetria e se se ne mescolano due di simmetrie diverse addio.  La nostra geometrie iniziale gia secondo mau non è perfettamente simmetrica, perche ottenuta da ottimizzazione di geoemtria e qualceh difetto ce l'ha, però lo è. Poi avanti nel calcolo la cosa peggiora, perceh via vai la molecola è sempre meno simmetrica e fa parte della approssimatività di MOPAC il fatto che abbia ancora riconosciuto una simmetria. Piu in la non riconoscerà nemmeno l'asse di simmetria perceh la molcola sarà completamente dissimetrizzata.
+   
+   

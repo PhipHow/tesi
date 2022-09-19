@@ -1,0 +1,29 @@
+set key right top spacing 1.5
+set xlabel 'time, fs'
+set ylabel 'rN2C2, A'
+set xrange [0.0:500.0]
+set yrange [1.2:2.5]
+#set grid
+#set colors classic
+
+bohrtoA=0.529177249
+
+plot \
+'Stat.pun.photo5-3' u 3:($11*(bohrtoA)) title 'no perturb' w l lt 1 lc 1 lw 1, \
+'Stat.pun.photo5-3' u 3:($5 > 0.5 ? $11*(bohrtoA) : 1/0) notitle w p pt 7 lc 1 ps 0.5, \
+'Stat.pun.photo5-3pert' u 3:($11*(bohrtoA)) title 'perturb' w l lt 1 lc 3 lw 1, \
+'Stat.pun.photo5-3pert' u 3:($5 > 0.5 ? $11*(bohrtoA) : 1/0) notitle w p pt 7 lc 3 ps 0.5, \
+'Stat.pun.photo5-3pert.fix' u 3:($11*(bohrtoA)) title 'perturb + fixe' w l lt 1 lc 4 lw 1, \
+'Stat.pun.photo5-3pert.fix' u 3:($5 > 0.5 ? $11*(bohrtoA) : 1/0) notitle w p pt 7 lc 4 ps 0.5, \
+'Stat.pun.photo5-3pert.fix.max' u 3:($11*(bohrtoA)) title 'perturb + fixe' w l lt 1 lc 5 lw 1, \
+'Stat.pun.photo5-3pert.fix.max' u 3:($5 > 0.5 ? $11*(bohrtoA) : 1/0) notitle w p pt 7 lc 5 ps 0.5
+
+# set term pslatex color dashed lw 3
+# set size 1.00,0.80
+# set output 'fig.onemode.q.wigner.tex'
+# replot
+
+set term pdf font "Times-Roman,10" color dashed lw 2
+set size 1.0,1.0
+set output 'rN2C2.pdf'
+replot

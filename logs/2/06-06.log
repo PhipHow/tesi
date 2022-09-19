@@ -1,0 +1,66 @@
+					--------------------------------
+					|Data: 06-06-22		           |
+					|Origine: traiettoria media    |
+					--------------------------------
+					
+>> Ho fatto il grafico dell'andamento della temperatura durante la simulazione, e si
+   vedo che ci siamo a 50K (-0.5K va comunque bene come Tmedia); inoltre a bassa temperatura le fluttuazioni sono molto piu ridotte (le fluttuazioni dovrebbero essere proporzionali alla temperatura e a occhio e croce lo sono)
+   
+>> Procedo quindi al solito modo di sempre: MAgari da sample.x vengono meno traiettorie,
+   anceh se ripensarci forse non è detto: è che per avere... ACHTUNG!
+   
+>> Viene fuori un errore nell eseguire sample.x perche zpe50.mono l'ho fatto con il
+   mopac di giovanni, che è una versione legg.diversa da quella di mau. Quindi in sample.x cambio da mau a gio. Ora funziona
+   
+>> SAMPLE.OUT: Traiettorie veramente poche! QUesto perchè siccome la transizione è
+   proibita alla geoemtria di equilibrio e io sto esplorando un set di geometrie che si discostano da quella di equilibrio molto meno rispetto a prima. Di conseguenza ho dipoli di trnsizione piu piccoli e con quello standard che ho fissato (reference square dipole) piu raramente lancerò una traiettoria dalle geometrie che esamino. Dobbiamo quindi abbassare lo standard [...faccio delle prove...]. Lo passa a 0.0015 e ottengo 449 geoemtrie (qui ne uso di piu degli altri casi)
+
+>> Tutte le volte mi da lo stesso errore quando mando launch perché non cambio il nome
+   delle geometrie nel template photo.dat
+   
+>> Confronto cnnc.pdf zpe300.mono vs zpe300
+   zpe300.mono alla fine il diedro aumenta (cosa ceh zpe300 non fa): è come se ce ne fosse probabilmente una maggiore frazione che rimbalza indietro.
+   
+   >> Domanda di mau: NOn è che va un po piu lento il decadimento?
+      Prendo quindi pop.pdf di zpe300.mono e lo confronto con l'analogo di zpe300:
+	    In realta .mono decade piu velocemente
+		
+		
+>> MAU : "Una cosa che potresti fare bellina è prendere la mapap dell'energia potenzaile dello satto eccitato e disegnarci sopra la media delle traiettorie: la dovresti disegnare con due tracce perceh come angolo nnc posso scegliere il piu piccolo e entrambi sono buoni nel senso che entrambi finiscono dentro l'intersezione conica, con l'intessa che se tracci il piu piccolo vuol dire che l'altro angolo è piu grande e viceversa".
+   >> Il file che contiene gli <nnc> è azmtraj.pun: per fare in modo che la linea che
+      disegno segua il tempo io devo lavorare parametricamente!
+   
+   SEGUONO DEI CASINI TECNICI CHE NON RIPORTO.
+   
+   >> Viene fuori una linea che non ha alcun senso: sembra che abbia fatto il plot del
+      cnnc nei primi 180fs. Non ha senso.
+   
+   >> Inverto quindi in gnuplot le colonne dei dati con il t parametrico --> viene
+      fuori uno scarabocchio senza senso.
+   
+   >> Ci aggiungiamo una condizione: che non ho capito --> il plot non viene nemmeno 
+      fuori :( --> sistemiamo la condizione: viene fuori nulla.
+   
+   >> Provo a plottare unicamente la traiettoria (commento tutto il resto) e non fa un cazzo again, cambio qualcosa nello gnuplot e ok ora viene, ci metto entrambi gli angoli 
+   
+   >>CONCLUSIONE: non dicono niente questi cosi, tranne una cosa ceh magari non ce n'eravamo resi conto ma NON SIA ARRIVA AFFATTO VICINO ALL'INTERSEZIONE CONICA CON LA MEDIA DELLE TRAIETTORIE SI INTENDE... 
+      
+	   Invito di riflessione di mau: é possibile che ogni traiettoria arrivi vicino
+        	                         all'intersezione conica singolarmente, e la media non ci arrivi mai? Diciamo: è possibile che oggni traiettoria arrivi piu in la di 120 gradi singolarmente e la media non ci arrivi mai? Mentre ci penso, mau si convince che non solo è possibile ma non è nemmeno strano. Pero mi ci lascia pensare e probabilmente questo grafico è addirittura misleading: NON VA FATTO. 
+									 
+									 OSS: è sempre universalmente possibile che i salti al g.s avvengano ad una certa distanza dall'intersezione conica. é vero che li vicino all'intersezione conica sono piu probabili, ma se per esempio il sistema passa un lungo tempo ad una certa distazna dalla CoIn dove la probabilità di saltare è piu bassa ma non è per niente bassa in assoluto, finirà di saltare en prima di essere arrivata all intersezione conica. 
+									 
+									 Ma qui il problema posto è riguardo le medie: io faccio una media di uan varabile rispetto al tempo e non vedo mai la media avvicinarsi a un certo valore che mi aspettavo. Però non puo darsi che ogni singola traiettoria invece ci si avvicini parecchio a quel valore? In generale, con un problema piu semplice: faccio la media di una certa varabile che non dipende da altre variabili. La media sta lontana da un certo valore. é possibile che tutte le variabili invece ci stiano piu vicine?  Ovviamente no! se tutte le varabili ci stanno vicine la media deve venire vicina! 
+									 
+									 Pero queste sono funzioni del tempo: quindi è possibile che nel tempo ogni traieittoria si avvicini all'intersezione conica ma la media a nessun tempo riesca ma ad avvicinarcisi?
+									 
+									 Per giunta c'è da considerare questo: noi facciamo solo la media delel traiettorie che stanno nello stato eccitato le quali nel tempo sono via via di meno (certe traiettorei vengon cancellate e certe altre continuano a pesare sulla media)
+   
+   
+   
+ >> terzo capitolo (quello delle simulazioni) dovro speigare quali sono i metodi di sampling piu usati e poi una parte in cui spiego cosa ho fatto io  
+   
+    
+
+   
+

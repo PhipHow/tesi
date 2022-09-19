@@ -1,0 +1,22 @@
+set key right top spacing 1.5
+set xlabel 'time, fs'
+#set ylabel 'energy, eV'
+set xrange [0.0:350.0]
+set yrange [110:180]
+#set grid
+set colors classic
+
+plot \
+'azmtraj.pun' u 1:29 title 'CNNC S_1' w l lt 1 lc 1 lw 1, \
+'azmtraj.pun' u 1:25 title 'NNC_1 S_1' w l lt 1 lc 2 lw 1, \
+'azmtraj.pun' u 1:27 title 'NNC_2 S_1' w l lt 1 lc 3 lw 1
+
+# set term pslatex color dashed lw 3
+# set size 1.00,0.80
+# set output 'fig.onemode.q.wigner.tex'
+# replot
+
+set term pdf font "Times-Roman,10" color dashed lw 2
+set size 1.0,1.0
+set output 'cnnc.pdf'
+replot

@@ -1,0 +1,111 @@
+set key right top spacing 1.2
+set xlabel 'energy, eV'
+set noylabel
+set xrange [0.0:8.0]
+set yrange [0.0:4.0]
+set grid
+unset key
+
+
+set border lc "black" lw 0.25  # thin lines for the tics
+set border 0                   # don't draw the normal border
+set tics scale 2.0             # longer than usual tics
+set obj 1 rectangle from graph 0,0 to graph 1,1
+set obj 1 lc "black" lw 1.0    # heavy line for the "border"
+set obj 1 fillstyle empty
+set grid x y
+
+
+set macros
+TMARGIN = "set tmargin at screen 0.95; set bmargin at screen 0.65"
+MMARGIN = "set tmargin at screen 0.65; set bmargin at screen 0.35"
+BMARGIN = "set tmargin at screen 0.35; set bmargin at screen 0.05"
+LMARGIN = "set lmargin at screen 0.10; set rmargin at screen 0.525"
+RMARGIN = "set lmargin at screen 0.525; set rmargin at screen 0.95"
+
+XSTUFF = "set xtics('0'0,'1'1,'2'2,'3'3,'4'4,'5'5,'6'6,'7'7,'8'8); set xlabel 'Energia, eV'"
+YSTUFF = "set ytics('0'0,'0.5'0.5,'1.0'1.0,'1.5'1.5,'2.0'2.0,'2.5'2.5,'3.0'3.0,'3.5'3.5,'0'4.0); set ylabel 'Distribuzione'"
+NOXSTUFF = "set xtics(''0,''1,''2,''3,''4,''5,''6,''7); unset xlabel"
+NOYSTUFF = "set ytics(''0,''0.5,''1.0,''1.5,''2.0,''2.5,''3.0,''3.5,''4.0);unset ylabel"
+
+#set term pdf font "Times-Roman,11" color dashed lw 2
+#set term pdf size 6.0,8.0
+#set output 'Einitot.pdf'
+
+set terminal cairolatex pdf size 6.0,8.0 lw 3
+set output "Einitot.tex"
+
+
+
+set multiplot layout 3,3 rowsfirst
+
+
+@YSTUFF; @NOXSTUFF; @TMARGIN; @LMARGIN
+unset ylabel
+set ytics(''0,'0.5'0.5,'1.0'1.0,'1.5'1.5,'2.0'2.0,'2.5'2.5,'3.0'3.0,'3.5'3.5,'4.0'4.0)
+set label 1 'ZPE300' at graph 0.70,0.9 font "1"
+plot \
+'histo.E_S0.zpe300' u 1:3 title 'Energia in S_0' w l lt 1 lc 8 lw 1, \
+'histo.E_S1.zpe300' u 1:3 title 'Energia in S_1' w l lt 1 lc 2 lw 1, \
+'histo.E_ecc.zpe300' u 1:3 title 'Energia di ecc.' w l lt 1 lc 6 lw 1, \
+'histo.spec.zpe300' u 1:($3/10.0) title 'Spettro di abs.' w l lt 1 lc 7 lw 1
+
+
+@NOYSTUFF; @TMARGIN; @RMARGIN
+set label 1 'ZPE300.mono' at graph 0.60,0.9 font "1"
+plot \
+'histo.E_S0.zpe300mc' u 1:3 title 'Energia in S_0' w l lt 1 lc 8 lw 1, \
+'histo.E_S1.zpe300mc' u 1:3 title 'Energia in S_1' w l lt 1 lc 2 lw 1, \
+'histo.E_ecc.zpe300mc' u 1:3 title 'Energia di ecc.' w l lt 1 lc 6 lw 1, \
+'histo.spec.zpe300mc' u 1:($3/10.0) title 'Spettro di abs.' w l lt 1 lc 7 lw 1
+
+
+@NOXSTUFF; @YSTUFF; @MMARGIN; @LMARGIN
+set label 1 'ZPE50.mono' at graph 0.60,0.9 font "1"
+plot \
+'histo.E_S0.zpe50mc' u 1:3 title 'Energia in S_0' w l lt 1 lc 8 lw 1, \
+'histo.E_S1.zpe50mc' u 1:3 title 'Energia in S_1' w l lt 1 lc 2 lw 1, \
+'histo.E_ecc.zpe50mc' u 1:3 title 'Energia di ecc.' w l lt 1 lc 6 lw 1, \
+'histo.spec.zpe50mc' u 1:($3/10.0) title 'Spettro di abs.' w l lt 1 lc 7 lw 1
+
+
+set key
+@NOYSTUFF; @RMARGIN; @MMARGIN
+set label 1 'Wigner' at graph 0.20,0.9 font "1"
+plot \
+'histo.E_S0.w' u 1:3 title 'Energia in S_0' w l lt 1 lc 8 lw 1, \
+'histo.E_S1.w' u 1:3 title 'Energia in S_1' w l lt 1 lc 2 lw 1, \
+'histo.E_ecc.w' u 1:3 title 'Energia di ecc.' w l lt 1 lc 6 lw 1, \
+'histo.spec.w' u 1:($3/10.0) title 'Spettro di abs.' w l lt 1 lc 7 lw 1
+
+unset key
+@XSTUFF; @YSTUFF; @LMARGIN; @BMARGIN
+set xtics('0'0,'1'1,'2'2,'3'3,'4'4,'5'5,'6'6,'7'7,''8)
+unset ylabel
+set ytics('0'0,'0.5'0.5,'1.0'1.0,'1.5'1.5,'2.0'2.0,'2.5'2.5,'3.0'3.0,'3.5'3.5,''4.0)
+set label 1 'Boltzmann' at graph 0.60,0.9 font "1"
+plot \
+'histo.E_S0.bo' u 1:3 title 'Energia in S_0' w l lt 1 lc 8 lw 1, \
+'histo.E_S1.bo' u 1:3 title 'Energia in S_1' w l lt 1 lc 2 lw 1, \
+'histo.E_ecc.bo' u 1:3 title 'Energia di ecc.' w l lt 1 lc 6 lw 1, \
+'histo.spec.bo' u 1:($3/10.0) title 'Spettro di abs.' w l lt 1 lc 7 lw 1
+
+
+
+@XSTUFF; @NOYSTUFF; @RMARGIN; @BMARGIN
+unset ylabel
+set label 1 'Wigner.rid' at graph 0.60,0.9 font "1"
+plot \
+'histo.E_S0.rw' u 1:3 title 'Energia in S_0' w l lt 1 lc 8 lw 1, \
+'histo.E_S1.rw' u 1:3 title 'Energia in S_1' w l lt 1 lc 2 lw 1, \
+'histo.E_ecc.rw' u 1:3 title 'Energia di ecc.' w l lt 1 lc 6 lw 1, \
+'histo.spec.rw' u 1:($3/10.0) title 'Spettro di abs.' w l lt 1 lc 7 lw 1
+
+
+unset multiplot
+
+set lmargin 0
+set rmargin 0
+set tmargin 0
+set bmargin 0
+

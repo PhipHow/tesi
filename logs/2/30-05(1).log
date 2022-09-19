@@ -1,0 +1,164 @@
+                    -------------------------
+					| Data: 30-05-22	    |
+					| Origine: analisi dati |
+					-------------------------
+					
+					
+>> vi azmkine.x:
+   >> Qui esegue un programma che calcola le enegie traslazionali dei tre
+      frammenti finali per le molecole che sono completamente dissociate alla
+      fine della traiettoria, cioè calcola l'energia cientica relativa al
+      centro di massa. I grammenti sono la molecola N=N, i due radicali CH3
+      distinti tra il primo che si è staccato dalla molecola è il secondo:
+      questo perchè è convinzione generale che la reazione avvenga in manera
+      abbastanza asimmetrica, cioè raramente si si staccano simultaneamente,
+	  ma si staccano in rapida sequenza. Ciononostante c'è una bella
+	  differenza tra il primo ceh si stacca, dove il primo ha parecchia
+	  energia cinetica in più rispetto al secondo. 
+   
+   >> Visto che in un tempo piuttosto breve (600fs) dissociano un grand
+      numero di molecole (15-40% di tutte le traiettorie) e poi piu lentamente
+      nei successivi 10ps dissociano le altre, mau ha provato anche a
+      distinguere i tempi: una prima esecuzione di azmkine guarda solo tempi
+	  da 1 a 600, unaseconda esecuzione tra 5000 e 20000 e l'ultima il totale
+      (l'unica visibile a gli sperimentali ed è quella che conta di piu). Però
+      si voleva capiere se c'era uan differenza tra tempi corti e tempi lunghi.
+   
+   
+   >> Dopo che ilprogramam ha funzioanto la script va cercare tutti i dati
+      che servono per mettere in tabella i risultati e per fare un
+      estrapolazione di questi dati. L'estrapolazione ha questa utilità: alla
+      fine di 10000fs non tutte le traiettorie sono dissociate ovviamente e di
+      conseguenza se c'è uuna differenza tra tempi conrti e tempi lunnghi
+      nell'energia cinetica dei  frammenti non sto dando una buona statistica,
+      cioè non ho completato il campione statistico. Ecco che mau ha provato
+      una rudimentale estrapolazione che dice: supponiamo che tutte le
+      traietotrie che non sono dissociate abbiano un energia cientica media
+	  per ogni frammento uguale a quelle di poco precedenti che sono
+	  dissociate dopo 5000fs e aggiungiamo questo dato con il peso
+	  statistico relativo alle traiettorie mancanti. --> fatto quresto
+	  calcolo si vede per lo meno in che direzione vanno corretti i numeri
+	  medi ottenuti precedentemente
+   
+   >> Questo programma genera anche un istogramma che alla fien contiene
+      soltanto il risultato dell'ultimo run che è quello dove ho tutto e si
+      vede l'istogramma relativo a tutte le traiettorie che mostra come si
+      distribuisce l'energia cientica statisticamente.   
+   
+       |
+       v
+   
+   >> Eseguo la script e fine
+   
+>> vi azmkine.out
+   >> Mi scrive prima le tre uscite delle tre run del programma: mau sperava di andare ad un maggior numero di traiettorie dissociate. Sotto certi aspetti è anceh piu vicino ai dati sperimentali perche gli sperimentali vedono solo la dissociazione rapida: prima abbiamo detto che si andava dal 15 al 40 %, ma qui siamo al 65% del totale di traiettorie dissociate,  questo entro 10ps. Però piu lenta è la dissociazione lenta e piu è faciel che sia passata inosservata a gli sperimentali.
+   
+   DOMANDA MIA: Come si fa sperimetalmente?
+				Certamente hanno uan qualche tecnica risolta nel tempo con cui rivelano i frammenti; vabbè non se lo ricorda, cerca su un articolo...
+				Fanno la fotoionizzazione dell'azometano subito dopo averlo eccitato
+				
+   OSS: Un modo di rilevazione degli stati eccitati ottimo per moelcole isolate (condizioni di gas rarefatto) è fototionizzarle con luce di una frewquenza che non è sufficiente (come energia del fotone ) a ionizzare una molecola nello stato fondamentale. Di consequenza vedo un segnale (e.g elettroni emessi, in this case lo spettro di massa di AZM) che è proporzionale al numero di moelcole che stanno nello stato eccitato. Si fa lo spettro di massa perche il CH3 con tutta probabilità ha un potenziale di ionzzazione ben piu basso di quello dell AZM, e quindi mi confonde tutto. Al posto dello stato eccitato di AZM posso anche ionizzare CH3 e se guardo a gli elettroni emessi non so da dove vengono, mentre nell'MS li distinguo benissimo.
+   
+   Sperimentalmente quinid vedono una crescita del segnale e un decadimento del frammento di massa 43, che è CH3NN. Che è il frammento a vita breve, che si vede in tempi brevissimi, piu brevi di quello che sembra a noi: va detto che noi ci aggiungiamo il tempo per arrivare ad uan distanza c-n di 3.5A (forse esageriamo un po da questo pdv). é certo che probabilmente nel tempo che tutta la moelcola vola si frammenterà anche. MAU ha i suoi dubbi che siano in grado di veder un segnale che poi si prolunga per decine di ps ed è molto debole (cioè il segnale dovuto a molecole che continuano a dissociare lentamente, dopo tanto tempo).
+   
+   "Il loro lavoro è stato posteriore al nostro, e ci citano"
+   
+   C'è invece un lavore precedente a quello fatto da persico, un altro premi nobel, che invece aveva fatto misure non risolte nel tempo di quei profili di energia cinetica dei metili che vengono prodotti e ha scoperto che ci sono due tipi di metili e quindi ha dato importanza al meccanismo sequenziale della dissociazione (se dissociasse simmetricamente ci sarebbe un solo tipo di metile che viene buttato fuori).
+    
+   >> Tornando al file noi vediamo un metile lento (il primo) e un metile veloce. Abbastanza lo stesso si vde a tempi lunghi. Se si prendono tutte insieme le traiettorie non cambia molto. 
+   
+   >> Ci sono delle estrapolazioni: purtroppo qui cambia abbastanza basandosi su dati un po poveri: perchè se 66 traiettoire dissociano rapidamente e altre 36 dissociano dopo, di cui solo 6 tra 5000 e 20000, basandosi solo su quelle 6 soltanto non è che ho una buonastatistica per dire come vanno le cose. 
+   Mau non starebbe a guardare l'estrapolazione, anche se comunque tutitti dati sono abbastanza simili e abbastanza netti nel distinguere tra primo e secondo metile: le 102 traiettorie mi da poco piu di metà l'energia del primo metile rispetto al secondo, che è una buona cosa. 
+   Questi numeri vanno poi riportati in una tabella e confrontati con altri, e sono ben diversi da quelli del boltzmann senza correzione ZPE (quindi sicuramewnte un significato questo lavoro ce l'ha)
+   
+>> vi azmtraj.x:
+   Questo fa tanti lavori, il principale è di contare ad ogni tempo le traiettorie che sono in una certa situazione chimica essenzialmente(cioè mi dice in funzione del tempo quante molecole di AZM in determinate situazioni ci sono): 
+   quelle in cui c'è ancora AZM indissociato (exc. sta e gs), 
+   quelle in cui si vede che un legame è gia dissociato, 
+   quelle che hanno dissociato entrambi i legami, 
+   quelle che sono ancora nello stato eccitato e quelle che sono nel fondamentale (questo me lo diceva già statdyn), 
+   quelle che sono nel g.s e trans, 
+   quelle che sono nel g.s e cis, (dove per trans e cis si intende che l'angolo diedro differisca di meno di 45° rispetto a 180 per il trans o 0 per il cis), quelle che sono vicine allo stato di transizione per l'inversione, 
+   quelle che sono vicine allo stato di transizione per la torsione (quindi posso vedere se c'è isomerizzazione nello stato fondamentale)
+   
+   OSS: le cose dette riguardo trans, cis si contano solo se le lunghezze di legame sono abbastanza corte altrimenti queli angoli li non hanno piu significato (diventano angoli di orientazione relativa di due frammenti che si sono separati, e non ci interessa)
+   
+   >>Vediamo il file:
+	 >>questo legge il file .pun creato da statdyn per tutte le traittoeire (totale non solo per S1, che smetteva di considerare una traiettoria una volta uscita da s1 --> questo perche fa molto comodo analizzare ad esempio che percorso fa la traiettoria nello stato eccitato, e se i dati li ho gia separati viene tutto piu semplice). Nel .pun legge i primi 14 numeri in virgola mobile, il numero di traiettorie sarà al massimo 500, il numero di tempi sarà al massimo 5000 (questo perche il programma ha memoria dinamica, come quasi tutti i programmi in fortran90 e mau trovava difficile fornirgli un dato esatto). Poi si indica ogni quanto tempo fare il suo lavoro, detto prima (ogni 2fs, DTIME)
+	 
+	 >>IR e IE indicano la posizione in quel vettore di dati che legge della prima distanza che ci interessa e della prima energia che ci interessa.
+	 
+	 >>RMAX è la distanza massima entro la quale consideriamo che angoli e diedri abbiano u nsenso --> al di la di essa non diciamo piu che c'è AZM trans o cis (non c'è piu niente, c'è qualcosa di indefinito a meno che non si sia passata anche la soglia per la dissociazione (3.2A, che inizialmente erea 4A ma poi si sono resi conto che ci sono traiettorie che diventano bad tra 3.2 e 4A --> gli sembrava una furbata fare così, poi si sono resi conto che non era una furbata: succedeva che delle traiettorie arrivavano a passare la distanza 3.2 prima di 10ps ma non arrivavano mai a passare la distanza 4 di solito perchè sopravveniva qualche guaio dell SCF (non convergeva) e di conseguenza a quel punto venivano dihiarate BAD  TRAJ ma loro avendo visto che erano gia dissociate ne tenevano di conto. --> in this way poi pero dopo un po dichiaravano che quella traiettoria era bad e dal quel momento in poi non andava piu considerata nel fare le medie e nel contare la frazione di traiettorie, per che non sapevi piu cosa avrebeb fatto quella traittoria. --> quindi avevano traiwttorie che senza essere mai dissociate ad un certo punto sparivano dalla conta: quinid ad esempio su 400 avevo 200 traiettorie dissociate (50%), poi una traiettoria diventa BAD e non c'è piu (200/399), poi un altra e così via --> ad un certo punto rimango con 200/390 e ho guadagnato un 2.5% --> MA COME !? : dove è dissociato questo 2.5% ? Eh no era il denominatore che diminuiva. Questo metodo fa sembrare che continuino a dissociare traiettorie dopo tempi molto lunghi in misura molto maggiore di quello che avveniva)) --> Ecco che nel namelist c'è badend=true per la quale si dichairano bad le traiettorie che alla fien del run sono bad, e non vengono mai considerate (quelle che ad un certo punto diventano bad, lo diventano fin dall'inizio)
+	 
+	 >>EMIN e EMAX è solo un filtro: volendo uno puo chiedersi :" se mi limatsssi alle traittorie che hanno quetsa minima e questa massima energia, come cambierebbero i risultati? Dissociano piu rapidamente le traiettorie con energia alta? --> Si, ma non clamorosamente." Per noi non ci interessa ()il filtro è messo larghissimo, e non c'è nessuna selezione sull'energia. 
+	 
+	 OSS: l'enegia potenziale minima è 0, l'energia cinetica è ovvimaente positiva --> quindi EMIN = 0 è l'energia piu bassa possibile (AZM con tutti gli atomi fermi e nella geometria di equilibrio)
+	 
+	 >>RATD : tentativi di dissociazione. Noi facciamo una conta dei tentativi di dissociazione che ci ha mostrato che effettivamente le traittorie che dissociano alla fine spesso hanno fatto piu di un tentativo: cioè un legame si è allungato molto e poi è ritornato giù. Molto quanto? lo dice ratd che è pari a 2A (per un legame che normalmente è 1.5 è un bel po). Va detto che a quel punto sono a piu di metà della salita. --> Dei tentativi di dissociazione sse ne fa un istogramma (noi dobbiamo stabilire quante caselle vanno fatte per l'istogramma).
+	 
+>> Quindi lo lancio e fine: da azmtraj.tim (file dei tempi di dissociazione) non ci ricavo nulla di interessante a prima vista. Mau voleva tentare di capire se c'era qualcosa di meccanicisticamente diverso nella dissociazionea tempi brevi e a tempi lunghi --> Quindi avevano deciso di scrivere l'R (d(C-N) del legame che poi dissocierà) massima che raggiunge nello stato eccitato; lo stesso R ma quando lo stato eccitato si converte a fondamentale. --> Non gli avevano dato nessuna soddisfazione: non sono particolamente lunghe per le traiettorie che dissociano molto presto. L'idea originale era: se nell'eccitato arriva a delle distanze piuttosto grandi cade nel fondamentale che è già indirizzato. L'ultima colonna fornisce anche la velocità intesa come derivata di R rispetto al tempo (Il legame si sta allungando o accorciando? Veloce o meno?)
+
+>> file .pun generato:
+   >> è semplicemente quello che devo plottare con gnuplot. La prima colonna è il tempo (ogni 2fs); 
+   >> Ci sono due dati per ciascuno di quei titoli: quante non sono dissociate e quale frazione sono del totale; quante hnno dissociato un solo legame e quale frazione sono; idem per entrambi i legami; siamo al trans nel fondametale? Siamo al trans nell eccitato? Siamo nel cis nell'eccitato? Siamo allo stato di transizione della torsione? e dell'inversione? Quant'è l'angolo nnc1 (vedi l'11esima coppia)? <-- Angolo che all'inizio è circa l'angolo dello stato fondamentale (vale per entrambi gli angoli)
+   
+   OSS: il primo angolo è sempre il piu piccolo e il secondo è sempre piu grande: cioè si fa la media tra l'angolo piu piccolo dei due (non importa se nella numerazione degli atomi è l'nnc1 e l'nnc2) questo perche vogliamo distinguere un eventuale moto di bend simmetrico da uno asimmetrico: Finche il piu piccolo e il piu grande hanno piu o meno la stessa media vuol dire che le molecole sono in bending simmetrico.
+   
+   >>Ad un certo punto nel file cominciamo ad avere dei dati anche per il fondamentale
+   
+   OSS: il cnnc che c'è solo per l'eccitato naturalmente, parte da 173 e non 180. Perché? Perche è la media del cnnc costretto a stare tra 0 e 180: se una molecola ha cnnc = 185 noi diciamo che è 175 --> questo perchè a noi il giusto non intressa! Perchè il giusto per una molecola con questa simmetria significa ceh partendo da trans puo torcersci in maniera da far crescere cnnc o da farlo diminuire: è indifferente, e c'è la stessa probabilità che scenda o che aumenti -->  Avendo fatto un buon sampling partirà da piu di 180 o da meno di 180 con la stessa probabilità --> la media verrà circa 180 (circa perche abbiamo poche traiettorie buone (350)) MA NON CI DICE NIENTE SU COME CAMBIA L'ANGLO DIEDRO! PERCHè CONTINUERà A RIMANERE VICINO A 180: alcune moelcole andranno per u nverso altre per il verso opposto e mediamente non vanno da nessuna parte!
+   Ecco che noi lo riportiamo tra 0 e 180 (la differenza rispetto a 180 è piu simile a una std.dev. intorno a 180 che non il vero angolo diedro): diciamo che è la grandezza piu rapida e visualizzabile che possiamo fornire. 
+   
+   >> Questo nagolo si vede un po oscillare, e continua a diminuire. Nello stato eccitato non diventerà mai tanto piccolo ma nel fondamentale si e questo perchè l'eccitato da una parte quando arriva verso 90 decade implacabilmente nel fondamentale (c'è la CoIn) e quindi a un certo punto non vado oltre  nella singola traiettoria (nella media siccome ci sono anche tutte quelle un po in ritardo, resta anche parecchio piu su); inoltre dalla parte del cis si risale nello stato eccitato e quindi le molecole non ci arrivano e piuttosto scendono giu.
+   
+>> vi azmtraj.out non dice nulla; mentre il .atd prodotto contiene un istogramma del numero di tentativi di dissociazione ai vari tempi
+
+>> vi histogram.x
+   >> Fa diversi istogrammi (Epot,Ecin,Etot,Es0, Es1, Eecc = (Es1- Es0), Ecin dell'N, del primo metile, del secondo metile), poi dovremo aggiustarlo
+   >> Siccome sono istogrammi, va caibrato un pochino l'ampiezza dell'intervallo e delle caselle perche con solo 350 dati da mettere in istogramma non è che vengono degli istogrammi tanto ben risolti (forse faremo delle simulazione con molte piu traiettorie per avere una statistica un pochino migliore) ma per ora lascio uguale perchè mi serve un confronto a parità di numero di traiettorie per tutti
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+	 
+	 
+	 
+	 
+
+   
+  
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   

@@ -1,0 +1,23 @@
+MATTINA 
+con mau variamo a mano i parametri scelti ieri. --> Le variazioni a mano sono un vicolo cieco secondo me. Propongo quindi a mau di usare anche B2rot: mau dice: - possiamo risolvere un sistema a questo punto.
+...................................................................................................................
+POMERIGGIO
+Sarebbe comodo usare direttamente MOPAC e fargli calcolare le energie con i nuovi parametri. MA il guaio è che non abbiamo le geometrie complete come ce le abbiamo per quei pochi punti ottimizzati. Quindi bisognerebbe far fare a MOPAC un ottimizzazzione di geometria e poi per giunta non averemmo esattamente le stesse geometrie (modifico il potenziale --> modifico le geometrie). Questa strada è complicata e non ci da nemmeno un riscontro proprio preciso di quello che succede.
+
+										OPPURE
+
+Possiamo fare cosi. nel mio programma dobbiamo calcolare il nuovo fattore F: ma lui moltiplica la differenza di energia non corretta,andrebbe a moltiplicare ancora una volta quella già moltiplicata una volta con il fattore con i parametri vecchi. Quindi bisogna calcolare anche il fattore con i parametri vecchi, e la differenza di energia va divisa per il fattore vecchio e rimoltiplicata per il fattore nuovo. Quindi di fatto: moltiplico per (F_new)/(F_old).
+
+Diciamolo meglio.
+IL nostro semiempirico calcola uan certa differenza di energia (S1-S0) --> quasi sempre si scopre che è un po troppo piccola. Poi S0 viene corretto con un certo potenziale additivo (V), e lostesso anche S1:
+-->Prima c'è la correzione V, che èadditiva e sposta S0 e S1 della stessa quantita (su o giu, a sdeconda dei punti della PES) (dE rimane la stessa che c'era prima, anora troppo piccola);
+-->La dE con i vecchi parametri veniva moltiplicata per F1 > 1, per avere le PES buone. Questo fa salire S1 ancora un po'.
+
+Ora noi vorremmo moltiplicare dE per un fattore leggermente diverso(F2), che serve ad aggiustare lo ZPE di S1 (F2). Ma il fattore F2 deve essere applicato alla dE senza F1. Le energie di S0 e S1 che ora stanno scritte nei file sono quelle con sia V che F1. Per usare il fattore F2, che va applicato alla dE originaria senza F1, oidobbiamo dividere la dE che abbiamo oratraS1 ed S0 per F1 (ri-ottengo quindi la dE originaria) e poi moltiplico per F2 per includere la correzione ZPE.
+|
+|
+v
+Sul programmino che ho fatto io quindi. abbiamo sistemato il discorso su F vecchio F nuovo- 
+Il prof mi ha detto di fare i grafici per la correzione ZPE.
+A 1.20.00 dice qualcosa sui metodi semiempirici.
+

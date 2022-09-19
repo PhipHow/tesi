@@ -1,0 +1,95 @@
+Noi abbiamo le energia ottimizzate per una serie di punti critici. Possiamo fornire queste geometrie al mio programma in fortran e a MOPAC (con i nuovi parametri calcolati da me) e vedere se viene fuori lo stesso risultato.
+
+Modifico quindi il file di input di MOPAC che mi ha fatto vedere ieri cosi da fare il calcolo dell'energia unicamente per la geometria fornita.
+
+Mi sono anche preso una script dal prof per lanciare mopac e l'ho messa in bin
+
+---------------------------------------------------------------------------------
+			    FILE DI OUTPUT DI MOPAC
+---------------------------------------------------------------------------------
+-Fa un riassunto di quello che ha capito dal mio file di input
+-Ripete in parte il mio input
+-Mostra i nuovi parametri semiempirici che gli ho detto di usare
+-Riconosce il gruppo di simmetria della geometria
+-Calcola l'energia SCF
+-Calcola le energia degli orbitali, in eV e trova il gruppo di simmetria dell'orbitale e calcola anche l'occupazione degli orbitali
+
+Focus su questo.
+Si parte dall'energia del sigma legante piu stabile...Poi arriviamo al MO n.ro 9, poi ho altri 3 orbitali: uno è un pigreco legante, gli altri due sono orbitali non leganti (i doppietti liberi degli azoti). Il pigreco legante è ungerade e deve essere il 2au (MO11), MO10 e MO12 sono i doppietti liberi degli azoti. MOPAC non usa la simmetria per accelerare i calcoli: i programmi semiempirici di solito sono fatti per lavorare con molecole grandi che di solito la simmetria non ce l'hanno. Se la simmetria c'è MOPAc la riconosce e ci appiccica il label di simmetria. Dal 13 al 15 sono ancora orbitali attivi ma di piu alta energia: il pigreco* dovrebbe essere gerade e b --> il primo virtuale è il puigreco antilegante. Si vede che c'è un abisso di energia tra il 12 e il 13: è chiaro che qui molecola stabile, legami a distanze di equilibrio --> ho decisamente orbitali leganti/ non leganti di bassa energia e antileganti di alta energia. Di conseguenza le occupazioni degli orbitali (anche di quelli dello spazio attivo, fino al 12) sono abbastanze vicine a 2 eletroni e quelle di tutti i virtuali (dal MO13 al 5) piuttosto piccole, vicino a 0. Però non sono 2 e 0, e c'è gia uan sensibile differenza --> questo significa che il 13 che è stato occupato viene un po'ottimizzato e non è semplicemente uno scarto del calcolo HF: è un orbitle a cui è stato dato un certo peso nell'energia che viene ottimizzata e quindi piu adatto a descrivere poi anche lo stato eccitato. C'è un piccolo vantaggio che si cerca, che è simile (nella pratica ma non come concetto) a quello che faccio quando faccio un calcolo CASSCF (vale a dire un calcolo i ncui ottimizzo simultaneamnte orbitali e coefficienti dell interazioni di configurazioni): quello però è un calcolo molto piu complesso proprio perche voglio fare insiemem entrambe le ottimizzazioni: farle insieme èstato risolto come problema, ma con costo computazionale relativamente alto. Quiesto modo qui usato da noi di procedere (prima ottenere un buon compromesso sugli orbitali e poi fare l'interazione di configurazioni) è piu semplice e rapido (qualcuno la cosa dell occupazione fluttuante la usa anche a livello ab initio per mettere sullo stesso piano e ottimizzare simultaneamente non solo gli orbitali occupati nell'HF ma anche altri orbitali).
+
+-Vengono quindi mostrati successivamente nel file i due singoletti: qui ho due vettori che rappresentano questi singoletti nello spazio dei determinanti di slater --> quali determinanti di slater lo leggo in uan colonnina dove ho dei +-20. Essi stanno a significare che dei 6 famosi orbitali attivi, quelli che hanno:
+2 >> sono doppio occupati
+0 >> sono vuoti
++ >> hanno un elettrone alpha
+- >> hanno un elettrone beta
+
+Quindi ad esempio il determinante 222000 è quello di doppia occupazione che mi aspetto rappresenti bene lo stato fondamentale: infatti nello stato piu basso il suo coefficiente è 0.98. Poi però, ad esempio, c'è il determinante 202200 in cui l'orbitale pigreco legante ha perso due elettroni che sono stati messi nel pigreco*, e ha un coefficeinte non proprio trasscurabile di -0.14 (OSS: come peso si intende di solito il quadrato del coefficiente, -0.14 --> 2%). Questo è un esempio di come si corregge, in base alla correlazione elettronica, una funzione d'onda. 
+
+FAcendo un confronto nella descrizione di un legame, ad esempio H-H, tra la VB e la MO, il punto fondamentale è come arrivare a descrivere la correlazione elettronica: l'HF sostanzialmente no ndescrive la correlazione elettronica tra elettroni di spin diverso (per lo meno) per niente --> ci mette il minimo necessario per via dell'antisimmetria. E invece a livello VB già c'è un po di correlazione elettronica. LA cosa piu evidente è che se io prendo la descrizione di un legame (sigma o pigreco è uguale) e combino 2 orbitali dei due atomi che devo legare in qualceh maniera metto 2 elettroni in una combinazione legante. Se io chiamo A e B i due AO che sto combinando (potrebbero essere degli ibridi, naturalmente, o seplicemente degli orbitali atomici [nel caso pigreco mi immagino a livello piu terra terra due orbtlai p paralleli che si combinando]). Ho fatto A+B essenzialmente e adesso ci metto 2 elettroni --> ottendo alla fine
+A(a)A(b) + A(a)B(b) + B(a)A(b) + B(a)B(b) = AA + AB +BA + BB, dove AA e BB sono strutture ioniche e (AB+BA) è il VB. IL VB dice ceh ci sono solo le strutture tipo covalente e l'HF dice ceh ci sono anceh le ioniche. Anzi HF alle ioniche dà lo stesso peso di quelle covalenti (a priori falso, per lo meno nei legami non esageratamente polari): esagerano entrambi gli approcci, ma di solito il piu sbagliato dei due è l'HF. 
+
+Come si fa a corregere questa cosa?
+L'interazione di configurazioni programamticamente è un modo di tenere di conto della correlazione elettrornica e specificamente per correggere quesat storia delel esagerato peso delle struttre ioniche bisogna considerare eccitazioni all'antilegante: se mescolo il determiante di Slater fatto con (A+B)(A+B) con quello che invece ha (A-B)(A-B) mi accorgo che posso manovrare i coefficienti in modo da dare piu importnza alla struttura covalente e meno a quelle ioniche. Non c'è da stupirsi che il determiannte piu importante in assoluto dopo quello ovvio dell'HOMO doppio occupato sia quello in cui faccio la doppia eccitazione pigreco*.
+
+OSS: a questo punto del file di output una cosa bella evidente è che i determinanti piu importanti per lo stato eccitato sono il 2[22+-00]e il 21[22-+00] che corrispondono a prendere un elettrone dall'HOMO e metterlo nel LUMO (posso farlo sia con l'elettrone alpha che con quello beta) --> questi due determinanti devono vere lo stesso coefficiente (a parte il segno --> realizzando una combinazione alphabeta - betaalpha [che corrisponde a un singoletto]). 
+
+-Piu in giu nel file di output sono mostrate le energie totali: TOTAL ENERGY me la dà per lo stato che io nell'input ho privilegiato (se non dico niente è sempre lo stato più basso).
+
+-Poi mi dice i vettori che descrivono gli orbitali: ogni atomo ha solo 4 funzioni di base (nel semiempirico si fa così, se ne mette il minimo) e per gli H solo la funzione 1s.
+
+-Poi fa un po di analisi della densità elettronica: mi dice quale carica c'è su ogni atomo
+
+-Infine applica tutte le correzioni e mi da le due energie degli stati che volevo, con la simmetria degli stati, ecc... --> queste sono le energie che vogliamo confrontare con quelle fornite dal mio programma in fortran.
+----------------------------------------------------------------------------------
+
+
+>faccio la priam geometria e le energia non sono esattamentemememete uguali: duscorso su errore in geometria comporta errore in energia: un errore nella goemetria comporta un errrore quadrato nell'energia per lo stato per il quale quella geometria è un minimo e un errore lineare (che in linea di massima sarà piu grande) per lo stato per il quale tale geometria non è un minimo. Come succede a noi ceh per il calcolo l'energia dello statoe fond vengono uguali, per lo statoe ccitato ho un errore, cosa tipica.
+
+>Il conto lo faccio con diverse geometrie, per vedere se MOPAC fornisce lo stesso risultato che mi aspetto.
+
+>Faccio un altra geometria, ma l'energia dell'eccitato viene malino
+
+>Faccio un altra geometria, e viene male pure lei l'energia dell'eccitato
+
+>Facciamo dei controlli ma non riusciamo a capire dov'è il problema. Anzi ci rendiamo conto che è anche il fondamentale che fornisce le energie sbagliate e lo vediamo confrontando l'energia in risu.test con MOPAC e con il mio programma in fortran. Ho errori nella geometria? No, e lo vedo confrontando le repulsioni elettroniche che sono sensibilissime alla variazione di geom.
+-------------------------------------------------------------------------------
+
+MI rendo conto che c'è un errore in sistema.f90
+Da sistema.f90 si ha che (a 20.00 spiega sto conto che non mi torna)
+
+e0z = e0 + zp
+e1z = e0 + (e1 - e0)(f2/f1)
+zp1 = zp + e1z - e1
+
+changed to 
+e0z = e0 + zp
+e1z = e0z + (e1 - e0)(f2/f1)
+zp1 = e1z - e1
+ 
+
+Il conto così fornisce le energie corrette, si fa il test per altre geometrie.
+---------------------------------------------------------------------------------
+Lanciamo quindi la traiettoria sul fondamentale con i nuovi parametri fatti da me
+Si lancia quindi in background su elettra5
+
+PRIMA VISIONE DI trans_equi.out (not completed)
+Le velocità iniziali vengono campionate dalla distribuzione di Maxwell per la temperatura che gli ho dato
+
+Viene utilizzato il termostato di Langevin
+
+Nel file viene scritto cosa trovo nel file .dyn (che essendo scritto in binario se non ho info di cosa c'è scritto non posso leggerlo) e ci sono una serie di cose che midico no cosa trovo in ogni record di quel file .dyn
+(se ti interessa vai a 266 di trans_equi.out)
+
+In questo .dyn vengono scritti anche i dipoli di transizione: molto importanti perche serviranno per fare la selezione delle geometrie --> noi dovremo maneggiare questo .dyn tramite altri programmi (è in binario!)
+
+Nella traiettoria che sto facendo, dovrei verificare il principiodi equipartizione: solo nel caso di potenziali armonici vuol dire che l'energia potenziale viene uguale all'energia cinetica --> qui proprio uguale non diventerà: io ho 24 coordiante vibreeazioni e 30 coordiante cartesiane e l'energia cientica va con le coordinate cartesiane, mentre l'energia potenziale va semmai con quelle vibrazionali. Quindi se fosse armonica per le coordiante vibrazionale dovrebbe venire 24/30 dell'energia cinetica, ossia 4/5 dell'energia cinetica.
+
+OSS: Solo in media vale il teorema del viriale! 
+
+		           2<E|T|E> = n<E|U|E>
+
+Quindi in media se il potenziale fosse armonico dovremmo vedere un energia potenziale che è circa 4/5 dell'energia cientica (per me il teorema del viriale è il principio di equipartizione, che vale per la meccanica classica ma vale anche in meccanica quantistica però con un significato un pochino diverso).
+
+--------------------------------------------------------------------------------------
+
+Prima sim pome --> non si dice nulla di divertente, solo la roba sulla verifica che l'energia cientica sia quella corretta in base alla temepratura settata.  

@@ -1,0 +1,89 @@
+				-------------------------------
+				| Data: 31-05 pomeriggio      |
+				| Origine: pome analisi plot  |
+				-------------------------------
+				
+				
+>>Preparativi per la zpe300.mono
+  
+  >> SAMPLE.X: Come frequenza centrale mettiamo 3.53eV, e la larghezza 0.05. 3.53 è la
+               frequenza che hanno usato negli esperimentiin cui hanno determinato la
+			   velocità dei frammenti, e quindi per ripordurre quello che hanno trovato
+			   in quegli esperimenti conviene usare la stessa energia; 0.05 è stato
+			   scelto con un po di prove perché mau vuole abbastanza precisamente quel
+			   3.53, pero se si esagera quasi nessuna geometria ha precisamente quel
+			   valore di differenza di energia tra g.s ed exc, serve un compromesso.
+			   NGEO in questo caso è piu grande di quello usato per zpe300 perchè tante
+			   geometrie vengono scartate e quindi si fa la selezione su un numero 
+			   grande. Si sistema il nome dei file delle geomertrie estratte.
+  
+  >> SAMPLE.OUT : Sono state selezionate 215, che sono troppo poche (geometrie con 0
+                  traiettorie sono le più). In sample.x metto NGEO = 9000. Vengono
+				  selezionate 308 geoemtrei, poche tanto piu che sappiamo che viene un
+				  numero di BAD TRAJ ababstanza alto (il numero di BAD traj. aumenta
+				  per tutte le simulazioni dove la dissociazione è lenta: se dissocia
+				  poco le traiettorie girano per piu tempo è hanno piu probabilità di
+				  avere un incidente grave e di bloccarsi). Possiamo quindi abbassare
+				  REFPROB che è la probabilità di riferimento (o meglio il dipolo
+				  quadro di riferimento).   
+				  
+				  Con questa simulazione vorremmo veder come si distribuiscono le
+				  energie cientiche traslazionali dei metili e quello gia non è che
+				  venga benissimo con 400 traiettorie, e stare molto sotto non è buono
+				  
+				  REFPROB= 0.01 --> 0.008: Se uno la abbassa vengono usate un maggior
+				  numero di geometrie e alcune geometrie passano da = a 1 traiettoria,
+				  e altre passeranno da 1 a 2,  da 2 a 3, cose di questo tipo.
+				  
+				  Adesso in sample.out siamo a 380 traiettorie e ce n'è un bel numero
+				  con due traiettorie. Mettiamo quindi REFPROB = 0.0075. Adesso le
+				  traiettorie sono 397.  Siccome di bad ne verranno di piu secondo mau,
+				  allora mettiamo REFPROB = 0.007 --> Le traiettorie diventano 425. Va 
+				  bene.
+				  
+  >> SLICE.X: Quante traiettorei metto in ogni file --> rimangono 20 traiettorie per file
+  
+  >> MKDAT: NFILE lo metto a 22; NLAST = 5; nel foreach ci aggiungo 21 e 22
+  
+  >> LAUNCH: aggiungo il comando per lanciare il 21esimo e 22esimo file di input. Poi
+             lancio la simulazione. Sarà piu lento dell'altra simulazione, perche
+			 mediamente è a d energie un po piu basse e quindi sono piu lente a
+			 dissociare e quindi ne dissociano di meno, quelle che non dissociano
+			 devono provare ad arrivare a 10ps --> tutte quelle che ci arrivano ci
+			 mettono un bel po'.
+			 
+-----------------------------------------------------------------------------------------
+
+Torniamo su zpe 300
+
+>>Istogramma energie dei metili (E_trasl.pdf):
+  Primo e secondo CH3 vengono ben diversi, ma messi insieme anche qui non riescono a
+  fare una curva con due massimi: d'altra parte si vede che per avere delle curve che 
+  non siano rumorose (che non ci siano massimi e minimi casuali dovuti alla scarsa
+  statistica) mau ha fatto delle caselle dell'istogramam piuttosto larghe. D'altra
+  parte qui dissociano 100 traiettorie, e su 100 ogni caselal devve contenere per
+  essere affidabile 10 o 20 traiettore, quindi meglio di cosi non si riesce proprio a
+  fare. Forse manderemo un calcolo con piu traiettorie (almeno 4 volte piu grosso
+  [1500-2000 traiettorie]).
+  
+  Lo scopo del lavoro non è fare la migliore simulazione dell'azometano possibile MA SE
+  SI DIMOSTRASSE CHE UNA CERTA SCELTA DELLE COORDINATE INIZIALI RIESCE A RIPRODURRE
+  BENE LE ENERGIE TRASLAZIONALI DEI METILI E UN ALTRA SCELTA INVECE NO, PER ESEMPIO,
+  QUESTO SI CHE SAREBBE UN BUON CRITERIO PER DIRE CHE UNA SCELTA è MIGLIORE DI UN ALTRA.
+  
+  Quello che noi vorremmo replicare è che la curve nera (la media dei due CH3) abbia
+  due massimi (sia bimodale) e che siveda come dai dati sperimentali un massimo a basse
+  energie e un massimo a medio-alte energie. Come si vede il primo CH3 c'è a basse
+  energie e il secondo c'è ad energie piu alte, ma non sono così ben distiniti da darmi 
+  una curva bimodale quando li metto insieme. Facendo magari un istogramma un po piu 
+  dettagliato (con le caselle piu piccole) puo venire! Ma se lo faccio con questi dati
+  qui con le caselle piu piccole vengon massimi e minimi ovunque perche la fraszione di
+  traittorie che sta in ogni casella è troppo piccola --> non da una statistica
+  affidabile. Io ci potrei mettere anche delle barre di errore su questi dati relative
+  al numero di contributi che ci sono in ogn casella, e si vedrebbe che non lo sai
+  sostanzialmente se è bimodale o no perché le barre di errore sono tali che non posso
+  concludere nulla.
+  
+  
+				  
+  

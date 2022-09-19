@@ -1,0 +1,77 @@
+							----------------------
+							|Data: 26-06-22      |
+							|Origine: Sampling 1 |
+							----------------------
+
+>> Due file: il primo che ero convinto avesse fallito in realtà era finito correttamente
+
+>> Faccio il secondo passo indicato su readme:
+   Devo pescare da tutteo quello che ha scritto nel .dyn questa lunga traiettoria nel g.s circa 400 punti nello spazio delle fasi (set di q e p) e questo lo faccio con un programma che guarda anche la propabiblità di transizione (quadrato del dipolo di transizione) e privilegia le geometrie per la quali la probabilità di transizione è piu grande --> si fa con una script già pronta.
+   
+>> Preliminarmente faccio il controllo sull'energia cinetica:
+   3/2kT per ogni atomo; gli atomi sono 10, quindi K = 15kT dovrebbe essere la mia energia cinetica; (OBV: kT lo devo convertire da a.u a kJ)
+   Inerente a ciò, se guardo il plot che ho fatto io si vede che all'inizio la temepratura sale (gli impulsi che do agli atomi sono campionati dalla distribuzione di Maxwell), ma poi scende --> questo perchè mi allontano dal minimo e l'energia cinetica man mano diminuisce (nei primi 45fs non ha fatto altro che andare in salita e diminuire l'energia cinetica: diminuzione dovuta sia alla salita sia all'attrito [anche se lui dovrebbe agire su tempi scala più lunghi, avendogli dato come tempo di rilassamento per l'attrito 100fs]. Poi interviene la forza random che riaggiusta le cose).
+   
+>>	LANCIO LA SCRIPT sample.x:
+	>>Il .dyn la script trova le geometrie, le velocità, i dipoli di transizione, ecc. Il .inf è u nifle di informazioni dove sta scritto in quali posizioni si torvano le informazioni contenute nel .dyn (anche lui creato da mopac).
+	
+	>>ngvmin è il numero di scritture: la subroutine che fa la maggior parte delle    	scritture, sia nel .out che nel .dyn si chiama gwrite. NGVMIN vuol dire che verranno scartate tutte le scritture precedenti alla 1000esima --> butto via i primi 5ps di traiettoria perche ci si immagina che lì l'equilibrazione non sia ancora proprio completa (anche se dal mio grafico si vede che in meno di 1ps si arriva all'equilibrazione).
+	
+	>>L'opzione BIS è un opzione di sampling:
+	io devo scegliere a caso un punto in questa lunga traiettoria (1 dei 9.000 punti). Potrei tirare a sorte un numero random (ce ne sono molti, dentro mopac ne abbiamo messo uno molto buono [prodotto da informatici esperti]) e normalmente questi generatori di numeri random mi producono un numero in doppia precisione che è compreso tra 0 e 1: lo moltiplico per 9000, lo arrotondo (ho un intero) e becco quel particolare punto della traiettoria. 
+	Questo dovrebbe funzionare piuttosto bene ma se io alla fine di punti ne prendo abbastanza pochi (ad es 50) possono risultare casualmente distribuiti in maniera poco unifore sulla intera lunghezza della traiettoria. Questo non mi piace! perche magari a metà traittoria la mia molecola è passata ad una conformazione un po' diversa, è andata ad esplorare una certa zona dello spazio conformazionale un po diversa e io tanto per non sapere ne leggere e ne scrivee voglio che questi numeri vengano si casuali ma belli distribuiti piuttosot uniformemete su tutta la traittoria. Ma non troppo uniformememente: non diro ne voglio 900 allora divido i 9000 di 10 in 10 --> se c'è per caso un oscillazione che ha più o meno quella frequenza li rischio di sbagliare da un altra parte: colgo sempre il massimo di un oscillazione (una vibrazione di una qualche coordinata normale). 
+	Un metodo che molto semplice che fa quello ceh volgio è il seguente:
+	>> Scelgo a caso il primo punto;
+	>> Guardo se il punto scelto è nella prima metà di tutti i punti che ho o nella seconda;
+	>> Se è nella prima il prossimo lo scelgo a caso ma nella seconda e viceversa: bis sta per BISEZIONE;
+	>> Adesso ne ho uno nella prima metà è uno nella seconda: ma in quali quarti?
+		>> Rifaccio un altra bisezione di entrambe: risulta che era nel secondo quarto e nel terzo;
+		>> I prossimi due li scelgo uno le primo quarto e uno nell'ultimo.
+		
+	Vado avanti di questo passo: divido sempre in due tutti gli intervalli e i prossimi punti li scelgo negli intervalli dove non era mai stato pescato niente.
+	
+	>>Devo specificare il numero di geometrie che campiono; 
+	>> Prob = true --> vuol dire che voglio tenere di conto della probsabilità di transizione
+	>> Vengono due dati di energia in eV che dicono qual'è la finestra di energie di transizione che ci interessa.  Originariamente la finestra era molto stretta con il centro a 3.53eV, e il delta è 0.05 (larghezza totale: 0.10eV --> mi serve per simulare un eccitazione con luce sostanzialmente monocromatica, con una piccola tolleranza di 0.1eV). In zpe300 voglio invece una finestra molto ampia che prenda praticamente qualsiasi energia di transizione ragionevole e che corrisponderebbe a quella che viene chiamata eccitazione di Frank-Condon: se io ho un impulso di radiazione molto breve con uan banda di frequenze molto larga mi eccita indifferentenemte qualunque sia l'energia di transizione. Nel concetto classico, vale a dire dove ho posizioni ben determinate dei nuclei, l'energia di transizione è semplicemnte la differenza di energia elettronica tra exc e g.s a quella geometria li. Scegliere una banda stretta significa escludere molte geometria alle quali lo stato eccitato non sta i nquelal piuccola banda di energia di transizione (non si trova rispetto a g.s quasi esattamente a 3.53eV di differenza). Invece se io metto 3.60eV (così è come avevamo fatto in precedenza per coerenza di condizioni) e come banda metto 1eV, questo è come dire eccitiamo con luce bianca che contiene tutte le frequenza senza selezionare su quello.
+	>> Adesso, questo significa in pratica che se io procedo con 6000 diverse geometrie mi tirerà fuori diverse migliaia di condizioni iniziali (mentre noi ne vogliamo circa 400)
+	>>MA c'è un altro parametro che conta nel determianre quante traiettorie verranno lanciate ed è REFPROB: questa è il modulo quadro di un dipolo preso come riferimento (0.01 è piuttosto piccolo come dipolo di transizione). A cosa ci serve? L'algoritomo con cui lavora questo programam è questo: 
+	tira a sorte una geoemtria;
+	guarda il dipolo dic transizione;
+	decide di lanciare  da quella geom li  un certo numero di traiettorie (non n ecessariamente una sola) oppure 0: si sceglierà di lanciare traiettorie da ogni geometria in proporzione alla probabilità di transizione, proporzione che non puo essere esatta in nessun caso visto che di traiettorie ne lancio un numero intero. Inoltre in tutto ne vogliamo lanciare circa 400 --> e non posso per ogni geometria iniziale dire nel lancio dell'ordien di un 100aio e questo numero sarà proporzionale alla probabilità di transizione: se ne lancio 1000 in tutto esploro solo 10 geometrie! In realtà volgiamo anche un ampia sleezione di geometrie e da ogli geometria se ne lancia 0, 1 , 2 e 3 raramente.  
+	Per realizzare la ricercata proporzionalità si fa così:
+	Si confronta il dipolo di transizone a uan certa geometra con questo refprob (guardo il rapporto): si decide che se il dipolo di transizione ad edempio è un po piu di 2volte di refprob si potranno lancaire al massimo 2 traiettorie; al solito si tira a sorte per decidere se lo facciamo oppure no. Se il dipolo di transizione sta sotto refprob al massimo se ne lancerà 1: quindi in base a questo rapporto si decide quant4e traittorie al massimo si potranno lanciare per ogni geometria. Poi c'entrano comunque i numeri random per decidere davvero cosa si fa. 
+	Dal momento che mediamente si lancia 0,1 traiettoria da ogni punto che scegliamo con questo valore di REFPROB e ne vogliamo circa 400, Ngeo deve essere un po piu di 400. Metto ngeo pari a 600. e faccio una prova
+	
+	VEDO SAMPLE.out --> sono troppo poche, su sample.x metto ngeo pari a 720. Adesso va bene.
+	
+>> La script slice.x divide le mie geometrie su 20 file diversi.
+	
+	
+   
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -5,13 +5,24 @@ set xrange [0:180]
 set yrange [-0.15:0.05] 
 #set yrange [-0.20:0.05] 
 set grid
-set colors classic
+#set colors classic
 
+
+set border lc "black" lw 0.25  # thin lines for the tics
+set border 0                   # don't draw the normal border
+set tics scale 2.0             # longer than usual tics
+set obj 1 rectangle from graph 0,0 to graph 1,1
+set obj 1 lc "black" lw 1.0    # heavy line for the "border"
+set obj 1 fillstyle empty
+set grid x y
+
+set terminal cairolatex pdf color dashed lw 3
+set output "figrot.tex"
 
 rbest = 0
 plot \
-'zpe.rots0' u 5:($8-(rbest)) title 'Torsione {S_{0}}' w l lt 1 lc 1 lw 2,\
-'zpe.rots1' u 5:($9-(rbest)) title 'Torsione {S_{1}}' w l lt 1 lc 2 lw 2,\
+'zpe.rots0' u 5:($8-(rbest)) title 'Torsione {S_{0}}' w l lt 1 lc 7 lw 1,\
+'zpe.rots1' u 5:($9-(rbest)) title 'Torsione {S_{1}}' w l lt 1 lc 2 lw 1,\
 #'risu.rnc12.corr' u 1:($6-(rbest)) t 'symmetric dissoc.' w l lt 1 lc 4 lw 2
 # 'risu.rnc1.corr' u 1:($6-(rbest)) notitle w p pt 7 lc 1 ps 0.4, \
 # 'risu.rnc2.corr' u 2:($6-(rbest)) notitle w p pt 7 lc 3 ps 0.4, \
@@ -27,7 +38,7 @@ plot \
 # set output 'fig.onemode.q.wigner.tex'
 # replot
 
-set term pdf font "Times-Roman,10" color dashed lw 2
-set size 1.0,1.0
-set output 'fig.rot.pdf'
-replot
+#set term pdf font "Times-Roman,12" color dashed lw 2
+#set size 1.0,1.0
+#set output 'fig.rot.pdf'
+#replot

@@ -1,0 +1,22 @@
+set key right top spacing 1.5
+set xlabel 'time, fs'
+set ylabel 'total energy, eV'
+set xrange [0.0:10000.0]
+set yrange [0.0:0.5]
+set grid
+set colors classic
+
+autoev = 27.2113957
+
+plot \
+'ene_tim.out' u 2:($16*autoev) notitle w p pt 6 lc 1 ps 0.5
+
+# set term pslatex color dashed lw 3
+# set size 1.00,0.80
+# set output 'fig.onemode.q.wigner.tex'
+# replot
+
+set term pdf font "Times-Roman,10" color dashed lw 2
+set size 1.0,1.0
+set output 'mod_time_10.pdf'
+replot

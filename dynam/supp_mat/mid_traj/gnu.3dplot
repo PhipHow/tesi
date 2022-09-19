@@ -1,0 +1,32 @@
+set palette rgbformulae 33,13,10
+
+
+set xlabel "Angolo CNNC, gradi" offset -4, 0, 0
+set xtics left offset 0,-0.3 rotate by 150 right
+set xrange [0:180]
+
+set ylabel "Angolo NNC_1, gradi" offset 2, 0, 0
+set ytics left offset 0,-0.5
+set yrange [90:180]
+
+set zlabel "Energia, eV" offset -4, 0, 0 
+set zrange [3:3.5]
+#set autoscale
+
+
+set dgrid3d 30,30
+set hidden3d
+
+set style line 1 linecolor '#00FF00'  linetype 4 linewidth 1 
+
+
+splot "zpe.map.invtors1" u 5:3:7 title "S_1 surface" with lines  palette 
+
+set term pdf size 10.5, 5.62 enhanced color font 'Helvetica,20' linewidth 2
+set output 'test.pdf'
+replot
+
+
+
+
+

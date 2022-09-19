@@ -1,0 +1,60 @@
+Abbiamo un programma di calcolo che legge i parametri e aggiunge alle energie calcolate semiempiricamente questa correzione. Se non vogliamo scriver u altro programma di caclolo che aggiunge anche lo zpe, mavogliamo sfruttare quello che c'è gia allora dobbiamo lavorare cosi: faccio in modo che sia sufficiente variare i paramentri lineari aggiungendoci quel tot che io devo determinare fittando i dati di ZPE  e in this way non cambio programma di calcolo e cambio solo dei parametri in un file. 
+
+Le funzioni che vanno asisntoticamente ad un certo valore, in realtà vanno a quel valore ad una distanza finita e poi diventano costanti (tanto stiamo facendo delle approssimazioni e mi sembrava inutile avere la preoccupazione di piccole differenze fra quello calcolato ad una distanza grande (5-10A) e il vero infinito). Allora abbiamo detto: prendiamo delle funzioni che vanno al valore asistotico (3.5A) e da li in poi hanno valore costante. 
+
+A0 serve ad annullare l'energia elettronica negativa calcolata con il semiempirico + le correzioncine date da tutte le funzioni in modo tale che venga 0 l'energia del trans-AZM. Quindi in totale ho 10 parametri per i potenziali additivi (A0 non va cambiato). Altri 10 parametri servono per la correzione differenziale tra S0 e S1, forse non li useremo. 
+ zona di distanza corta < 1.60A
+ zona di distanza lunga > 3.50A
+ angolo a partire dal quale il potenzaile torsionale comincia a diminuire tendendo a 0 a 180gradi: al suo di sotto non ho dipendenza  dagli angoli di legame, mentre al di sopra si (fattore che da 1 scende a 0 man mano che aumenta l'angolo di legame). 
+
+Calcolati i paramentri per lo ZPE verranno piu aggiunti a quelli gia esistenti.
+
+Noi la ZPE non la calcoliamo veramente, però facciamo finta di saprela costruendo una funzione che collega tanti punti stazionari con gradiente 0 e in mezzo però ci sono punti non stazionari. Inrealtà è del tutto possibile definire delle frequenze vibrazionali anche dove il gradiente non è nullo--> basta dire: lungo la coordinata pe rla quale abbiamo gradiente non nullo noi sottraiamo dalla superficie di energia potenziale in un qualsiasi punto un termine lineare che è gradiente * spostamento. E otteniamo una nuova superficie che ha gradiete 0 a quel punto, naturalmente. E questo viene utilizzato molto spesso, ad esempio, per costruire i cammini di minima energia per dire "risalgo una valle stando sul fondo della valle" Ma cosa vuol dire stare sul fondo della valle? Eh, vuol dire che se non ci fosse il grdsiente residuo che ho in fondo valle sarei in un punto stazionario (basta sottrarre il gradiente): questo ha qualche difetto pero viene usato comunemente. Nel nostro caso peò ha un significato un po diverso: noi dobbiamo in qualche modo riuscire a rappresentare il fatto che quando rompiamo un legame (o passando ad uno stato di transizione nell'isomerizzazzione) è davvero piu facile (nel senso che richiede un po meno energia) compiere quell'operazione, osservando le regole della QM, perché l'energia di punto zoro effettivmante si riduce alla dissociazione o nello stato di transizione. Questo, facendo traiettorie classiche, verrebbe ignorato completamente. Come facciamo per introdurre questa cosa: allora è chiaro qual'è l'inizio e qual'è la fine (se io rompo un legame all'inizio ho un certo ZPE, alla dissociazione ne ho uno piu piccolo) quindi io devo diminuire il dislivello  tra questi due punti di un tot. MA siccome devo avere una PES continua che dai due punti per fare la dinamica, bisogna ceh la PEs  rappresenti una graduale diminuzione di questo ZPE (poi unopuo discutere se questa diminuzione deve avvenire molto piu verso la fine, cioè verso la distanza asintotica aribitrariamente definita, oppure verso l'inizio o non sia monotona ma deve scendere di piua meta del percorso). Diciamo pero che in qualche modo vanno collegati punto iniziale e finale in maniera continua. NOn ci sono altro possibilità: anche se fosse teoricamente sbagliato andrebbe detto: "Si, è anche teoricamente sbagliato fare traiettorie classiche" Ma volendole fare allora è necessario avere una PES continua.
+---------------------------------------------------------------------------------------
+
+Con tre parametri lineari dovrei riuscire a distinguere questi tre valori(nel file excel, il primissimo (vedi correzione sulle distanze)) rispetto a tutti gli altri (e questa tra l' altro è la correzione piu grande chiaramente).
+
+R_ang,0 = R_0, R_ang,A = R_A,  (sono stati mantenuti gli stessi) theta_0 = 126.qualcosa
+
+Ho 9 coefficienti da determinare e quindi mi servono 9 geometrie.
+
+Per quanto riguradano le cifre significative, non c'è una vera e propria esigenza di precisione, ma è sempre bene che tornino belle esatte, che non ci siano dubbi. Tanto comunque vada queste correzioni salvo che nei punti in cui le abbiamo calcolate non sono comunque esatte (facciamo un interpolazione rudimentale e inoltre i calcoli dello ZPE fatti con MOPAC hanno  2 sorgenti di errore: 1)la PES da noi (cioè da loro) definita ovviamente è buona ma non è perfetta (rispetto alla realtà della molecola senz'altro abbiamo un errore) 2) rispetto a ciò che abbiamo definito in teoria il calcolo che viene fatto (calcolo HF, interazione di configurazioni, con il calcolo di parecchi integrali) è abbastanza approssimativo, poi c'0è di mezzo l'ottimizzazione della geometria (per ciascuna di queste geometrie è stato trtovato un minimo o un punto di sella con un algoritmo che deve minimizzare l'energia con certi vincoli e anche lihpo un risultato approssimativo) 3)Infine si fa un calcolo delle costanti di forza per avere ilpotenziale armonico nel quale noi otteniamo le coordinate normali. Tutto questo comporta errori numerici per cui alla fie quei valori di ZPE non credo che siano precisi a 5 cifre come sno stati scritti nella tabella (quella inizialre chie mi ha mandato con gli ZPE, ndr)). 
+
+Il prof ha dato un occhiata ai dati iniziali e si è convinto di questo:
+1) per quanto riguarda la dipendenza dalle distanze noi abbiamo dipendenza dalle distanze solo per le ultime tre geometrie in confronto con tutte le altre; --> quelle tre geometrie sono dati dello stato fondamentale (quindi per quanto riguarda i primi tre coefficienti saranno determinati da queste tre geometrie e basta). Tutte le altre geometrie stanno a distanze dove  nopn c'è influenza dei termini dipendenti dalla distanza.
+2) La correzione che faremo in questo modo sarà applicata anche allo stato eccitato, ma poco importa perche lo stato eccitato a grandi distanze sale poarecchio in energia e quindi la moecola non ci va mai, le traiettorie non ci vano mai. Quello che succede è che a corte distanze avviene la transizione non radiativa tra exc.state e g.state e poi in g.s la molecola dissocia. 
+Quindi non si pone il problema della differenza tra stato eccitato e fondamentale.
+3) Nelle altre 6 geometrie ci sono tre dati dello stato eccitato evidentemente. Ora: abbiamo un dato di trans-AZM sia per S0 che per S1 in cui lo ZPE differisce per poco meno di 1/10 di eV.
+
+Abbiamo 10 geometrie e 10 parametri: dovremo fare qualche compromesso, poi vedremo. Prima di preoccuparci, vediamo i dati che abbiamo:
+i due trans (S0 e S1) --> lì c'è una differenza abbastanza grandina, ma è vero che c'è anche differenza nell'angolo di legame perche cresce di quasi 20 gradi. Se noi attribuiamo cio che probabilemte è dovuto alla differenza di stato elettronico alla geometria soltanto (cioè all'angolo) andiamo adire che la correzione deve cresce di parecchio in valore assoluto passando da un angolo di 114 a un angolo di 131. Allora uno pensa: continuerà a crescere? Forse si, perchè quando arriviamo all'inversione è 0.06: li l'angolo è cresciuto ancora, ma uno solo dei due. La formula presenta una somma di termini (uno per ogni angolo) di conseguenza se i primi 20 gradimi fanno crescere fino a 0.08 (che vuol dire 0.04 per ciascun angolo) poi posso arrivare forse a 175 gradi con altri due centesimi (0.064)...forse si riesce a fare ragionevolmente questa dipendenza, senza troppe sorprese.
+dalla parte del cis non ci sono queste grosse differenze (e comunque il cis ci importa abbastanza meno): abbiamo una differenza piccola fra S0 e S1 e poi naturlamente il TS dell'inversione a sua volta deve essere soddisfatto anche, da quella parte. Forse tutte queste cose possono tornare, perche la differenza tra cis e trans dipennde anche da CNNC e li abbiamo 4 termini... vabbe, ci si prova e si vede. 
+
+Naturlamente 10 equazioni con 9 variabili non si possono impostare (in realtà si, ma non risolvendo un sistema lineare ma con un fit dei dati). Prima di tentare un fit (che è piu noioso e complicato) vorrei rendermi conto se non ci sono dei dati che si sovrappongono sostanzialemente, cioè che per i quali non è veramente necessario mettere 2 equazioni distinte...per esempio il cis-S0 e cis-S1. Beh anche li l'angolo cresce di parecchio (20 gradi) ma cresce da grandino a molto grande, che fa meno differenza perche poi a 180 deve smettere di crescere del tutto (è una curva che ha un massimo, o un minimo a 180 gradi). 
+
+Per quanto riguarda ciò che dipende veramente dall'angolo di torsione, noi abbiamo 0 e 180 (cis e trans), poi il TS di torsione che è circa 90gradi, e il min S1 che è circa 133gradi. Il dato a 90 e 133 ci devono essere perchè l'intorsezione conica è li in mezzo (per la CoIn di nuovo: non si dovrebbe poter calcoalre uno ZPE cioè delle frequenze vibrazionali per essa, che è quando va bene, come in questo caso, un minimo in una superficie ma corrispondente ad una cuspide, non a gradiente 0. Eppure si puo fare e l'abbiamo fatto (hanno pubblicato un lavoretto su quello) semplicemente escludendo le due coordinate che caratterizzano l'intersezione conica cioè quelle lungo le quali le due PES dei due stati hanno grandiente non nullo (ovviamente ottimizzando la geometria della CoIn trovando il punto piu basso del crossing seam) e facendo le coordinate normali solo sulle altre--> e funziona benissimo! Ma nel MOPAC non abbiamo la possibilità di fare questo calcolo e quindi la lasciamo perdere, ma assumiamo che abbia delle frequenze e quindi lo ZPE non troppo diverso dallo stato di transizione della torsione o dal minimo di S1 (qualcosa di intermedio ci deve venire)). Forse trremo di conto anche di alcuni parametri B che servono per lo stato eccitato, al massimo 1 o 2.
+
+Costruiremo delle curve e delle mappe, ma molto piu rapidamente rispetto a quando le ha costruite Carlotta: siccome abbiamo i file che dicono le 5 variabili di geometria, li prendiamo e ci calcoliamo la ocrrezione ZPE a tutte le geometrie (cosa rapidissima da fare) senza fare l'ottimizzazione di geometria ma prendendo gli stessi dati che ottenevamo per le superfici non corrette con lo ZPE e ci facciamo la mappa o le curve della correzione ZPE e vediamo se ha dei valori ragionevoli dappertutto. Tramite trial & error  vediamo di      arrivare a qualcosa che ci convince.
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

@@ -1,0 +1,67 @@
+MAPPA ZPE invtors fondamentale
+>>Ha un minimo piu o meno corrispondente allo stato di transizione della torsione, abbastanza significativo: favorisce piuttosto la torsione. Favorisce anche la ZPE, partendo dal cis, la torsione sempre. Infatti dalla parte del cis c'è una piccola barriera partendo dal cis per arrivare alla CoIn: chissa che questo non la elimini o perlomeno la riduca di un po'.
+>>Dalla parte del trans, che ci interessa di piu, si scende decisamente, ma si scende anche verso l'inversione
+>>C'è una zona piccolissima dove è positiva la correzione (l'angolo in basso a dx) ma conta quasi niente;
+Questo dovrebbe rendere la dinamica ancora piu veloce. Però fatto sta ceh anche mettendoci la ZPE non cambia granche la dinamica nello stato eccitato. Non è pacile capire se a vrà un grande effetto; ad ogni modo non penso che peggiori, anzi forse migliora un po'
+Comunque quello che conta di più è che tutto questo ha un aspetto abbastanza regolare, e quindi abbiamo utilizzato i nostri dati senza fare pasticci.
+
+MAPPA ZPE invtors eccitato
+>>Qui abbiamo un notevole abbassamento come sapevamo bene vicnino al trans e poi un po meno (OSS: quando abbiamo parlato del plot sopra mau era convinto di essere nello stato eccitato)
+>>OSS: le aree gialle lasciacele come indicazione ma sono riferite a superfici diverse!
+>>Ho quindi una correzione un po'piu grande nelle vicinanze della CoIn, rispetto al trans. MA in mezzo, invece, c'è una correzione leggermente piu blanda (?)
+>>il punto C sta su -0.088eV come dovrebbe. 
+>> il punto E sarebbe il minimo di S1 (minimo locale obv.), che in questa mappa risulta avere lo ZPE di -0.067eV  (come previsto)
+>>La curva rossa piu bassa di tutte è a -0.1eV e sia rriva giu a -0.114eV. Ci siamo: non è che è davvero moltissimo, nella CoIn si precipiterà ancora piu rapidamente.
+>> Dalla parte del cis si scende, e forse avremo una minore barriera (se non sparisce addirittura);
+
+MAPPA DISTANZE CORRETTA CON ZPE (confronto con quella senza correzione)
+OSS: ho cambiato scala nella mappa corretta con ZPE
+>>Naturalmente andiamo su molto meno, un bel po. La dissociazione simmetrica guadagna qualcosa (nel senso che era a 2.6eV e scende a 2.4eV scarsi)
+>>La dissociazione del primo legame, che era a 2.2eV, passa ad avere un piccolo TS appena appena che si trova sotto 2 (piu verso 1.8). 
+>>La seconda dissociazione forse non cambia poi tanto, perchè a grande distanza R1 ad esempio io ho una sola curva d ilivello che mi separa dal minimo allo TS e poi di la si riscende, e anche nel plot corretto rimane.(?)
+
+OSS: posso fare anche le curve con e senza correzione (che dal pdv quantitativo dicono sempre qualcosa di piu: ad esempio posso vedere quanto cambia la barriera che c'è fra la prima e la seconda dissociazione).
+
+>>RISULTAT: queste mappe hanno un aspetto tranquillo quanto quelle di prima con una differenza quatitiativa ma non qualitativa.
+
+
+
+MAPPA invtorso fondamentale corretta con ZPE
+>>Il centro della mappa è sceso un pochino, anceh l'alto è sceso ma di meno. E quindi il TS sia dell'inversione ceh delal torsione sono un po scesi ma quello della torsione di piu rispetto all'altro.
+
+MAPPA invtorso eccitato corretta con ZPE
+>>Succede che si va un po piu decisamente in discesa verso la CoIn (quasi lo stesso). Anzi no è il contrario di quello che ho detto perchè con lo ZPE sembra che ci sia veramente un minimo trans (non è piu uno TS), poi vado su in energia un pochino dal C all'E, e poi si vede bene uno stato di transizione e si piomba dentro la CoIn.
+>>Dal cis rimane un po' di salita ma meno di prima, per andare verso la CoIn
+>> NO ok a questo punto non direi che andrà piu veloce la dinamica però piu o meno sarà lo stesso di prima: noi partiamo dal punto A e abbiamo inizialmente una discesa ancora piu ripida verso aprire l'angolo di legame (dal punto A verso l'alto) ma contemporamente avverrà anche un po di torsione e poi si cadrà in qualche mondo nella CoIn 
+
+OSS:dovremmo anche riuscire a fare magari qualche grafico del percorso medio, se ha un senso, in questa mappa qui dello stato eccitato.
+
+
+Quindi si conferma anche in quest'ultimo plot, che tutto ha un aspetto non terribilmente diverso (anzi qui è ancora meno diverso ceh nel caso della dissociazione) ma sono differenze quantitative che porbabilemtne si vedranno un pochino nella dinamica, ma non dovrebbero dare grosse sorprese.
+
+
+Frase carina da scriver nell'introduzione a 23.00.
+Altri consigli per la tesi (vedi tra un po)
+Domanda mia epistemiologica
+Un articolo che dovrò citare.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

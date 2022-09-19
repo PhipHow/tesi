@@ -1,0 +1,4 @@
+#!/bin/csh
+
+cp -p /home/carlotta/azometano/dynam/thermal/400traj_boltz/histo.spec .
+cp -p /home/carlotta/azometano/dynam/thermal/400traj_boltz/snap.time.isurf.tot snap.time.isurf

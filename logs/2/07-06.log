@@ -1,0 +1,66 @@
+					--------------------------------
+					|Data: 07-06-22		           |
+					|Origine: Plot traiettorie     |
+					--------------------------------
+					
+
+>> MI spiega il quesito di ieri;
+   Questo è il guaio di prendere le medie nel tempo .Le medie nel tempo sono una cosa realistica, sono qualcosa che attiene a ciò che posso misurare sperimentalmente e quindi sono importanti. Ma a volte cio che posso misurare osservando un insieme di molecole è molto molto distante dalla realta della singola molecola. Pensiamo alla chimica termica: nel tempo ogni tanto una o poche molecole raggiungono un TS e passano a prodotti --> Questo è un evento raro a livello della singola molecola, ed è anche un evento piuttosto veloce: per passare da reagenti e prodotti la molecla ci puo mettere supponiamo un ps, per cui per una reazione che vada a completezza in 100sec la frazione di molecole impegnate nel percorso di reazione è 10^-14 del totale di molcole. Se io riuscissi a misurare qualcosa relativo alle geometrie molecolari in media, non capirei niente del percorso di reazione --> farei la media tra reagenti e prodotti e vedrei che si sposta nel giro di 100sec dalle geometrie dei reagenti alle geometrie dei prodotti, ma nel mezzo non vedo nulla perche in mezzo ci sta una frazione di molecole insignificate.
+   
+   In fotochimica va un po meglio, perceh le faccio partire tutte simultaneamente con un flash laser molto rapido e ttue cominciano la loro dinamica allo stesso tempo e fanno approx le stesse cose, ma ad un certo punto possono sgranarsi nel senso che alcune arrivano un po prima altre arrivanpo un po dopo alla fase cruciale (che qui è la CoIn) e me lo perdo l'istante in cui arrivano all'intersezione conica, perche appunto ci arrivano in tempi diversi. Quello che mau ha gia accertato è che arrivano a tempi molto diversi alla dissociazione: a un certo punto un legame parte e si allontana un CH3 ma per ogni molecoal questo avviene con 10-100fs di differenza e se faccio la media delle distanze la vedo crescere gradualmente senza osservare il vero momento della dissociazione per ogni singola molecola.
+
+>> Andiamo a vedere in elettra5 i file .pun dell'eccitato, per costruire le
+   traiettorie (stat.pun.S1): 
+
+>> In gnuplot (gnu.traj.S1):
+   >> Levo il parametrico
+   >> Plotto le colonne che mi servono: mi serve un if per stabilire quale dei due angoli è piu grande: mi serve la 14 o la 15 (colonna) ? Serve un if che contenga questo if per scegliere i dati per la traiettoria selezionata
+       >> Adesso vanno molto piu vicine all'intersezione conica:
+	      >> é bello vedre come divergono queste due traiettorie per i due angoli: un
+		     angolo avvicinandosi a quello grande per la CoIn, e l'altro angolo avvicinandosi a quello piccolo
+		  
+		  >> Abbiamo un sacco di oscillazioni in vicinianza dell'inizio della
+   		     traiettoria e poi ci avviciniamo alla CoIn
+       
+	   >> Lo facciamo per qualceh traiettoria ma è cosi incasinato all'inizo che non va bene farlo per piu traiettorie simultaneamente --> inutile
+	   
+	   >> Ne guardiamo qualcune una per volta (Da tenere: 1(?), 2)
+	   
+	   2 --> é arrivata con la fase sbagliata, cioè cnnc era giusto ma l'angolo troppo
+	         grande (aveva preso troppa rincorsa) e quindi ha fatto un giretto intorno alla CoIn e poi c'è arrivato (TENERE)
+			 
+	   3 --> è andato vicino alla CoIn, ma non è saltato di sotto nonostante fosse
+	         vicino alla CoIn; intanto ci deve arrivare da entrambe le parti perceh tutti e due gli angoli devono essere quelli giusti --> in realtà è arrivato per entrambi nelal zona gialla (piccola differenza in energia tra exc.state e g.s) e c'è anche rimasto abbastanza a lungo; c'è un ritorno indietro in entrambe,probabilmente quello è il punto di ritorno dovuto alla crescita del potenziale. Questo è stato in zona CoIn abbastanza a lungo senza decadere, ma poi alla fine è decaduto. Ci siamo rimasti un po più a lungo di quanto era prevedibile, ma si va parecchio vicini alla CoIn per decadere in quesat dinamica. All'inizio si parte sempre aumentando l'angolo e poi facendo delle oscillazioni (a volte parecchie oscillazioni con poco progresso nell angolo cnnc e a volte poche oscillazioni e poi si arriva subito alla CoIn)
+			 
+	   4 --> Questo è molto diretto: qualceh oscillazione, cnnc esita un po a
+	         diminuire (la molecola non si torce subito) ma poi parte e appena è arrivat ai margini della zona gialla decade allo stato fondamentale. 
+	   
+	   
+       >> Ho la giusta varietà di comportamenti: è probabilistica la cosa. Il SH è un
+	      po tutto o niente: o sono nell eccitato o sono nel fondamentale (è vero che continuo a mantenere un certo coefficeinte nello sviluppo delal funzione d'onda su tutti e due gli stati, ma la nostra correzione di decoerenza in funzione delle geoemtrie che avrei in uno stato o nell'altro tende a cancellare il coefficeinte dello stato su cui non sta correndo la traiettoria --> dopo che sono tornato sul fondamentale, rapidamente la correzioen di decorerenza riduce a 0 il coefficeinte dello stato eccitato)
+		  
+  >> Una cosa che si potrebbe fare è fare degli snapshot non in funzione del tempo, ma
+     in funzione dell'angolo diedro: aggiungibile in statdyn, e avrei la media dei due angoli di legame con valore dell'angolo diedro tra 180 e 175, fra 175 e 170, ecc.. e quindi potrei trsacciare una media che probabilmente all'inizio sarebbe quasi uguale per i due angoli e poi si risoverebbe bene e che sarebbe tra l'altro piu facilmente plottabile non ponendo i lproblema della varabile tempo. MA sparice i ltempo dalal descrizione: mi dice come sono fatte le traiettorie mediamente, non in quali tempi vengono percorse (MA QUESTO SI SPOSA BENE CON LA DITTURA STATICA DELLA PES: DOVE VANNO LE TRAIETTORIE E NON QUANDO). L'unico problemino è che mau teme che non ci sia già prgramamto dentro statdyn la possibilità di scegliere l'angolo nnc piu grande e quello piu piccolo nel fare la media, emtre sarebbe proprio il caso di farlo. Queste cose si possono programmare dentro statdyn abbastanza facilmente però va visto.
+
+     Una cosa che potrebbe risultare poco evidente è che forse le oscillazioni di questi angoli verrebbero cancellate, ma non è detto.  
+	 
+	 >> MAU INIZIA A VANEGGIARE COME é IL SUO SOLITO.. Si conclude che quanto detto
+	    sopra non ha molto senso farlo. Le singole traiettorie mau ce le metterebbe (2 o 3) per fare 2 o 3 esempi di traiettorie che non fanno le stesse cose.
+		
+>> Un altra cosache sarebbe utile fare è un uteriore modifica del programma azmtraj per vedere se riusciamo a determinare il ritardo della dissociazione del secondo metile rispetto al primo. Ossia un tempo di vita della molecola CH3NN.
+
+Pensiamoci un attimo: per ora abbiamo la frazione di traiettorei che in ogni tempo sta
+                      in quella situazione li (molecola CH3NN non dissociata). Posso dedurre direttametne daquesto un suo tempo di vita? Posto che un certa frazione di traiettorie sono dissociate completamente a un certo tempo t, queste sono passate per quelal situazione li obbligatoriamente perceh abbiamo messo lo stesso limite di distanza per il primo metile che dissocia e per il secondo: quindi uno dei due arriva a quel limite li prima dell'altro (è inevitabile, magari pochi fs prima se stanno dissociando in quasi perfetta simmetria, ma sarà sempre quasi) oppure abbastanza tempo dopo.Quindi se io so che al tempo t ho tot molecole completamente dissociate posso avere un informazione su quante di queste e per qwuanto tempo sono state nelal situazione di un solo legame dissociato (che è quella che chiamiamo diss1). 
+					  
+					  Un informazione che abbiamo è a ogni tempo quante ce n'erano, quinid quel tempo li vuol dire in realtà in una certa casella temporale (in un tempo compreso tra 2 fs) quindi se risultano in quella casella li per 2fs considero che stavano li. quindi posso dire : "Se ho la frazione x2 completamente dissociata (nello stato diss2) al tempo t, prima di questo tempo avevo avuto un integrale di tot frazione nella diss1". E vuol dire che appunto la frazione diss1... bisogna convertirla in un tempo...
+					  
+					  Se divido quel tempo per il totale di molecole che stanno in diss2 ottengo il tempo medio che ciascuna di queste molcole ha passato in diss 1.
+					  
+					  Quindi forse senza modificare il programma o con una modifica minima posso calcolarlo questo tempo. Se io arrivassi a un asintoto con la diss2 (che effettivamente succede così praticamente per le simulazioni che mi danno una dissociazione molto lenta a tempi lunghi [quelle fatte con Boltzmann senza ZPE]) allora se diss2 continua ad essere fermo, ma vado avanti con il tempo non cambia piu questo tempo che calcolo perchè in diss1 non c'è piu niente (non aggiungo piu niente e nemmeno modifico la frazione).
+
+>> Prendo quindi un azmtraj.pun (zpe300):
+   (...VANEGGIA...)	A tempi lunghi comincia ad avere senso: ad esempio, io dico ho un 20.6% di traiettorie completamente dissociate. Potrei fare la conta di quanto tempo sono state le traiettorie in diss1 mediamente.
+   
+   Devo sostanzialmente sommare i numeretti ceh compaiono in colonna 5, moltiplicarli per 2 (che è il tempo di ogni casellina lì, quindi moltiplicare per 2 significa trasformare in una durata (in un tempo) quella frazione di traiettorie di colonna 5) e dividerli per il numero che sta in colonna 7, cioè la frazione che è arrivata alla completa dissociazione, e so quanto quel 20.6% di traittorie arrivato alla compelata dissociazione hanno stazionato ( per quanto tempo mediamente) nella dissociazione 1. E fare un grafico di questo in funzione del tempo. --> FARE UN PROGRAMMINO IN FORTRAN. 
+   
+   Mau ha il sospetto che per esempio il tempo passato in quella situazione diss1 possa essere piu breve all'inizio, quando le traiettorie che dissociano hanno molta enerigia, e piu lungo verso la fine, quando hanno meno energia. Ma questo è un dettaglio: quello ceh conta è che verso la fien vedermo uno stabilizzarsi di questo tempo, che è il tempo di esistenza del CH3NN.

@@ -1,0 +1,74 @@
+﻿					--------------------------------
+					|Data: 27-05-22		           |
+					|Origine: traiettorie multiple |
+					--------------------------------
+					
+>> Fatto slice.x adesso dobbiamo fare mkdat
+>> Diamo un occhiata al template e vediamo qualcosa sul surfacec hopping, che non so
+   ancora nulla a riguardo
+
+>> La script mkdat prepara prepara tutti i file di input a partire dal template
+   photo.dat. Vediamo meglio photo.dat:
+   >> Ci sono un sacco di keyword iniziali, di cui abbiamo già parlato
+   >> Il numero di traiettorie adesso è 20 (cambiato in 18 da mkdat per l'ultimo job)
+   >> Si parte nello stato numero 2: ISTAT =2
+   >> Le coordiante e le velocità iniziali si leggono nel file indicato da RDINI
+   >> Si fanno 100.000 cicli, quindi si arriva a 10ps: ogni fs si scrive (ogni 10 passi)
+   >> DECOVLP è la keyword che indica che si fa una correzione per la decoerenza.
+   
+
+   
+	  SEGUE UNA SPIEGAZIONE ELEMENTARE DELLA DECOERENZA, VEDI FOGLIO
+
+			
+
+	>> Da fogli: ... questo (ovvero la decoerenza fatta con l'overlap) è quello che si
+	intende con DECOVLP scritto nell'input. (DECOVLP fissa la larghezza del pacchetto).
+	Il risultato di questo metodo è che, siccome quresat cosa privilegia lo stato
+	corrente (aumenta la sua probabilità P ed è lo stato nle quale corre la
+	traiwettoriea), la distribuzione di traiettorie sugli stati diventa molto piu simile
+	alle probabilità calcolate per quegli stati (cioè c'è molta piu coerenza interna del
+	SH che distribuisce le traiettorie sugli stati molto piu fedelmente rispetto alle
+	probabilità calcolate)
+	
+	>> La keyword FIXE = 0.001 è un parametro che è stato introdotto proprio per le
+	simulazioni sull'azometano: risulta che per qualche ragione l'AZM è molto rognoso e
+	spesso e volentieri nel calcolare i gradienti dell'energia e abbiamo errori numerici
+	e di conseguenza cattiva conservazione dell'energia nella traiettoria. Quindi se 
+	l'energia della traiettoria sgarra per piu di 1/1000 di unità atomica, correggiamo
+	l'enrgia (forzatamente, alzando o abbassando l'energia cinetica in modo che la
+	traiettoria continui a conservare l'energia). Inoltre in queste simulazioni in cui
+	stiamo molto attenti a come le c.i. influenzano la distribuzione delle energie,
+	avere delle traiettorie che conservano male è un disastro --> ecco che abbiamo
+	intordotto questa correzione
+	
+	>> Rispetto all'SCF usato per la traiettoria sul g.s qui si usa un criterio di
+	convergenza dell'SCF ancora più stretto (questo influenza il giusto calcolo del
+	gradiente: ottima convergenza dell'SCF è meglio per avere un gradiente preciso).
+	
+	>> Dopo le coordinate interne abbiamo qui rispetto a prima una piccola novità:
+	in corrispondenza di 4 distanze (che sono tutte le distanza C-N) c'è scritto C4  -->
+	significa ceh quando queste distanza arrivano a 4A (ma tutte e quattro) allora a
+	quel punto la traiettoria si ferma (perchè a 4A i nostri potenziali non dipendono
+	piu dalla distanza): i frammenti se ne vanno ciascuno vibrando e ruotando per conto
+	sui ma non tornano indietro e ognuno se ne va per fatti suoi --> lì quindi la
+	traiettoria è finitia (non c'è piu niente da vedere da lì in poi [questo per
+	risparmiare tempo eh]).
+	
+>> Vediamo adesso come funziona mkdat:
+   >> Gli dico il numero di file;
+   >> L'ultimo file ha 18 traiettorie;
+   >> Il foreach deve girare su 20 file;
+   >> Nel foreach copia il template in nu nuovo file; 
+   >> il sed (stream editor) è un editore non interattivo: lo posso usare in una
+      script per fare delle modifiche in un file senza dover intervenire a mano;
+   >> Speigazione piu completa della script
+
+>> Lancio la script mkdat
+>> Guardo la script launch e nulla di interessante in essa
+>> Quindi lancio la script launch: non parte perche non mi trova delle librerie
+   compilatore; aggiungo ciò in .profile --> e lancio il conto.
+   
+   VEDERE MEGLIO DA FASE 1 PERCHè UN ECCITAZIONE n --> pi comporta un apertura
+   dell'angolo di legame.
+	

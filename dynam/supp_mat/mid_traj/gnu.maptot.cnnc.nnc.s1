@@ -1,0 +1,72 @@
+set size square
+set grid
+set nolabel
+set noarrow
+set nokey
+
+set xrange [80:180]
+set yrange [100:180]
+set xtics 0,30,180
+set ytics 100,20,180
+
+set view 0,0,1.0,1.0
+set nosurface
+set contour
+set noclabel
+set ztics
+set colors classic
+
+set table 'tab1'
+set cntrparam levels incremental  0.0,0.05,10.0
+splot 'zpe.map.invtors1' using 5:3:7
+# splot 'risu.mapdian.s1.notrageo' using 5:3:7
+unset table
+
+set table 'tab2'
+set cntrparam levels incremental  0.0,0.5,10.0
+splot 'zpe.map.invtors1' using 5:3:7
+# splot 'risu.mapdian.s1.notrageo' using 5:3:7
+unset table
+
+set table 'tab3'
+set cntrparam levels incremental  0.00,0.20,0.20
+splot 'risu.map.cnnc.nnc.s1.combi' using 5:3:($7-$6)
+unset table
+
+
+set label 'A' at 185.0, 114.0 center front
+set label 'B' at  -5.0, 128.6 center front
+set label 'C' at 185.0, 131.0 center front
+set label 'D' at  -5.0, 149.0 center front
+set label 'E' at 137.0, 130.5 center front
+set label 'F' at 101.8, 121.1 center front
+set label 'F' at 104.0, 148.0 center front
+
+
+set encoding iso_8859_1
+set xlabel 'Angolo CNNC, gradi' offset 0,0
+set ylabel 'Angolo NNC_1, gradi' offset 0,0
+set style textbox opaque noborder
+
+
+set parametric 
+set trange [0:250]
+plot \
+'azmtraj.pun' u 29:($1 < 250 ? $25 : 1/0):1 with lines lt 1 lc 2 lw 1.2, \
+'azmtraj.pun' u 29:($1 < 250 ? $27 : 1/0):1 with lines lt 1 lc 4 lw 1.2, \
+'tab3' u 1:2 with filledcurves lc 6, \
+'tab1' u 1:2 with lines lt 1 lc 3 lw 0.5, \
+'tab2' u 1:2 with lines lt 1 lc 1 lw 1.2, \
+'tab2' u 1:2:3 every 20 w labels boxed, \
+'crit.points.s1' u 1:2 w p pt 7 lc 3 ps 0.3
+
+
+# set term pslatex color dashed lw 2
+# set size 1.0,1.0
+# set output 'fig.map1.tex'
+# replot
+
+set term pdf font "Times-Roman,7" color dashed lw 2
+set size 1.2,1.0
+set output 'fig.map.invtorss1.tot.pdf'
+replot

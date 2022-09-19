@@ -12,7 +12,15 @@ set nosurface
 set contour
 set noclabel
 set ztics
-set colors classic
+#set colors classic
+
+set border lc "black" lw 0.25  # thin lines for the tics
+set border 0                   # don't draw the normal border
+set tics scale 2.0             # longer than usual tics
+set obj 1 rectangle from graph 0,0 to graph 1,1
+set obj 1 lc "black" lw 1.0    # heavy line for the "border"
+set obj 1 fillstyle empty
+set grid x y
 
 set table 'tab1'
 set cntrparam levels incremental  -1.0,0.02,0.01
@@ -31,9 +39,17 @@ set encoding iso_8859_1
 set xlabel 'R_{NC_1}, {\305}' offset 0,0
 set ylabel 'R_{NC_2}, {\305}' offset 0,0
 set style textbox opaque noborder
+
+
+
+set terminal cairolatex pdf color dashed lw 3
+set output "figmap12zpe.tex"
+
+
+
 plot \
-'tab1'   u 1:2 with lines lt 1 lc 3 lw 0.5, \
-'tab2'   u 1:2 with lines lt 1 lc 1 lw 1.2, \
+'tab1'   u 1:2 with lines lt 1 lc 6 lw 0.5, \
+'tab2'   u 1:2 with lines lt 1 lc 7 lw 1.0, \
 'tab2' u 1:2:3 every 20 w labels boxed
 
 # set term pslatex color dashed lw 2
@@ -41,7 +57,7 @@ plot \
 # set output 'fig.map1.tex'
 # replot
 
-set term pdf font "Times-Roman,7" color dashed lw 2
-set size 1.0,1.0
-set output 'fig.map12zpe.pdf'
-replot
+#set term pdf font "Times-Roman,8" color dashed lw 2
+#set size 1.0,1.0
+#set output 'fig.map12zpe.pdf'
+#replot

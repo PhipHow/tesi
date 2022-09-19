@@ -1,0 +1,124 @@
+set key at 550,0.8 spacing 1.2
+set xlabel 'time, fs'
+#set ylabel 'energy, eV'
+set xrange [0.0:600.0]
+set yrange [0.0:1.0]
+set grid
+unset key
+
+set border lc "black" lw 0.25  # thin lines for the tics
+set border 0                   # don't draw the normal border
+set tics scale 2.0             # longer than usual tics
+set obj 1 rectangle from graph 0,0 to graph 1,1
+set obj 1 lc "black" lw 1.0    # heavy line for the "border"
+set obj 1 fillstyle empty
+set grid x y
+
+set macros
+TMARGIN = "set tmargin at screen 0.95; set bmargin at screen 0.65"
+MMARGIN = "set tmargin at screen 0.65; set bmargin at screen 0.35"
+BMARGIN = "set tmargin at screen 0.35; set bmargin at screen 0.05"
+LMARGIN = "set lmargin at screen 0.10; set rmargin at screen 0.525"
+RMARGIN = "set lmargin at screen 0.525; set rmargin at screen 0.95"
+
+
+XSTUFF = "set xtics('0'0,'100'100,'200'200,'300'300,'400'400,'500'500,'600'600); set xlabel 'Tempo, fs'"
+YSTUFF = "set ytics('0'0,'0.2'0.2,'0.4'0.4,'0.6'0.6,'0.8'0.8,'0'1); set ylabel 'Popolazione'"
+NOXSTUFF = "set xtics(''0,''100,''200,''300,''400,''500,''600); unset xlabel"
+NOYSTUFF = "set ytics(''0,''0.2,''0.4,''0.6,''0.8,''1);unset ylabel"
+
+
+set terminal cairolatex pdf size 6.0,8.0 lw 3
+set output "isomtot.tex"
+
+
+#set term pdf font "Times-Roman,11" color dashed lw 2
+#set term pdf size 6.0,9.0
+#set output 'isom.tot.pdf'
+
+set multiplot layout 3,3 rowsfirst
+
+@YSTUFF; @NOXSTUFF; @TMARGIN; @LMARGIN
+unset ylabel
+set label 1 'ZPE300' at graph 0.70,0.9 font "1"
+set ytics(''0,'0.2'0.2,'0.4'0.4,'0.6'0.6,'0.8'0.8,'1'1)
+plot \
+'azmtraj300.pun' u 1:9  title 'S_0 trans' w l lt 1 lc 1 lw 1, \
+'azmtraj300.pun' u 1:11 title 'S_1 trans' w l lt 1 lc 6 lw 1, \
+'azmtraj300.pun' u 1:13 title 'S_0 cis' w l lt 1 lc 2 lw 1, \
+'azmtraj300.pun' u 1:15 title 'S_1 cis' w l lt 1 lc 7 lw 1
+#'azmtraj300.pun' u 1:17 title 'S_0 rot' w l lt 1 lc 5 lw 1, \
+#'azmtraj300.pun' u 1:19 title 'S_1 rot' w l lt 1 lc 6 lw 1, \
+#'azmtraj300.pun' u 1:21 title 'S_0 inv' w l lt 1 lc 7 lw 1, \
+#'azmtraj300.pun' u 1:23 title 'S_1 inv' w l lt 1 lc 8 lw 1, \
+
+@NOYSTUFF; @TMARGIN; @RMARGIN
+set label 1 'ZPE300.mono' at graph 0.60,0.9 font "1"
+plot \
+'azmtraj300mc.pun' u 1:9  title 'S_0 trans' w l lt 1 lc 1 lw 1, \
+'azmtraj300mc.pun' u 1:11 title 'S_1 trans' w l lt 1 lc 6 lw 1, \
+'azmtraj300mc.pun' u 1:13 title 'S_0 cis' w l lt 1 lc 2 lw 1, \
+'azmtraj300mc.pun' u 1:15 title 'S_1 cis' w l lt 1 lc 7 lw 1
+#'azmtraj300mc.pun' u 1:17 title 'S_0 rot' w l lt 1 lc 5 lw 1, \
+#'azmtraj300mc.pun' u 1:19 title 'S_1 rot' w l lt 1 lc 6 lw 1, \
+#'azmtraj300mc.pun' u 1:21 title 'S_0 inv' w l lt 1 lc 7 lw 1, \
+#'azmtraj300mc.pun' u 1:23 title 'S_1 inv' w l lt 1 lc 8 lw 1, \
+
+@NOXSTUFF; @YSTUFF; @MMARGIN; @LMARGIN
+set label 1 'ZPE50.mono' at graph 0.60,0.9 font "1"
+set ytics(''0,'0.2'0.2,'0.4'0.4,'0.6'0.6,'0.8'0.8,'0'1)
+plot \
+'azmtraj50mc.pun' u 1:9  title 'S_0 trans' w l lt 1 lc 1 lw 1, \
+'azmtraj50mc.pun' u 1:11 title 'S_1 trans' w l lt 1 lc 6 lw 1, \
+'azmtraj50mc.pun' u 1:13 title 'S_0 cis' w l lt 1 lc 2 lw 1, \
+'azmtraj50mc.pun' u 1:15 title 'S_1 cis' w l lt 1 lc 7 lw 1
+#'azmtraj50mc.pun' u 1:17 title 'S_0 rot' w l lt 1 lc 5 lw 1, \
+#'azmtraj50mc.pun' u 1:19 title 'S_1 rot' w l lt 1 lc 6 lw 1, \
+#'azmtraj50mc.pun' u 1:21 title 'S_0 inv' w l lt 1 lc 7 lw 1, \
+#'azmtraj50mc.pun' u 1:23 title 'S_1 inv' w l lt 1 lc 8 lw 1, \
+
+set key
+@NOYSTUFF; @RMARGIN; @MMARGIN
+set label 1 'Wigner' at graph 0.70,0.9 font "1"
+plot \
+'azmtrajw.pun' u 1:9  title 'S_0 trans' w l lt 1 lc 1 lw 1, \
+'azmtrajw.pun' u 1:11 title 'S_1 trans' w l lt 1 lc 6 lw 1, \
+'azmtrajw.pun' u 1:13 title 'S_0 cis' w l lt 1 lc 2 lw 1, \
+'azmtrajw.pun' u 1:15 title 'S_1 cis' w l lt 1 lc 7 lw 1
+#'azmtrajw.pun' u 1:17 title 'S_0 rot' w l lt 1 lc 5 lw 1, \
+#'azmtrajw.pun' u 1:19 title 'S_1 rot' w l lt 1 lc 6 lw 1, \
+#'azmtrajw.pun' u 1:21 title 'S_0 inv' w l lt 1 lc 7 lw 1, \
+#'azmtrajw.pun' u 1:23 title 'S_1 inv' w l lt 1 lc 8 lw 1, \
+
+unset key
+@XSTUFF; @YSTUFF; @LMARGIN; @BMARGIN
+unset ylabel
+set label 1 'Boltzmann' at graph 0.65,0.9 font "1"
+set xtics('0'0,'100'100,'200'200,'300'300,'400'400,'500'500,''600)
+plot \
+'azmtrajbo.pun' u 1:9  title 'S_0 trans' w l lt 1 lc 1 lw 1, \
+'azmtrajbo.pun' u 1:11 title 'S_1 trans' w l lt 1 lc 6 lw 1, \
+'azmtrajbo.pun' u 1:13 title 'S_0 cis' w l lt 1 lc 2 lw 1, \
+'azmtrajbo.pun' u 1:15 title 'S_1 cis' w l lt 1 lc 7 lw 1
+#'azmtrajbo.pun' u 1:17 title 'S_0 rot' w l lt 1 lc 5 lw 1, \
+#'azmtrajbo.pun' u 1:19 title 'S_1 rot' w l lt 1 lc 6 lw 1, \
+#'azmtrajbo.pun' u 1:21 title 'S_0 inv' w l lt 1 lc 7 lw 1, \
+#'azmtrajbo.pun' u 1:23 title 'S_1 inv' w l lt 1 lc 8 lw 1, \
+
+@XSTUFF; @NOYSTUFF; @RMARGIN; @BMARGIN
+unset ylabel
+set label 1 'Wigner.rid' at graph 0.60,0.9 font "1"
+plot \
+'azmtrajrw.pun' u 1:9  title 'S_0 trans' w l lt 1 lc 1 lw 1, \
+'azmtrajrw.pun' u 1:11 title 'S_1 trans' w l lt 1 lc 6 lw 1, \
+'azmtrajrw.pun' u 1:13 title 'S_0 cis' w l lt 1 lc 2 lw 1, \
+'azmtrajrw.pun' u 1:15 title 'S_1 cis' w l lt 1 lc 7 lw 1
+#'azmtrajrw.pun' u 1:17 title 'S_0 rot' w l lt 1 lc 5 lw 1, \
+#'azmtrajrw.pun' u 1:19 title 'S_1 rot' w l lt 1 lc 6 lw 1, \
+#'azmtrajrw.pun' u 1:21 title 'S_0 inv' w l lt 1 lc 7 lw 1, \
+#'azmtrajrw.pun' u 1:23 title 'S_1 inv' w l lt 1 lc 8 lw 1, \
+
+unset multiplot
+
+
+

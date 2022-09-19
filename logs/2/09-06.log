@@ -1,0 +1,62 @@
+					--------------------------------
+					|Data: 09-06-22		           |
+					|Origine: fine simulazioni     |
+					--------------------------------
+					
+
+>> Confronto cnnc.pdf (zpe300.mono vs zpe50.mono)
+   ...probabilmente per questa ragione il decadimento potrebbe essere un po piu lento
+   
+>> Guardo diss.pdf
+   La dissociazione a 50K è minore. Inoltre anceh l'isometrizzazione è avvenuta in misura minore, ma è sempre prevalente. Prima rimaneva ben poco trans
+   
+>> Guardo pop.pdf confronto
+   Si vede che a 50K è decisamente piu lento il decadimento
+
+>> Guardo isom.pdf
+   Anche qui la scomparsa dell'S1-trans è parecchio piu lenta. La ripopolazione dell'S0, che a 300.mono è con piu entusiasmo cis, adesso è ritardata e ridotta. Tutto sommato anche gli stati di transizione mostrano un certa riduzione --> Quello nero che è il piu importante è l'inversione in S0, è un po meno popolato.
+   
+>> guardo E_trasl.pdf
+   In 50.mono il primo CH3 ha un picco piu ridotto, cioè un pò meno abbondante ad energie grandi e il secondo è quasi sdoppiato. La somma come al solito non riesce a mostrare una distribuzione bimodale. Qui si potrebbe provare a cambiare un pò la larghezza della cella nell'isotgramma, nella speranza che venga meglio. Per ora facciamo da 0 a 1.6 con 8 caselle, metto 12 caselle e vediamo cosa succede (azoto e 2 metili) --> Viene fuori che il secondo da solo c'ha due picchi che non si capisce se sono veri oppure no. Le traiettorie che dissociavano erano pochine: se fossero dell'ordine di 50 ogni punto del grafico contiene circa 10 valori: come si fa ad avere dei buoni numeri in questo modo. 
+   
+   Visto che dissocia il 20% e le traiettorie erano 400, ne dissociano circa 80. Ogni casella del grafico delle energie traslazionali,visto ceh ci sono 6-7 caselle di una certa importanza mediamente contiene una 15ina di valori: è il risultato della media di 15 valori di energia traslazionale --> con 15 valori soltanto, la casualità del numero che tiro fuori è piuttosto alta; ci si possono  mettere delle barre di errore, però sarebbero barre di errore con certe assunzioni...
+   
+   Diamo un occhiata al fine histo.Ek_az --> nulla di utile
+   
+   é sicuro che questi dati non sono sufficienti, i grafici delle energie traslazionali mau non li mostrerebbe nemmeno e guarderebbe piuttosto ai valori medi calcolati. (VEDI TABELLE)
+   
+   >> Oss: energia di eccitazione per avere le stesse aree delle altre (sono tutte
+           normalizzate) deve essere altissima e strettissima. --> mau lo lascerebbe cosi senza scalarlo o roba simile.
+   
+   
+   >> Con le simulazioni siamo apposto: potremmo lanciarne qualcuna con molte più traiettorie per tentare di avere una migliore statistica soprattutto per le energie traslazionali dei metili. Mau non sa se vale la pena, ma si si puo fare priam di avere completato la cosa. Per il resto come tipo di simulazioni potremmo anche accontentarci.
+   
+   ----------------------------------------------------------------------------------
+   
+   
+  |----------------------------------------------------------------------------------|
+  |-------------------------- INIZIO WIGNER RIDOTTO ---------------------------------|
+  |----------------------------------------------------------------------------------|
+  
+  
+>> Quando critichiamo l'uso di Wigner perche produce una quantità di energia
+   vibrazionale crescente con il numero di atomi che stiamo considerando (per uan molecola grossa il problema è maggiore). Un possibile rimedio è di non mettere l'energia di punto zero in coordinate vibrazionali che hanno veramente scarso interesse e che a tempi brevi di sicuro non trasferiscono quasi niente alle altre coordinate, ma a tempi lunghi magari si. E queste sono le vibrazioni di alta frequenza (sostanzialmente le vibrazioni degli stretch CH, o NH o quello ceh c'è nella molecola, insomma gli stretch coinvolgenti gli idrogeni). 
+   
+   E quindi un idea rudimentale, ancora piu semplice di quella di aggiungere lo ZPE è fare un sampling in quel modo (mau crede che sia gia tutto programamto per farlo, perché mau et al l'hanno gia usata in passato). MAu non si aspetta grandi differenze qvisto quello che è successo con il nostro AZM, però è una proposta come un altra. 
+   
+   A mau non gli dispiacerebbe scriverla nell'articolo peche la gente poi le proposte semplici le usa: e quindi se dai alal gente una via di uscita che applicano facilmente è abbastanza probabile che te ne siano grati. 
+   
+   Sotto quello però ci puo anche stare un ragionamento. Che è questo:
+   >> Il trasferimento di energia da una vibrazione ad alta frequenza ad altre 
+      vibrazioni è lento, a livello QM, perche non c'è risonanza (se io voglio trasferire 3000cm-1 da una vibrazione di un legame CH ad un altra qualsiasi che ne ha 1000cm-1 dovrei far schizzare di 3 quanti vibrazionali quella da 1000 in su, quando scende di 3000cm-1 quell'altra. --> E tre quanti vibrazionali in un colpo solo non si fanno, perché l'accoppiamento fra stati con parecchi quanti vibrazionali di differenza è piccolo (già 2, ma 3 è ancora peggio).
+   >> A livello classico questo non esiste nella stessa forma ma esiste egualmente: 
+      vibrazione ceh oscilla alla frequenza di 3000cm trasferisce difficilmente energia ad un'altra vbrazione che oscilla piu lentamente, e questo è il significato di nome risonanza (risonanza vuol dire proprio la corda di uno strumento a corda che risuona con un altra alla stessa frequenza e lo fa se ha la stessa frequenza, e magari puo eccitare la prima ormonica con piu difficoltà e avanti di questo passo). Ma anche a livello classico è abbastanza lento. 
+   >> Cosa è veloce e cosa è lento? veloce è un trasferimento sotto il ps (che avviene i
+      ntempi minore di 1ps) e lento parecchi ps. Ma qui la nostra dissociazone li usa parecchi ps, quella che avviene in tempi lunghi. Quindi cominciamo a vedre effetti anceh di trasferimento lento. A tempo infinito dovrei arrivare all'equilibrio e di nuovo: l'equilibrio classico e quantistico sono due cose diverse. purtroppo equilibrio quantistico significa che le vibrazioni di alta frequenza (in dipendenza dalla temperatura) sono praticamente limitate a v = 0, mentre quelle di bassa frequenza hanno una certa distribuzione sugli stati vibrazionali . Equilibrio classico significa principio di equipartizione: ogni vibrazione ha la stessa quantità di energia.
+   >> Si puo pensare ad una situazione di equilibrio in cui nello stato fondamentale ho
+      tutta l'energia che compete a quella molecola li con l'eenrgia iniziale nel g.s + l'energia del fotone (energia di eccitazione) e mi posso chiedere: se questa energia la ripartisco fra i modi vibrazionali, quanto dovrebbe essercene nei modi piu importanti per la mia reazione (quelli di bassa frequenza, o frequenza media)? Ottengo piu o meno energia di quella che dovrebbe esserci quantisticamente? E se ne ottengo di piu, come mau pensa sia quasi inevitabile, quanti modi dovrei congelare in sede di sampling delle coordinate iniziali (cioè dargli energia 0) per arrivare ad avere la giusta distribuzione quantistica? Qui i modi importanti dovrebbero essere gli stretch dei legami C-N, per la dissociazione. A parte che vediamo che l'oscillazone delal distanza C-N si trova sparpagliata in diversi modi, che sono modi piu o meno di una certa di energia verso i 1300-1500cm-1.
+  >>  Vediamo il ragionamento fatto dal prof nel 2006. NON ci capisce nulla nemmeno   lui.
+  
+  OSS: questo ragionamento del 2006 era basato però sullo stato eccitato. Invece se uno dice: "Ma io poi decado nello stato fondamentale e quindi l'eccesso di energia vibrazionale è molto piu grande. Come si dovrebbe ripartire a quel punto?" I numeri cambiano ma il concetto è un po' lo stesso: se ci metto meno energia porbabilmente vado piu vicino al giusto, ma i numeri sono diversi. Potrebb e essere un modo di stabilire non arbitrariamente quanti modi andrebbero congelati (quanta energia di meno bisogna metterci) per aver la giusta ripartizione ALL'EQUILBRIO (e non è mica detto naturakmente di arrivarci perche se c'è una reazione in corso puo avvenire, ed è una cosa discussa in fotochimica o anche nelle collisioni. ): Se alla fine la reazione avviene dopo che i reagenti si sono equilibrati termicamente oppure avviene prima e quindi in condizioni non statistiche. Se avviene molto rapidamente l'energia ceh ho messo nei moti di grande frequenza proabilmente non ha avuto tempo di trasferirsi agli altri, viceversa se avviene all'equilibrio si , sicusramente si. 
+  
+  >> Si puo anche fare anche una simulazione senza tutte queste considerazioni e dire "Per ridurre un po' lo ZPE la cosa piu ragionevole è dire "certi moti che proprio non hanno a che vedere con la reazione, come gli stetch CH, congelateli. Non metteteci anche quell'energia li in piu che è tanta e inutile"".++

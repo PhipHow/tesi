@@ -1,0 +1,48 @@
+Per lanciare uno sciame di traiettorie e analizzare i risultati.
+
+- Usando MOPAC per calcolare energie e dipoli di transizione,
+  selezionare Q e P nello stato fondamentale con uno dei metodi basati
+  sui modi normali, oppure con una lunga traiettoria termostatata
+
+- Ulteriore selezione in base alle probabilità di transizione, programma
+  sample, script sample.x - viene generato un file con le geometrie iniziali
+
+- Script slice.x, suddivide le geometrie iniziali in N file, per
+  lanciare N calcoli MOPAC, ciascuno con M traiettorie
+
+- Script mkdat, produce N file photoxx.dat (xx = 01, 02 ... N) dal
+  template photo.dat
+
+- Script launch, lancia gli N calcoli
+
+- Script mergedin.x, riunisce tutti i file photoxx.dyn in un solo file,
+  photo.dyn e copia photo01.inf in photo.inf.  Questi file sono usati da
+  statdyn e azmkine
+
+- Script statdyn_wig oppure statdyn_equi, a seconda del tipo di sampling,
+  prepara i file per l'analisi delle condizioni iniziali, spettro etc
+
+- Script statdyn_S1, prepara i file per l'analisi delle traiettorie
+  (solo stato eccitato)
+
+- Script statdyn_tot, prepara i file per l'analisi delle traiettorie
+  (traiettoria completa).  Da eseguire dopo statdyn_S1.
+
+- Script azmkine.x (programma azmkine.f90), prepara i dati per gli
+  istogrammi delle energie traslazionali di N2 e CH3
+
+- Da qui in poi, si può decidere di trasferire tutto su un computer di
+  uso personale.  Evitare il trasferimento dei file più grandi che non
+  servono (file .out e .dyn di mopac etc)
+
+- Script histogram.x, prepara gli istogrammi delle energie (tranne
+  quello dello spettro, che viene direttamente da statdyn_wig o statdyn_equi)
+
+- Istogrammi delle energie iniziali e finali: gnu.E_ini, gnu.E_wigner,
+  gnu.E_trasl
+
+- Script azmtraj.x, prepara i file azmtraj.pun, azmtraj.tim, azmtraj.atd
+  per graficare le variabili dinamiche
+
+- Grafici importanti: gnu.pop (popolazione di S1), gnu.diss e gnu.isom
+  (reazioni), gnu.cnnc (angoli), gnu.atd (tentativi di dissociazione)

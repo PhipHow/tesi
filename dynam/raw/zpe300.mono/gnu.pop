@@ -1,0 +1,27 @@
+set key right top spacing 1.5
+set xlabel 'time, fs'
+set ylabel 'S_1 population'
+set xrange [0.0:600.0]
+#set yrange [-0.002:0.01]
+set grid
+set samples 1000
+set colors classic
+
+td = 36
+tau = 100
+pop(x) = x<td ? 1.0 : exp(-(x-td)/tau) 
+fit pop(x) 'snap.time.isurf' using 1:5 via td, tau
+
+plot \
+'snap.time.isurf' u 1:5 title 'S_1 population' w l lt 1 lc 1 lw 1, \
+pop(x) title 'exponential fit' w l lt 1 lc 7 lw 1
+
+# set term pslatex color dashed lw 3
+# set size 1.00,0.80
+# set output 'fig.onemode.q.wigner.tex'
+# replot
+
+set term pdf font "Times-Roman,10" color dashed lw 2
+set size 1.0,1.0
+set output 'pop.pdf'
+replot

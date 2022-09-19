@@ -1,0 +1,144 @@
+ Versione =       160
+# numat, norbs, nmos, ncf, nstat_t, nstati, inco, dynwrt
+       10       22        6      400        2        2        8        0
+# atom n.  element    Z    atomic mass (a.u)
+     1       N       7      25532.6525630505
+     2       N       7      25532.6525630505
+     3       C       6      21894.7139536650
+     4       H       1       1837.2893342685
+     5       H       1       1837.2893342685
+     6       H       1       1837.2893342685
+     7       C       6      21894.7139536650
+     8       H       1       1837.2893342685
+     9       H       1       1837.2893342685
+    10       H       1       1837.2893342685
+# isolv   numatmm_act   num_mol_solv     inicoord    numfrz
+        0        0        0        0        0
+
+
+--------------------------------------------------------------------------------
+     Information recorded in file /home/carlotta/azometano/dynam/400traj_wigner/photo01.dyn 
+     (all data in a.u., unless otherwise specified)
+
+ Structure of the records:   (records with ngw within 1 and  999998)
+ ngw,nintx,nflo,(ibuf(i),i=1,nintx),(fbuf(i),i=1,nflo)
+
+ ibuf contains:
+        1  nc = number of time steps
+        2  ntest = 0 (no reaction)
+                   1 (the internal coord. has reached the threshold W)
+                   2 (the internal coord. has crossed the threshold S)
+                   3 (no reaction, total number of steps reached)
+        3  npath (not used)
+        4  istat = index of the adiabatic surface
+        5  irk   = 0 (no hopping)
+                 = 1 (surface hopping)
+                 = 2 (state switch)
+                 = 3 (surface hopping following a state switch) ***disabled***
+                 = 4 (insufficient Ecin for surface hopping)
+                 = 5 (classical Franck-Condon excitation at step KVERT) ***disabled***
+                 = 6 (failure in energy conservation - reset Ekin) ***disabled***
+                 = -1 (radiative surface hopping -- no energy conservation)
+                 = -2 (field decay surface hopping -- no energy conservation)
+        6  ntz = trajectory number
+        7  istat_old = istat at the previous timestep
+        8  trdip_from_state = state from which trans. dip. are evaluated
+        9-       40  iint(i,j),i=1,inco,j=1,4  (indices for the internal coords)
+
+ fbuf contains:
+        1 -        1  _TIME_     = time (in fsec)
+        2 -        2  _EKIN_     = kinetic energy
+        3 -        3  _EPOT_     = potential energy
+        4 -        4  _ETOT_     = total energy
+        5 -       64  _QP_       q(i),p(i),i=1,3n    = cartesian coords. and momenta
+       65 -       72  _INCO_     internal coordinates as in the output
+       73 -       74  _ECI_      eci(i),i=1,nstat_t   = CI energies
+       75 -       78  _TPAR_     tpar(i,j),i,j=1,nstat_t  = diabatic transf. (this step)
+       79 -       80  _POP_      pop(i),i=1,nstat_t   = populations of the adiabatic states
+       81 -       86  _AMUT_     amut(i,j),j=1,3,i=1,nstat_t = transition dipole moments (DEBYE)
+       87 -       88  _TRANS_    trans(i),i=1,nstat_t = FS trans. rate (tprob/dt, a.u.), referred to the previous timestep
+       89 -       89  _ANISO_    cos(beta)**2   fluorescence depolarization
+
+
+ For reactive trjs. only (records with ngw=  999999)
+ ibuf contains:
+        1  npath = reactive channel
+        2  nfrag = number of fragments (products)
+ fbuf contains:
+ for each fragment, Etrasl, <Erot>, <Evib>
+--------------------------------------------------------------------------------
+
+------- Mopac input -------
+MEMORY=1100 PM3 VECTORS MECI=10 MXROOT=10 NSTAT=2 OPEN(6,6) FLOCC=0.1528096665 +
+DYNAM NTRAJ=20 ISTAT=2 RDINI=wigner_geo01_01 +
+TIME=0.1 CYCLES=100000 NCYPR=10 INCO=8 DECOVLP=1.0 FIXE=0.001 +
+GEO-OK SCFMAU ITRX=2000 ITRY=2000 ITRZ=200 PULAY SHIFT SCFCRT=1.D-9 +
+SINGLET S2 STATESPEC NMULT=2 EXTERNAL=azm.semi.par
+trans-azometano eclipsed eclipsed fondamentale
+
+X    0.000000  0   0.000000  0    0.000000  0
+X    1.000000  0   0.000000  0    0.000000  0     1
+N    0.610782  1  90.000000  0    0.000000  0     1     2
+N    0.610781  1 180.000000  0   90.000000  0     1     3     2
+C    1.435000  1 120.000000  1    0.000000  1     3     1     2
+H    1.000000  1 110.000000  1    0.000000  1     5     3     1
+H    1.000000  1 110.000000  1  120.000000  1     5     3     6
+H    1.000000  1 110.000000  1  240.000000  1     5     3     6
+C    1.435000  1 130.000000  1  170.000000  1     4     1     2
+H    1.000000  1 110.000000  1    0.000000  1     9     4     1
+H    1.000000  1 110.000000  1  120.000000  1     9     4    10
+H    1.000000  1 110.000000  1  240.000000  1     9     4    10
+
+
+OCCUP
+3*2.0 3*0.0
+INTERNAL COORDINATES
+1 2 0 0
+1 3 0 0 C 4.0
+2 7 0 0 C 4.0
+1 7 0 0 C 4.0
+2 3 0 0 C 4.0
+2 1 3 0
+1 2 7 0
+3 1 2 7
+
+ADDED POTENTIAL
+NUMLJ=16
+3 7  6.614007 0.0000526
+3 8  5.589854 0.0000709
+3 9  5.589854 0.0000709
+3 10 5.589854 0.0000709
+7 4  5.589854 0.0000709
+7 5  5.589854 0.0000709
+7 6  5.589854 0.0000709
+4 8  4.724290 0.0000478
+4 9  4.724290 0.0000478
+4 10 4.724290 0.0000478
+5 8  4.724290 0.0000478
+5 9  4.724290 0.0000478
+5 10 4.724290 0.0000478
+6 8  4.724290 0.0000478
+6 9  4.724290 0.0000478
+6 10 4.724290 0.0000478
+
+STATE SPECIFIC TERM
+NTERMS=1
+AZOMETHANE
+ 1 2 3 7
+      651.56478576            -1.5477215778
+         0.5810217780         1.0630030016
+        -0.0088597155        -0.0248551645
+         0.1385285500        -0.2093855150
+        -0.0042201102         0.0262865663
+         0.1714507895         1.4899497154
+      0.0000000000          0.0000000000
+        -0.6307760407        -0.3935131394
+         0.1012527907         0.0580513515
+        -0.1351610420        -0.0822627964
+    1.60  1.60  1.60  1.60
+    3.50  3.50  3.50  3.50
+       126.8176185000
+ 2.100  0.900          0.55
+ 2.500  0.900          0.50
+ 1.600  3.100  3.200  5.000      0.20
+

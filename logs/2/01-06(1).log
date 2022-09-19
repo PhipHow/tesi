@@ -1,0 +1,39 @@
+				-------------------------------
+				| Data: 01-06 pomeriggio      |
+				| Origine: ingnoto            |
+				-------------------------------
+				
+>> Correzione V vs Y nel capitolo da me scritto
+>> Riproviamo a sistemare le equazioni, ma non ce la facciamo per l'ennesima volta
+>> Nella tabella delle geometrie devo spiegare l'abbreviazione TS; inoltre con i
+   vincoli si intende:
+   >> Lo stato di transizione per l'inversione è definito dal vincolo di planarità dei 4 atomi pesanti; --> Che vuol dire sostanzialmente il diedro o è 0 o è 180 (in pratica poi viene fuori che è 180);
+   >> Il vincolo per la torsione, non c'è;
+   >> Il TS della dissociazione simmetrica è definito dall'essere a una geometria trans
+      simmetrica (in particolare con le deu lunghezze NC uguali)
+   >> I minimi del cis e del trans sono cercati come minimi, poi risulta che quello del
+      trans è lo stato di transizione invece, ma con il vincolo rispettivamente di avere il diedro pari a 0 per il cis e 180 per il trans;
+   >> Con trans-azm s1 si intende che ho ottimizzato la goemetria di S1, che però
+      nonostante s1 preferisca una geometria ruotata (con il doppio legame ruotato) io gli ho imposto di rimanere trans (cioè a 180);
+  OSS: queste cose qui si fanno abbastanza comunemente e hanno un certo senso fisico, non è solo questione di dire "fissiamoci su qualche geometria facilmente definibile come il minimo con qualche vincolo", il "qualche vincolo" ha un senso fisico perchè, come vederemo quando plotteremo le traiettorie, ci sono coordinate che cambiano più rapidamente e altre che cambiano un po piu lentamente nel panorama di tutto cio che cambia quando ecciti la molecola a uno stato elettronico diverso e la geometria comincia a mettersi in moto. In linea di massima un angolo diedro cambia più lentamente, sia perche il potenziale, come funzione dell'angolo diedro varia piu dolcemente (le forze sono minori), sia perche molto spesso parliamo di un angolo diedro rispetto al quale l'energia dello stato fondamentale è in un minimo, naturalmente, e quella dello stato eccitato è in un massimo (molto spesso succede così). Essendo in un massimo rispetto alla variazione dell'angolo diedro, ha comunque derivata rispetto all angolo diedro zero anche nello stato eccitato --> quindi non è che la molecola parta sparata lungo l'angolo diedro: allora succede che la prima cosa che fa è un moto diretto verso il minimo che ottengo facilmente ottimizzando la geoemtria me tenendo il diedro fisso, approssimativamente fa questo --> poi anche il didero si mette in moto e non mi fermo lì. Per esempio, se faccio lo spettro di abs sarà molto difficile che io veda qualche progressione vibrazionel che è legata all'angolo diedro: la frequenza vibrazionale è bassa, il minimo è lontano, lo spettro è molto sparpagliato si perche lungo l'angolo diedro scendi parecchio nello satto eccitato, ma corrisponde a tanti stati vibrazionali un po troppo fitti per vedere bene la differenza tra loro. Piu facilmente invece vedo le vibrazioni con frequenza alta che danno luogo a stati abbastanza ben separati: potrebbe eessere lo stretch del doppio legame (visto che eccito ad un antilegante è chiaro che quel doppio legame tendera ad allungarsi nello stato eccitato e vedo gli stati vibrazionali di quello stretch) --> che poi per la fotochimica ha un importanza relativa, non grande, ma nello spettro si vede piu facilmente; oppure proprio il bend degli angoli di legame che sono a frequenza piu alta e quindi è possibile vederli 
+  
+>> ZPE mai in italico, tanto piu che nelle formule quasi mai lo uso. 
+   
+>> Levare parte in giallo-arancio, wrong
+
+>> COmmento che il prof voleva farmi sulel correzioni sullo ZPE leaking:
+   Poi ci sarà un introduzione in cui si parla anceh di quello e qualcosa va detto, possibilmente si possono citare lavori in cui questo si vede. Si puo anche dire che una cosa che si puo verificare bene è che alla fine i prodotti di uan reazione di dissociazione (o anche di altre reazioni, però in una dissociazione è piu probabile che questo succeda) stanno al di sotto delle ZPE, o in una singola traiettoria o in media, quindi mettiamo di partire con traiettorie ceh hanno tutte esattamente lo ZPE: è possibile che una certa frazione delle traiettroie, che arriva ai prodotti di reazione, sia al di sotto dello ZPE e questo vuol dire ceh la reaazione è avvenuta i ncontravvenzione delle regole della meccanica quantisitica. Mentre è un po difficile fare un discorso su tutti gli istadi intermedi (perchè lo ZPE è ben definito soltanto nei punti stazionari e via dicendo), laddove io arrivo a prodotti (ANCHE SE SONO PIU DI una MOLECOAL OGNI PRODOTTO ha un suo minimo dei suoi stati vibrazionali (dei suoi modi normali via) e via dicendo) a quel punto posso calcolarmi quanto è il suo ZPE, calcolarmi qual'è la sua energia e scoprire che sono al di sotto. 
+   Questo è uan cosetta che potremmo fare, anceh se, come al soltio, computazionalmente qualceh difficoltà c'è: noi Epot ed Ecin li conosciamo, ma mentre per l'energia cinetica noi possiamo calcoalre l'enrgia cinetica di ogni frammento e anche distinguere l'energia traslazionale e l'energia rotazionale (gia li c'è un problemuccio), per l'energia potenziale non è cosi semplice. Infatti, io ho un unica energia perche sto facedno i lcalcolo per la molecoal intera e qui abbiamo un problema di size consistecy: un calcol ocondotto su due o  piu frammenti non interagenti di un sistema (come qui i prodotti N2 e 2CH3) a una qualunque geometria interna di N2 e ciascuno dei deu metili io potrei rifare un calcolo della sua energia potenziale e dovrei aspettarmi fisicamente che la somma delle tre energie poteziale dei tre framment ifaccia l'energia potenziale del totale --> MA invecec non succede cosi, ingenerale, perche certi metodi di calcolo non rispettano questo principio fisico, detto appunto size consistecy (che il nostro metodo non rispetta, per una ragione abbastanza particolare che è proprio sua propria, ma anchemolti  alri metodi di alto livello non lo rispettano esattamente (al limite in cui io riesco a fare un calcolo quasi esatto con qualsiasi metodo io lo faccia deve adeguarsi all'esattezza fisica. MA è rarissimo che io faccia un calcolo quasi esatto: sono sempre calcoli molto approssimati che riescono a calcoalre abbastanza bene alcune differenze di energia o altre proprietà molecoalri, ma non l'energia totale)).
+   Il nostreo metodo non è size consistent perchè quando io determino gli orbitali tramite quell SCF ad occupazione fluttuante, i numeri di occupazione sono determianti in un certo modo ben preciso:
+   
+   VEDI FOGLI DI CARTA
+   
+   Di conseguenza non è poi cosi semplice tutto quanto il discorso ma ad ogni modo noi sappiamo qual'è lo ZPE totale con di tutto insieme (alla dissociazione completa) e potremmo verificare che non si scenda sotto questo ZPE totale (piu difficile è farlo frammento per frammento).
+   
+   >> Altro commento prof: il discorso che "si era gia parlato di..." ci saranno delle spiegazioni prima ovviamente. 
+   
+   >>Adesso mau mi mostra un esempio che chiarisce il discorso che è sbagliato pensare che facendo lo scan lungo una coordinata l'energia debba essere continua. La speigazione dell'esempio non la sto a riportare (eventually sta a 54.00)
+   
+   Qualora mi chidessero: "Eh ma questa irregolarità?" Risposta: c'è dietro un ottimizzazione di geometria fatta tenedo fisso l'angolo diedro e ottimizzando tutto il resto: questo teoricamente è accertato che puo produrre delle dicontinuità nelel proprietà, compreso lo ZPE
+   
+   

@@ -1,0 +1,204 @@
+ File dyn: nintx           =        40
+ File dyn: nflo            =        89
+ Total number of atoms     =        10
+ QM/MM                     =         F
+ &SPEC
+ NH      =          20,
+ X1      =   2.80000000000000     ,
+ X2      =   4.20000000000000     ,
+ FILE_DIP        =                                                                                                                   
+       ,
+ FILE_OUT        = spec                                                                                                              
+       ,
+ NORM    =   1.00000000000000     ,
+ STATO   =           1, 99*0,
+ INIZIO  =           2, 99*1,
+ FINE    =           2, 99*0,
+ T_INI   =  0.000000000000000E+000,
+ T_END   =  -1.00000000000000     ,
+ TRANSIENT       = F,
+ X_INI   =  0.000000000000000E+000,
+ X_END   =  -1.00000000000000     ,
+ NUM_COMP        =           1,
+ SPEC_TYPE       = eps                                                                                                               
+       ,
+ FAC_SPEC        = F,
+ TRJ_STAT        = F,
+ TRJ_THRES       =  0.000000000000000E+000,
+ REVERSE = F,
+ S2_INI  =  0.000000000000000E+000,
+ S2_END  =  -1.00000000000000     
+ /
+ controllo : kene,kdip,kso =          72          80          -1
+ controllo : vers_inf  =         160
+
+     Variable        IVAR      IREC      NTEST     NPATH
+     time               1        -1        -1        -1
+     isurf             -4        -1        -1        -1
+     irk               -5        -1        -1        -1
+     Etot               4        -1        -1        -1
+     Ecin               2        -1        -1        -1
+     Epot               3        -1        -1        -1
+     rnn               65        -1        -1        -1
+     rn1c1             66        -1        -1        -1
+     rn2c2             67        -1        -1        -1
+     rn1c2             68        -1        -1        -1
+     rn2c1             69        -1        -1        -1
+     n2n1c1            70        -1        -1        -1
+     n1n2c2            71        -1        -1        -1
+     cnnc               0        -1        -1        -1
+     cnnc              72        -1        -1        -1
+     E0                73        -1        -1        -1
+     E1                74        -1        -1        -1
+     
+
+   No constraints
+
+ Normal end of reading trajectories
+
+
+  TOTAL NUMBER OF TRAJECTORIES .........    10000
+  NUMBER OF REACTIVE TRAJECTORIES ......        0
+  NUMBER OF BAD TRAJECTORIES ...........        0
+
+
+
+ Elapsed CPU time  (sec) =          0.158
+ Total CPU time    (sec) =          0.158
+
+ Snapshots for  10000 good trajectories
+
+
+   Snapshots of isurf      vs time      
+   Reactive trajectories only (T/F): F
+   Data in file snap.time.isurf
+   Number of trajectories (min-max):   10000   10000
+
+
+   Snapshots of irk        vs time      
+   Reactive trajectories only (T/F): F
+   Data in file snap.time.irk
+   Number of trajectories (min-max):   10000   10000
+
+
+   Snapshots of Etot       vs time      
+   Reactive trajectories only (T/F): F
+   Data in file snap.time.Etot
+   Number of trajectories (min-max):   10000   10000
+
+
+   Snapshots of Ecin       vs time      
+   Reactive trajectories only (T/F): F
+   Data in file snap.time.Ecin
+   Number of trajectories (min-max):   10000   10000
+
+
+   Snapshots of Epot       vs time      
+   Reactive trajectories only (T/F): F
+   Data in file snap.time.Epot
+   Number of trajectories (min-max):   10000   10000
+
+
+   Snapshots of rnn        vs time      
+   Reactive trajectories only (T/F): F
+   Data in file snap.time.rnn
+   Number of trajectories (min-max):   10000   10000
+
+
+   Snapshots of rn1c1      vs time      
+   Reactive trajectories only (T/F): F
+   Data in file snap.time.rn1c1
+   Number of trajectories (min-max):   10000   10000
+
+
+   Snapshots of rn2c2      vs time      
+   Reactive trajectories only (T/F): F
+   Data in file snap.time.rn2c2
+   Number of trajectories (min-max):   10000   10000
+
+
+   Snapshots of rn1c2      vs time      
+   Reactive trajectories only (T/F): F
+   Data in file snap.time.rn1c2
+   Number of trajectories (min-max):   10000   10000
+
+
+   Snapshots of rn2c1      vs time      
+   Reactive trajectories only (T/F): F
+   Data in file snap.time.rn2c1
+   Number of trajectories (min-max):   10000   10000
+
+
+   Snapshots of n2n1c1     vs time      
+   Reactive trajectories only (T/F): F
+   Data in file snap.time.n2n1c1
+   Number of trajectories (min-max):   10000   10000
+
+
+   Snapshots of n1n2c2     vs time      
+   Reactive trajectories only (T/F): F
+   Data in file snap.time.n1n2c2
+   Number of trajectories (min-max):   10000   10000
+
+
+   Snapshots of cnnc       vs time      
+   Reactive trajectories only (T/F): F
+   Data in file snap.time.cnnc
+   Number of trajectories (min-max):   10000   10000
+
+
+   Snapshots of cnnc       vs time      
+   Reactive trajectories only (T/F): F
+   Data in file snap.time.cnnc
+   Number of trajectories (min-max):   10000   10000
+
+
+   Snapshots of E0         vs time      
+   Reactive trajectories only (T/F): F
+   Data in file snap.time.E0
+   Number of trajectories (min-max):   10000   10000
+
+
+   Snapshots of E1         vs time      
+   Reactive trajectories only (T/F): F
+   Data in file snap.time.E1
+   Number of trajectories (min-max):   10000   10000
+
+ ----------------  spettro ---------------
+  ndat                  =       10000
+  fac1 (normalizzazione)=   1.00000000000000     
+  fac2 (assorbimento)=   2.09439510239320     
+  fac3 (emissione)   =  5.181253146749525E-007
+ Absorption: Molar extinction coef [L/(Mol cm)]
+ Absorption: multiply the mol.ext.coef by    0.382353185D+00
+             to get the cross section in 10^(-20) cm^2
+ Absorption: multiply the band integral by    0.348350510D-04
+             to get the oscillator strength
+ Histogram spec                                                                                                                    
+                     number               fraction                    av          sd
+ <          2.80000000        12          0.00120000
+      2.83500000     0.109416072E+04    0.1094160723E+00   0.957391E+01   0.864249E+01
+      2.90500000     0.413849454E+04    0.4138494539E+00   0.103462E+02   0.987175E+01
+      2.97500000     0.980295413E+04    0.9802954128E+00   0.122537E+02   0.106223E+02
+      3.04500000     0.173879308E+05    0.1738793080E+01   0.144899E+02   0.159291E+02
+      3.11500000     0.300034048E+05    0.3000340484E+01   0.129644E+02   0.120623E+02
+      3.18500000     0.552192562E+05    0.5521925623E+01   0.133749E+02   0.129912E+02
+      3.25500000     0.842095890E+05    0.8420958901E+01   0.134890E+02   0.136438E+02
+      3.32500000     0.121401732E+06    0.1214017321E+02   0.138858E+02   0.143670E+02
+      3.39500000     0.152319952E+06    0.1523199516E+02   0.129713E+02   0.117673E+02
+      3.46500000     0.170493574E+06    0.1704935740E+02   0.120795E+02   0.113512E+02
+      3.53500000     0.231294574E+06    0.2312945742E+02   0.135941E+02   0.137854E+02
+      3.60500000     0.246088674E+06    0.2460886740E+02   0.132713E+02   0.131630E+02
+      3.67500000     0.234869977E+06    0.2348699774E+02   0.130899E+02   0.129283E+02
+      3.74500000     0.195862630E+06    0.1958626303E+02   0.139902E+02   0.153877E+02
+      3.81500000     0.156590772E+06    0.1565907718E+02   0.144418E+02   0.165195E+02
+      3.88500000     0.104827654E+06    0.1048276537E+02   0.147645E+02   0.161013E+02
+      3.95500000     0.583955606E+05    0.5839556065E+01   0.149186E+02   0.165488E+02
+      4.02500000     0.341836665E+05    0.3418366648E+01   0.184066E+02   0.184901E+02
+      4.09500000     0.158047659E+05    0.1580476586E+01   0.221267E+02   0.218516E+02
+      4.16500000     0.707334810E+04    0.7073348099E+00   0.159721E+02   0.180732E+02
+ >          4.20000000        36          0.00360000
+  Integrale sulla banda =   13.4735652357363     
+
+ Elapsed CPU time  (sec) =          0.059
+ Total CPU time    (sec) =          0.217

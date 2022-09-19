@@ -1,0 +1,542 @@
+
+
+*******************************************************************************
+Tue Mar 29 11:12:27 2022
+
+
+FIT:    data read from 'snap.time.isurf' using 1:5
+        format = x:z
+        x range restricted to [0.00000 : 600.000]
+        #datapoints = 601
+        residuals are weighted equally (unit weight)
+
+function used for fitting: pop(x)
+	pop(x) = x<td ? 1.0 : exp(-(x-td)/tau)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   td            tau          
+   0 3.6866714435e+00   0.00e+00  1.62e-01    3.600000e+01   1.000000e+02
+   5 3.5175751206e-01  -1.43e-01  1.62e-06    7.080776e+01   8.646282e+01
+
+After 5 iterations the fit converged.
+final sum of squares of residuals : 0.351758
+rel. change during last iteration : -1.4303e-06
+
+degrees of freedom    (FIT_NDF)                        : 599
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.0242331
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.000587241
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+td              = 70.8078          +/- 0.4473       (0.6317%)
+tau             = 86.4628          +/- 0.6353       (0.7348%)
+
+correlation matrix of the fit parameters:
+                td     tau    
+td              1.000 
+tau            -0.705  1.000 
+
+
+*******************************************************************************
+Tue Mar 29 11:14:00 2022
+
+
+FIT:    data read from 'azmtraj.pun' using 1:9
+        format = x:z
+        x range restricted to [1000.00 : 10000.0]
+        #datapoints = 4501
+        residuals are weighted equally (unit weight)
+
+function used for fitting: tra(x)
+	tra(x) = at * exp(-x/taut)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   at            taut         
+   0 1.7298497373e+01   0.00e+00  1.13e-01    2.000000e-01   2.000000e+04
+  14 1.7438098328e-03  -2.50e-03  1.13e-15    2.118998e-01   2.239520e+13
+
+After 14 iterations the fit converged.
+final sum of squares of residuals : 0.00174381
+rel. change during last iteration : -2.5023e-08
+
+degrees of freedom    (FIT_NDF)                        : 4499
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.000622575
+variance of residuals (reduced chisquare) = WSSR/ndf   : 3.87599e-07
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+at              = 0.2119           +/- 2.172e-05    (0.01025%)
+taut            = 2.23952e+13      +/- 8.461e+18    (3.778e+07%)
+
+correlation matrix of the fit parameters:
+                at     taut   
+at              1.000 
+taut           -0.904  1.000 
+
+
+*******************************************************************************
+Tue Mar 29 11:14:00 2022
+
+
+FIT:    data read from 'azmtraj.pun' using 1:3
+        format = x:z
+        #datapoints = 5001
+        residuals are weighted equally (unit weight)
+
+function used for fitting: und(x)
+	und(x) = x<td ? 1.0 : w*exp(-(x-td)/tau1) + (1-w)*exp(-(x-td)/tau2)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   td            tau1          tau2          w            
+   0 3.1801700074e+03   0.00e+00  6.87e-02    1.700000e+02   1.000000e+02   1.000000e+03   3.000000e-01
+  10 1.4106012579e-02  -6.68e-02  6.87e-10    1.736134e+02   1.431316e+02   4.943798e+05   1.274799e-01
+
+After 10 iterations the fit converged.
+final sum of squares of residuals : 0.014106
+rel. change during last iteration : -6.67724e-07
+
+degrees of freedom    (FIT_NDF)                        : 4997
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.00168015
+variance of residuals (reduced chisquare) = WSSR/ndf   : 2.8229e-06
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+td              = 173.613          +/- 0.4443       (0.2559%)
+tau1            = 143.132          +/- 0.6679       (0.4666%)
+tau2            = 494380           +/- 2619         (0.5298%)
+w               = 0.12748          +/- 5.428e-05    (0.04258%)
+
+correlation matrix of the fit parameters:
+                td     tau1   tau2   w      
+td              1.000 
+tau1           -0.699  1.000 
+tau2           -0.106  0.297  1.000 
+w              -0.109  0.331  0.888  1.000 
+
+
+*******************************************************************************
+Sat May 28 19:30:24 2022
+
+
+FIT:    data read from 'azmtraj.pun' using 1:9
+        format = x:z
+        x range restricted to [1000.00 : 10000.0]
+        #datapoints = 4501
+        residuals are weighted equally (unit weight)
+
+function used for fitting: tra(x)
+	tra(x) = at * exp(-x/taut)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   at            taut         
+   0 1.7298497373e+01   0.00e+00  1.13e-01    2.000000e-01   2.000000e+04
+  14 1.7438098328e-03  -2.50e-03  1.13e-15    2.118998e-01   2.239520e+13
+
+After 14 iterations the fit converged.
+final sum of squares of residuals : 0.00174381
+rel. change during last iteration : -2.5023e-08
+
+degrees of freedom    (FIT_NDF)                        : 4499
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.000622575
+variance of residuals (reduced chisquare) = WSSR/ndf   : 3.87599e-07
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+at              = 0.2119           +/- 2.172e-05    (0.01025%)
+taut            = 2.23952e+13      +/- 8.461e+18    (3.778e+07%)
+
+correlation matrix of the fit parameters:
+                at     taut   
+at              1.000 
+taut           -0.904  1.000 
+
+
+*******************************************************************************
+Sat May 28 19:30:24 2022
+
+
+FIT:    data read from 'azmtraj.pun' using 1:3
+        format = x:z
+        #datapoints = 5001
+        residuals are weighted equally (unit weight)
+
+function used for fitting: und(x)
+	und(x) = x<td ? 1.0 : w*exp(-(x-td)/tau1) + (1-w)*exp(-(x-td)/tau2)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   td            tau1          tau2          w            
+   0 3.1801700074e+03   0.00e+00  6.87e-02    1.700000e+02   1.000000e+02   1.000000e+03   3.000000e-01
+  10 1.4106012579e-02  -6.68e-02  6.87e-10    1.736134e+02   1.431316e+02   4.943798e+05   1.274799e-01
+
+After 10 iterations the fit converged.
+final sum of squares of residuals : 0.014106
+rel. change during last iteration : -6.67724e-07
+
+degrees of freedom    (FIT_NDF)                        : 4997
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.00168015
+variance of residuals (reduced chisquare) = WSSR/ndf   : 2.8229e-06
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+td              = 173.613          +/- 0.4443       (0.2559%)
+tau1            = 143.132          +/- 0.6679       (0.4666%)
+tau2            = 494380           +/- 2619         (0.5298%)
+w               = 0.12748          +/- 5.428e-05    (0.04258%)
+
+correlation matrix of the fit parameters:
+                td     tau1   tau2   w      
+td              1.000 
+tau1           -0.699  1.000 
+tau2           -0.106  0.297  1.000 
+w              -0.109  0.331  0.888  1.000 
+
+
+*******************************************************************************
+Wed Jul  6 22:26:22 2022
+
+
+FIT:    data read from 'histo.Ek_az' using 1:3
+        format = x:z
+        x range restricted to [0.00000 : 2.00000]
+        #datapoints = 10
+        residuals are weighted equally (unit weight)
+
+function used for fitting: n2(x)
+	n2(x) = n2max*x*exp(-(x-n2av)**2/2.0*(n2std)**2)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   n2av          n2max         n2std        
+   0 2.1280005213e+01   0.00e+00  7.38e-01    3.000000e-01   1.500000e+00   2.000000e-01
+ 694 1.2751472385e+00  -4.38e-01  7.38e-08   -3.018620e+00   4.215583e+05   1.430804e+00
+
+After 694 iterations the fit converged.
+final sum of squares of residuals : 1.27515
+rel. change during last iteration : -4.37704e-06
+
+degrees of freedom    (FIT_NDF)                        : 7
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.426807
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.182164
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+n2av            = -3.01862         +/- 19.58        (648.6%)
+n2max           = 421558           +/- 2.749e+07    (6520%)
+n2std           = 1.4308           +/- 4.263        (298%)
+
+correlation matrix of the fit parameters:
+                n2av   n2max  n2std  
+n2av            1.000 
+n2max          -1.000  1.000 
+n2std           1.000 -0.998  1.000 
+
+
+*******************************************************************************
+Wed Jul  6 22:26:22 2022
+
+
+FIT:    data read from 'histo.Ek_met2' using 1:3
+        format = x:z
+        x range restricted to [0.00000 : 2.00000]
+        #datapoints = 10
+        residuals are weighted equally (unit weight)
+
+function used for fitting: met2(x)
+	met2(x) = met2max*x*exp(-(x-met2av)**2/2.0*(met2std)**2)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   met2av        met2max       met2std      
+   0 1.4882622792e+01   0.00e+00  7.38e-01    3.000000e-01   1.500000e+00   2.000000e-01
+  30 8.0691593899e-01  -2.50e-01  7.38e-08   -2.127664e-01   8.412161e+00   2.137243e+00
+
+After 30 iterations the fit converged.
+final sum of squares of residuals : 0.806916
+rel. change during last iteration : -2.50343e-06
+
+degrees of freedom    (FIT_NDF)                        : 7
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.33952
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.115274
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+met2av          = -0.212766        +/- 0.7425       (349%)
+met2max         = 8.41216          +/- 9.823        (116.8%)
+met2std         = 2.13724          +/- 1.098        (51.38%)
+
+correlation matrix of the fit parameters:
+                met2av met2ma met2st 
+met2av          1.000 
+met2max        -0.977  1.000 
+met2std         0.981 -0.925  1.000 
+
+
+*******************************************************************************
+Wed Jul  6 22:26:22 2022
+
+
+FIT:    data read from 'histo.Ek_met1' using 1:3
+        format = x:z
+        x range restricted to [0.00000 : 2.00000]
+        #datapoints = 10
+        residuals are weighted equally (unit weight)
+
+function used for fitting: met1(x)
+	met1(x) = met1max*x*exp(-(x-met1av)**2/2.0*(met1std)**2)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   met1av        met1max       met1std      
+   0 2.1484983042e+01   0.00e+00  7.38e-01    3.000000e-01   1.500000e+00   2.000000e-01
+  23 4.2291285384e-01  -5.60e-01  7.38e-08   -9.536093e-02   2.193266e+01   3.800791e+00
+
+After 23 iterations the fit converged.
+final sum of squares of residuals : 0.422913
+rel. change during last iteration : -5.60321e-06
+
+degrees of freedom    (FIT_NDF)                        : 7
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.245797
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.0604161
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+met1av          = -0.0953609       +/- 0.2039       (213.8%)
+met1max         = 21.9327          +/- 11.83        (53.96%)
+met1std         = 3.80079          +/- 1.007        (26.49%)
+
+correlation matrix of the fit parameters:
+                met1av met1ma met1st 
+met1av          1.000 
+met1max        -0.968  1.000 
+met1std         0.976 -0.899  1.000 
+
+
+*******************************************************************************
+Wed Jul  6 22:26:49 2022
+
+
+FIT:    data read from 'histo.Ek_az' using 1:3
+        format = x:z
+        x range restricted to [0.00000 : 2.00000]
+        #datapoints = 10
+        residuals are weighted equally (unit weight)
+
+function used for fitting: n2(x)
+	n2(x) = n2max*x*exp(-(x-n2av)**2/2.0*(n2std)**2)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   n2av          n2max         n2std        
+   0 2.1280005213e+01   0.00e+00  7.38e-01    3.000000e-01   1.500000e+00   2.000000e-01
+ 694 1.2751472385e+00  -4.38e-01  7.38e-08   -3.018620e+00   4.215583e+05   1.430804e+00
+
+After 694 iterations the fit converged.
+final sum of squares of residuals : 1.27515
+rel. change during last iteration : -4.37704e-06
+
+degrees of freedom    (FIT_NDF)                        : 7
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.426807
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.182164
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+n2av            = -3.01862         +/- 19.58        (648.6%)
+n2max           = 421558           +/- 2.749e+07    (6520%)
+n2std           = 1.4308           +/- 4.263        (298%)
+
+correlation matrix of the fit parameters:
+                n2av   n2max  n2std  
+n2av            1.000 
+n2max          -1.000  1.000 
+n2std           1.000 -0.998  1.000 
+
+
+*******************************************************************************
+Wed Jul  6 22:26:49 2022
+
+
+FIT:    data read from 'histo.Ek_met2' using 1:3
+        format = x:z
+        x range restricted to [0.00000 : 2.00000]
+        #datapoints = 10
+        residuals are weighted equally (unit weight)
+
+function used for fitting: met2(x)
+	met2(x) = met2max*x*exp(-(x-met2av)**2/2.0*(met2std)**2)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   met2av        met2max       met2std      
+   0 1.4882622792e+01   0.00e+00  7.38e-01    3.000000e-01   1.500000e+00   2.000000e-01
+  30 8.0691593899e-01  -2.50e-01  7.38e-08   -2.127664e-01   8.412161e+00   2.137243e+00
+
+After 30 iterations the fit converged.
+final sum of squares of residuals : 0.806916
+rel. change during last iteration : -2.50343e-06
+
+degrees of freedom    (FIT_NDF)                        : 7
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.33952
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.115274
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+met2av          = -0.212766        +/- 0.7425       (349%)
+met2max         = 8.41216          +/- 9.823        (116.8%)
+met2std         = 2.13724          +/- 1.098        (51.38%)
+
+correlation matrix of the fit parameters:
+                met2av met2ma met2st 
+met2av          1.000 
+met2max        -0.977  1.000 
+met2std         0.981 -0.925  1.000 
+
+
+*******************************************************************************
+Wed Jul  6 22:26:49 2022
+
+
+FIT:    data read from 'histo.Ek_met1' using 1:3
+        format = x:z
+        x range restricted to [0.00000 : 2.00000]
+        #datapoints = 10
+        residuals are weighted equally (unit weight)
+
+function used for fitting: met1(x)
+	met1(x) = met1max*x*exp(-(x-met1av)**2/2.0*(met1std)**2)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   met1av        met1max       met1std      
+   0 2.1484983042e+01   0.00e+00  7.38e-01    3.000000e-01   1.500000e+00   2.000000e-01
+  23 4.2291285384e-01  -5.60e-01  7.38e-08   -9.536093e-02   2.193266e+01   3.800791e+00
+
+After 23 iterations the fit converged.
+final sum of squares of residuals : 0.422913
+rel. change during last iteration : -5.60321e-06
+
+degrees of freedom    (FIT_NDF)                        : 7
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.245797
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.0604161
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+met1av          = -0.0953609       +/- 0.2039       (213.8%)
+met1max         = 21.9327          +/- 11.83        (53.96%)
+met1std         = 3.80079          +/- 1.007        (26.49%)
+
+correlation matrix of the fit parameters:
+                met1av met1ma met1st 
+met1av          1.000 
+met1max        -0.968  1.000 
+met1std         0.976 -0.899  1.000 
+
+
+*******************************************************************************
+Wed Jul  6 22:27:37 2022
+
+
+FIT:    data read from 'histo.Ek_az' using 1:3
+        format = x:z
+        x range restricted to [0.00000 : 2.00000]
+        #datapoints = 10
+        residuals are weighted equally (unit weight)
+
+function used for fitting: n2(x)
+	n2(x) = n2max*x*exp(-(x-n2av)**2/2.0*(n2std)**2)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   n2av          n2max         n2std        
+   0 2.1280005213e+01   0.00e+00  7.38e-01    3.000000e-01   1.500000e+00   2.000000e-01
+ 694 1.2751472385e+00  -4.38e-01  7.38e-08   -3.018620e+00   4.215583e+05   1.430804e+00
+
+After 694 iterations the fit converged.
+final sum of squares of residuals : 1.27515
+rel. change during last iteration : -4.37704e-06
+
+degrees of freedom    (FIT_NDF)                        : 7
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.426807
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.182164
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+n2av            = -3.01862         +/- 19.58        (648.6%)
+n2max           = 421558           +/- 2.749e+07    (6520%)
+n2std           = 1.4308           +/- 4.263        (298%)
+
+correlation matrix of the fit parameters:
+                n2av   n2max  n2std  
+n2av            1.000 
+n2max          -1.000  1.000 
+n2std           1.000 -0.998  1.000 
+
+
+*******************************************************************************
+Wed Jul  6 22:27:37 2022
+
+
+FIT:    data read from 'histo.Ek_met2' using 1:3
+        format = x:z
+        x range restricted to [0.00000 : 2.00000]
+        #datapoints = 10
+        residuals are weighted equally (unit weight)
+
+function used for fitting: met2(x)
+	met2(x) = met2max*x*exp(-(x-met2av)**2/2.0*(met2std)**2)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   met2av        met2max       met2std      
+   0 1.4882622792e+01   0.00e+00  7.38e-01    3.000000e-01   1.500000e+00   2.000000e-01
+  30 8.0691593899e-01  -2.50e-01  7.38e-08   -2.127664e-01   8.412161e+00   2.137243e+00
+
+After 30 iterations the fit converged.
+final sum of squares of residuals : 0.806916
+rel. change during last iteration : -2.50343e-06
+
+degrees of freedom    (FIT_NDF)                        : 7
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.33952
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.115274
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+met2av          = -0.212766        +/- 0.7425       (349%)
+met2max         = 8.41216          +/- 9.823        (116.8%)
+met2std         = 2.13724          +/- 1.098        (51.38%)
+
+correlation matrix of the fit parameters:
+                met2av met2ma met2st 
+met2av          1.000 
+met2max        -0.977  1.000 
+met2std         0.981 -0.925  1.000 
+
+
+*******************************************************************************
+Wed Jul  6 22:27:37 2022
+
+
+FIT:    data read from 'histo.Ek_met1' using 1:3
+        format = x:z
+        x range restricted to [0.00000 : 2.00000]
+        #datapoints = 10
+        residuals are weighted equally (unit weight)
+
+function used for fitting: met1(x)
+	met1(x) = met1max*x*exp(-(x-met1av)**2/2.0*(met1std)**2)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   met1av        met1max       met1std      
+   0 2.1484983042e+01   0.00e+00  7.38e-01    3.000000e-01   1.500000e+00   2.000000e-01
+  23 4.2291285384e-01  -5.60e-01  7.38e-08   -9.536093e-02   2.193266e+01   3.800791e+00
+
+After 23 iterations the fit converged.
+final sum of squares of residuals : 0.422913
+rel. change during last iteration : -5.60321e-06
+
+degrees of freedom    (FIT_NDF)                        : 7
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.245797
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.0604161
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+met1av          = -0.0953609       +/- 0.2039       (213.8%)
+met1max         = 21.9327          +/- 11.83        (53.96%)
+met1std         = 3.80079          +/- 1.007        (26.49%)
+
+correlation matrix of the fit parameters:
+                met1av met1ma met1st 
+met1av          1.000 
+met1max        -0.968  1.000 
+met1std         0.976 -0.899  1.000 

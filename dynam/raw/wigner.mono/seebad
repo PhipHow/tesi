@@ -1,0 +1,63 @@
+#!/bin/csh
+
+set badtot = 0
+set goodtot = 0
+set ntraj = 0
+foreach file ( photo01.out photo02.out photo03.out photo04.out photo05.out photo06.out photo07.out photo08.out photo09.out photo10.out photo11.out photo12.out photo13.out photo14.out photo15.out photo16.out photo17.out photo18.out photo19.out photo20.out photo21.out)
+   echo file $file
+   foreach traj ( 1 2 3 4 5 )
+      set ntraj = `echo "$ntraj + 1" | bc -l`
+      grep -A4 "$traj XXXXX" $file | grep -B1 -A2 'TIME=       0.000000' | \
+         sed s/XXXXXXXXXXXXX// | sed s/' ENERGY=  '//g | sed s/'     '//g
+      setenv ez$ntraj `grep -A4 "$traj XXXXX" $file | grep -B1 -A2 'TIME=       0.000000' | \
+         grep 'KINETIC' | awk '{print $8}'`
+      grep -B300 'BAD TRAJ' $file | grep "$traj XXXXX" > /dev/null
+      if ($status == 0) then
+         echo ' BAD TRAJECTORY'
+         set badtot = `echo "$badtot + 1" | bc -l`
+         grep -B300 'BAD TRAJ' $file | grep -A33 "$traj XXXXX" | \
+            awk 'FNR == 2'
+         grep -B300 'BAD TRAJ' $file | grep -A33 "$traj XXXXX" | \
+            awk 'FNR == 3'
+         grep -B300 'BAD TRAJ' $file | grep -A33 "$traj XXXXX" | \
+            awk 'FNR == 4' | sed s/' ENERGY=  '//g | sed s/'     '//g
+         grep -B300 'BAD TRAJ' $file | grep -A33 "$traj XXXXX" | \
+            awk 'FNR >= 30'
+      else
+         grep -A80 'Reaction has occurred' $file | grep -A33 "$traj XXXXX" | \
+            awk 'FNR == 2'
+         grep -A80 'Reaction has occurred' $file | grep -A33 "$traj XXXXX" | \
+            awk 'FNR == 3'
+         grep -A80 'Reaction has occurred' $file | grep -A33 "$traj XXXXX" | \
+            awk 'FNR == 4' | sed s/' ENERGY=  '//g | sed s/'     '//g
+         grep -A80 'Reaction has occurred' $file | grep -A33 "$traj XXXXX" | \
+            awk 'FNR >= 30'
+         if ($status == 0) set goodtot = `echo "$goodtot + 1" | bc -l`
+         grep -A80 -B2 'TIME=   10000.000000 FSEC' $file | grep -A33 "$traj XXXXX" | \
+            awk 'FNR == 2'
+         grep -A80 -B2 'TIME=   10000.000000 FSEC' $file | grep -A33 "$traj XXXXX" | \
+            awk 'FNR == 3'
+         grep -A80 -B2 'TIME=   10000.000000 FSEC' $file | grep -A33 "$traj XXXXX" | \
+            awk 'FNR == 4' | sed s/' ENERGY=  '//g | sed s/'     '//g
+         grep -A80 -B2 'TIME=   10000.000000 FSEC' $file | grep -A33 "$traj XXXXX" | \
+            awk 'FNR >= 30'
+         if ($status == 0) set goodtot = `echo "$goodtot + 1" | bc -l`
+      endif
+   end
+   echo ' '
+   grep 'TOTAL CPU TIME' $file
+   echo '****************************'
+end
+echo ' '
+echo $badtot BAD TRAJECTORIES
+echo $goodtot GOOD TRAJECTORIES
+
+#grep -B350 BAD geo*/photo*.out | grep -A5 'INTERNAL COOR' | \
+#   grep -v INTERNAL | grep -v '1  2  0  0'
+#echo '  '
+#echo `grep 'BAD TRAJ' geo*/photo*.out | wc | awk '{print $1}'` BAD TRAJECTORIES
+#echo '  '
+#grep -A100 'Reaction has occurred' geo*/photo*.out | \
+#   grep -A3 'INTERNAL COOR' | grep -v INTERNAL | grep -v '1  2  0  0'
+#echo '  '
+#grep 'TOTAL CPU TIME' geo*/photo*.out

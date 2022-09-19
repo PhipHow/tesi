@@ -1,0 +1,57 @@
+MEMORY=1010 PM3 VECTORS MECI=10 NSTAT=2 OPEN(6,6) FLOCC=0.1528096665 +
+DYNAM TIME=0.1 ISTAT=1 CYCLES=0 NCYPR=50 NTRAJ=10000 NACT=2 +
+GEO-OK ITRY=1500 SCFCRT=1.D-8 INCO=8 +
+SINGLET S2 STATESPEC NMULT=2 EXTERNAL=azm.semi.par
+ trans-azometano eclipsed eclipsed fondamentale
+ 
+
+
+                     SUMMARY OF PM3     CALCULATION
+
+                                                            MOPAC2002 Version 1.01
+
+           EMPIRICAL FORMULA: C2 H6 N2
+
+                                                       Wed Jan 19 18:26:37 2022  
+MEMORY=1010 PM3 VECTORS MECI=10 NSTAT=2 OPEN(6,6) FLOCC=0.1528096665 +
+DYNAM TIME=0.1 ISTAT=1 CYCLES=0 NCYPR=50 NTRAJ=10000 NACT=2 +
+GEO-OK ITRY=1500 SCFCRT=1.D-8 INCO=8 +
+SINGLET S2 STATESPEC NMULT=2 EXTERNAL=azm.semi.par
+ trans-azometano eclipsed eclipsed fondamentale
+ 
+
+
+     1SCF WAS SPECIFIED, SO BFGS WAS NOT USED                 
+     SCF FIELD WAS ACHIEVED                                   
+
+
+          HEAT OF FORMATION       =         0.000000 KCAL =          0.00000 KJ
+          ELECTRONIC ENERGY       =     -2185.702066 EV      STATE: SINGLET A   
+          CORE-CORE REPULSION     =      1536.363347 EV
+          DIPOLE                  =         0.19849 DEBYE    SYMMETRY:       C1  
+          NO. OF FILLED LEVELS    =          9
+          AND NO. OF OPEN LEVELS  =         6
+          IONIZATION POTENTIAL    =        -3.082071 EV
+          MOLECULAR WEIGHT        =        58.083
+          SCF CALCULATIONS        =         1
+          COMPUTATION TIME =  9 MINUTES AND  8 SECONDS
+
+
+          FINAL GEOMETRY OBTAINED
+MEMORY=1010 PM3 VECTORS MECI=10 NSTAT=2 OPEN(6,6) FLOCC=0.1528096665 +
+DYNAM TIME=0.1 ISTAT=1 CYCLES=0 NCYPR=50 NTRAJ=10000 NACT=2 +
+GEO-OK ITRY=1500 SCFCRT=1.D-8 INCO=8 +
+SINGLET S2 STATESPEC NMULT=2 EXTERNAL=azm.semi.par
+ trans-azometano eclipsed eclipsed fondamentale
+ 
+  N    0.000000000  1   0.618166000  1   0.000000000  1   0.1047
+  N    0.000000000  1  -0.617973000  1   0.000000000  1   0.0735
+  C    1.336059170  1   1.208131020  1   0.000000000  1  -0.3030
+  H    2.167482110  1   0.489693640  1   0.000000000  1   0.0523
+  H    1.409303600  1   1.845573760  1  -0.888777670  1   0.0610
+  H    1.409303600  1   1.845573760  1   0.888777670  1   0.0930
+  C   -1.336041690  1  -1.207890960  1   0.000000000  1  -0.2648
+  H   -2.167476000  1  -0.489437670  1   0.000000000  1   0.0402
+  H   -1.409330460  1  -1.845275630  1  -0.888826760  1   0.0520
+  H   -1.409330460  1  -1.845275630  1   0.888826760  1   0.0910
+ 

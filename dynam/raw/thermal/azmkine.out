@@ -1,0 +1,33 @@
+
+Total number of trajectories:     399
+Number of bad trajectories:        56
+Time interval (fs):       -1.00      600.00
+Number of dissociated trajectories:      38
+Average transl. energy of N2            0.294986 eV
+Average transl. energy of first CH3     0.324931 eV
+Average transl. energy of second CH3    0.494886 eV
+Average total transl. energy            1.114803 eV
+
+Total number of trajectories:     399
+Number of bad trajectories:        56
+Time interval (fs):     5000.00    20000.00
+Number of dissociated trajectories:       3
+Average transl. energy of N2            0.346887 eV
+Average transl. energy of first CH3     0.125670 eV
+Average transl. energy of second CH3    0.327592 eV
+Average total transl. energy            0.800149 eV
+
+Total number of trajectories:     399
+Number of bad trajectories:        56
+Time interval (fs):       -1.00    20000.00
+Number of dissociated trajectories:      47
+Average transl. energy of N2            0.285083 eV
+Average transl. energy of first CH3     0.297149 eV
+Average transl. energy of second CH3    0.463855 eV
+Average total transl. energy            1.046087 eV
+ 
+Extrapolated values
+Number of undissociated trajectories: 296
+Average transl. energy of N2           .338418 eV
+Average transl. energy of first CH3    .149167 eV
+Average transl. energy of second CH3   .346263 eV

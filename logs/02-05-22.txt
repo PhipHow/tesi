@@ -1,0 +1,80 @@
+GRAFICO ROTAZIONE
+Noi usiamo tre termini in phi per ora, perchè in totale tornava così. Però, per far tornare 0 esatto per il trans e quasi 0 anche per il cis e poi una curva che sale di piu per il trans e scende un po meno per il cis grossomodo...
+
+Quindi lungo questa curva in realtà abbiamo solo tre punti: 0, 92, 180. Quello a 92 è un po piu basso del trans e del cis. Invece otteniamo un massimo verso 130 e un altro minimo verso il cis che nessuno ha mai visto. Ok.
+
+Per ottenere l'andamento piu ragionevole ci basterebbero 2 termini invece che 3, perchè una piccola differnza tra trans e cis la fa il termine cos(phi) [che però non fa che diminire da 0 a 180]. Invece il cos(2*phi) ha un minimo a 90gradi [e ci darebbe un valore un po piu basso a 90]: bastano questi due termini per fare quello che ci serve. Pero in this way abbiamo un coefficiente di meno per fare  tornare tutto: cioè passeremo da 8 a 7.
+
+Proposta: PROVIAMO AD ELIMINARE ANCHE IL VALORE DI cis-S1. Il prof teme che dovremo alla fine fare qualcosa espressamente per S1, ilche è una complicazione. Ma probabilmente è il modo piu corretto di affrontare la questione e potrebbe risolverci subito questo problema
+<<metto n=7 e sposto sotto la geometria di min-S1, nel programma faccio in  modo tale da non calcolare a(i,8) se n=7>>
+
+Ok, rifacendo i grafici non vengono male.
+
+GRAFICO INVERSIONE, post n=7
+Nell'inversione intorno a 245 gradi ho il minimo del trans (si vede dallo scan dell'inversione) e nel grafico dell'inversione passiamo per ZPE = 0 il che è bello.
+
+L'S1 (trans-S1), che ha un angolo molto piu largo, intorno a 130 (225 nello scan dell'inversione) e qui nel grafico presenta un massimo di ZPE (>0), mentre dovrebbe essere lo ZPE -0.087eV. Quindi S1 non torna. Ma lo sto trascurando (non ne sto teedodi conto) e quindi giustamente non torna.
+
+Per il cis-S0 (che è intorno a 130 nello scan dell'inversione) lo ZPE dovrebbe essere -.017 e torna giusto.
+
+L'S1-cis dovrebbe avere uno ZPE pari a -0.032eV, e tornerebbe anche nel grafico, è venuto casualmente giusto.
+
+Il min-S1 (che è intorno a 133, ovvero intorno a 230 nello scan) è troppo alto e dovrebbe essere piu basso.
+
+Insomma la curva verde, nel lato destro (theta > 180) dovrebbe stare più giù.
+
+
+<OK sono un cretino, non avevo rifatto il grafico per S1 --> l'ho rifatto>
+
+
+Sembra migliorato: 
+Siamo però ben lontani da -0.07,  -0.08. Intanto però è piu regolare.
+---------------------------------------------------------------------------------------------------------------
+
+Adesso dobbiamo fare una scelta:
+l'accuratezza dei calcoli ab initio, anche dei migliori, su una molecola di queste dimensioni (piccola, ma non piccolissima) ho errori di <0.10eV. Ma se io faccio una simulazione, come quelle che facciamo noi, per esempio con traiettorie (ma lo stesso problema se lavoro con dinamica quantistica) non posso usare i metodi di piu alta qualità, costano troppo: una traiettoria lunga 1ps di solito va dai 1000 ai 10000 calcoli, e di traiettorie ne devo fare tante (qualche centinaio). Se fossero 100 vuol dire che devo fare dai 100.000 a 1.000.000 di calcoli --> è molto piu impegnativo che ottimizzare una geometria o trovare qualche minimo/TS o simili. Per giunta, ma non molto rilevante, questi calcoli non possono limitarsi semplicemente all'energie delle funzioni d'onda e bisogna anche calcolaare come minimo i gradienti dell'energia che mi permettono di avere le forze che governano la traiettoria. Di conseguenza si abbassa la precisione di questi calcoli e arrivare a 0.10eV, normalmente non c'è. Nemmeno nei nostri eh sia ben inteso, nonnostante tutti gli sforzi nostri qualche errore qua e là anche maggiore di 0.10eV ci sarà. Quindi accanirsi troppo a far tornare gli ZPE quando la correzione vale meno di 0.10 eV forse non è sensato. Certo noi richimiamo molto l'attenzione sull'effetto dello ZPE, e vorrei che risaltasse bene e che fosse proprio quello giusto, però se è troppo complicato far tornare bene le cose anche per S1 ci potremmo accontentare di così.
+
+
+POTREMMO FARE UN TENTATIVO DI LAVORARE SU S1: Per lavorare su S1 non sarà sufficiente, teme mau, il mio programmino mettendoci qualcuno di quei termini che servono a correggere la differenza di energia tra S1 e S0 :(
+Il guaio di quei termini è che lavorano come un fattore che moltiplica la differenza che c'è già tra S1 e S0, ma di energia totale, non di ZPE e basta. Finche si dice: "va bene calcolo una correzione additiva sullo ZPE e per entrambi gli stati è la stessa" dopo la posso aggiungere all'energia totale ed è finita li. Ma se io calcolo un fattore, quello va applicato al totale della differenza che dipende ovviamente dalla geometria e quindi bisogna sapere quali sono le dfferenza di energia tra s0 e s1 in ciascun punto per poter utilizzare quel fattore li in maniera sensata.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

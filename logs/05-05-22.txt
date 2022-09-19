@@ -1,0 +1,41 @@
+Faccio vedere i grafici fatti dello ZPE al prof.
+
+OSS: l'inversion si fa considerando che l'angolo di torsione sia 0, poi se l'angolo di legame diventa maggiore di 180 è come se l'angolo di torsione fosse diventato 180: ad ogni modo i 4 atomi CNNC devono stare tutti su un piano, per cui il min-S1 non c'è (uno dei tre punti non c'è!)
+
+PLOT TORSIONE:
+>>Per il cis noi dovremmo avere un -.03eV e approx si vede dal plot (da verificare da file);
+>>Al min-S1 che è a 130gradi di torsione viene -0.07eV (da verificare da file)
+>>Per il trans viene quel -0.087eV (da verificare da file)
+In mezzo, alla torsione completa, fa una cosa abbastanza ragionevole perché c'è un minimo molto marcato del trans alla torsione completa. Andando a vedere cosa abbiamo (come dati di ZPE) per il TS della torsione è a -0.014eV: nel plot siamo a questo -0.14eV. Nello stato eccitato questo minimo è un po meno, ma deve seguire un po il trans (anche se è un minimo un po tanto marcato, profondo eh. Ma ci sta.). Alla fine noi qui vediamo delle curve che sembrano dei cambiamenti molto decisi nelle PES ma in realtà 0.10eV corrisponde a 2 curve di livello nei nostri grafici piu fitti, ed è anche il limite di precisione dei calcoli ab-initio, quindi non si puo dire niente di grave li.
+OSS: il min al centro nella torsione grossomodo è nella zona della CoIn (quindi l'intersezione conica scenderà).
+OSS: per il g.s a 90 gradi +- si tratta di uno TS e quindi giustamente deve scender come fa per l'inversione nella zona di 180gradi. Inoltre si osserva che è uno stato di transizione (quello della torsione) molto lasco, cioè che anche nella direzione dell'inversione (cioè la coordinata corrispondente all'angolo di legame) si vede dalle PES che sale pochissimo e poi alla fine arriva a quello dell'inversione (cioè riscende giù). In questa zona il metile che sta trasferendosi da cis a trans ha molta libertà di movimento e quindi qualche frequenza, oltre a quella che corrisponde al passaggio attraverso il TS (aka coordianta di reazione) ha anche altre coordinate su cui la frequenza è molto bassa. Però insomma sono tutte le coordinate ceh contribuiscono e puo darsi che ce ne sia ancora qualcun'altra che contribuisce ad avere un risultato basso li.
+
+PLOT INVERSIONE
+>>Al cis su S1 io dovrei essere a circa 150gradi, e siamo nel massimino a 150gradi sul plot S1 (da verificare da file).
+>>Per quanto riguarda il trans su S1 dovremmo esseere verso 245 o poco piu (quindi abbastanza vicno al minimo della curva verde a dx) che mi da -0.08eV che corrisponde a quello voluto. OSS: il min-S1 lo vediamo solo nella torsione.
+>>per il valore di ZPE che ho a -0.067eV vado sui risultati di S1 e con un CNNC pari a 180 gradi vado dove ho un angolo pari a 360-113 = 245gradi. (rige31-32 del file di output)
+
+
+quindi i plot tornano e non hanno degli andamenti troppo brutti.
+FAccio delle mappe --> uso lo stesso programma, solo che come file di input fornisco il file con le mappe.
+
+OSS. dalle mappa magari non vedo molti cambiamenti, ma è da tenere presente che l'energia di eccitazione è intorno ai 3.6eV e l'energia di dissociazione è 2.2eV. C'è 1.4eV che sembra parecchia energia,tant'è vero che l'azometano riesce a dissociare. Ma di fatto se non ci mettiamo anche la ZPE (cioè con il campionamento alla Wigner in una delle tante salse possib ili) dissocia molto poco: ho un immediata dissociazione del 10-15% delle traiettorie, e poi diventa lentissima la dissociazione. Cioè se si aspetta che l'energia si disrtribuisca tra le varie coordinate vibrazionali ,quell' 1.4eV di nergia disponibile si disperde e diventa molto improbabile che si riconcentri casualmente su una cooridnata dissociativa e parta il metile. Guardando il mio grafico della ZPE con le varie dissociazioni, si vede ceh per la prima dissociazione la curva rossa, ci dice 0.307eV in meno, e si alza di un 25% l'energia in eccesso che serve per dissociare, è probabilmente è quanto serve per avere un comportamento puiu simile a quello degli altri campionamenti (quelli che mettono lo ZPE direttamente a disposizione delel traiettorie). Questa non èroba da poco tutto sommato! Inoltre puo rimettere abbastanza in gioco la dissociazione simmetrica (non quanto puo sembrare dal plot ZPE simmetric.diss. che ho fatto io, perchè sembrerebbe dire "eh, si va a piu di 0.5eV in meno, quindi aumenta ancora l'effetto!" SOLO che l TS della dissociazione simmetrica è verso 2.3eV e quindi a quel punto non ha ancora guadagnato piu delal dissociazione del singolo legame, e la dissocaizione del singolo legame non ha TS (mentre per la simmetrica risulta essere piu alta che la dissociazione di un singolo legame, anche se il punto finale della dissociazione è piu basso di quella del singolo legame e cineticamente è sfavorita la symm.) e quindi probabilmente non cambia molto però anceh questo è interessante vederlo).  
+
+Noi vediamo che la diminuzione dello ZPE nella simmetrica è ancora piu accentuata (passo a tre frammenti e ha senso), solo che la barriera sta in mezzo tra 2 e 2.5A e di conseguenza la piu ripida diminuzione dello ZPE rispetto alla dissociazione di un solo legame non ha ancora avuto tutti i suoi effeti (gliene manca circa metà quando arrivaiamo alla barriera). é quindi circa analoga (tanto uguale forse meno) rispetto alla singola dissociazione (tra le due dovrebbe continuare a rimanere favorita la singola mau pensa).
+
+Il punto pero piu imprtante è il primo di cui si parlava: c'è una riduzione qui nontanto trascurabile (piu di 0.3eV su un eccesso di energia che è circa 1.4eV).Difatto se io faccio il campionamento ignorando lo ZPE ottengo una dissociazione parecchio piu lenta rispetto a quando lo ZPE ce lo metto: mau pensa ceh voglia dire che questi 0.36eV contano.
+
+Dice qualcosa su Wigner a 26.00 
+
+Gli chiede che senso abbia aggiungere la ZPE alla PES [38.00 - 54.00]
+
+Vogliamo veder come sono fatte le mappe dello ZPE da solo per veder se ci sono dei pasticci, anche in zone non molto importanti della superficie, mau sarebbe dispiaciuto se ci fossero :(, ma vogliamo vede anche come sono fatte le mappe corrette
+
+MAPPA ZPE DISTANZE
+>>La cosa brutta in basso a destra ha senso: siamo vicini al minimo trans e li la correzione devve essere nulla.
+>>Abbiamo una correzione ceh cresce in valore assoluto piu o meno uniformenete in tutte le direzioni e in valore assoluto cresce di piu nella direzione diagonale che è la dissociazione simmetrica, e un po' meno invece lungo l'aumento di una sola distanza tenedo l'antra corta, per cui la vediamo aumentare fino a 3.4A e poi non si vede altro;
+>>Quando invece con una distanza sono arrivato vicino a 4A, posso aumentare l'altra di distanza e ancora cresce la correzione ZPE perchè vado verso la seconda dissociazione e cresce piu o meno uniformente fino a 0.52eV.
+
+Altre info su tesi e introduzione della tesi e qualcosa sulle traiettorie e sulla letteratura da citare, decoerenza. quantistica.
+
+

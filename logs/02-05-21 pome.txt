@@ -1,0 +1,108 @@
+Dopo stamani si vede che il plot sulle distanze e è miglirato e ho levato una gobba dalla seconda dissociazione.
+
+PLOT INVERSIONE:
+a 230 gradi dovrebbe venire più alto (probabilemnte +- quanto il fondamentale all'inversione)
+
+PLOT TORSIONE:
+Ci servirebbe ancora un abbassamento nell zona trans di S1.
+Anche il cis do vrebbe acendere meno.
+
+
+Quindi se ci basassimo solo sulla ttorsione dovremmo risalire dalla parte del cis scendere un po dalla parte del trans.
+
+
+-----------------------------------------------------------------------------------------------------
+					SPIEGAZIONE CORREZIONE S1
+-----------------------------------------------------------------------------------------------------
+
+Se uno vuole mettere delle correzioni alle PES, diverse stato per stato, c'è un vincolo molto grave: in tutti icasi in cui le PES arrivano molto vicine o addirittura si incorciano (come nel mio caso) non si può mettere una correzione additiva a ogni stato indipendentemente perchè succede una cosa molto grave. Supponiamo che due stati si incorcino (c'è una CoIn) e metto la correzione additiva a ciascuno dei due (OSS: questo ha validità molto generale --> la correzzione additiv puo essere ad esempio uan teoria pertirbativ che dice che la PES è da correggere punto per punto) --> ottengo una curva diversa da quella originaria. E Il punto tale per cui la curva dello stato fondamentale sta sotto aquella dello stato eccitato si è spostato a destra (g.s. si è abbassato). Poi si fa lo stesso con exsc.state e viene fuori che li la correzione è molto piu grande (verso il basso). --> Adesso l'incorcio tra le curve è a una geometria diversa rispetto al caso originale    (differenza grande o piccola a seconda delle pendenze delle curve). 
+
+Le funzioni d'onda però sono state calcolate per le curve originali. Poniamo g.s ionico e exc.state covalente.
+Fino all'intersezione il g.s è ionico e l'altra è covalente. Nell'intersezione però risulta che gli stati si sono glia scambiati (l'incorcio in realtà     è avvenuto ad una geometria già passata). Quindi l'incrocio è diventato non coerente con lo scambiarsi delle psi. Se io ad esempio calcolassi gli accoppiamenti non adiabatici tra questi due stati, vedo che sono grandi in corrispondenza dell'incorcio originale, non per quello nuovo dove le curve realmente si incorciano. CHe è totalmente sbagliato, perchè gli accoppiamenti non adiabatici devono essere grandi laddove si incorciano le curve (e le deu cose collaborano a rendere molto probabili le transizioni nella zona dell'incrocio originale).
+
+C'è peò il modo di correggere anche le psi. Quando si fa un calclo ab initio non bisogna usare la teoria delle perturbazioni stato per stato ma una formulazione un po piu complicata della teoria delle perturbazioni che rimescola le psi dopo che io ho perturbato. 
+
+Quindi semplicemente applicare una correzione additiva alle curve senza toccare le funzioni d'onda non va fatto.
+
+
+
+
+Si possono peò applicare altri tipi di correzione:
+IO conservo la forma originaria delle PES e dico: beh ad una data geometria (taglio verticale) l'exc state è salito troppo (so per qualsiasi ragione che deve stare piu in basso). Poniamo che alla geometria data io abbia:
+					
+					dE = E2 - E1 (energie adiabatiche)
+
+OSS: che ci sia un incrocio o meno la curva sopra è sempre E2 e quella sotto è sempre E1 (che ci sia un incrocio reale o un incorcio evitato).
+
+Poniamo che io sia gia soddisfatto delle curva di E1 (magari l'ho già corretta conservando la dE, quindi ho applicato la stessa correzione anche a E2). Tuttavia adesso ritengo che E2 sia troppo alta (ho dati exp, o lo dico io per ragioni teoriche): posso moltiplicare E2 - E1 per un fattore (F) < 1 (se troppo basso E2 lo moltiplico per un fattore >1):
+				
+					E2' = E1 + (E2-E1)*F(Q)
+				
+Il fattore F puo anche dipendere dalle coordinate interne Q della molecola, ma deve essere maggiore di 1 (per cui non succede mai che scambia l'ordine delle due energie nella differenza (E2 rimane maggiore di E1 ovunque)). 
+
+Succede che ad esempio al'intersezione non c'è nessuna modifica E2-E1 = 0 --> conservo il punto di intersezione (o comunque in unaqualunque regione di geometrie in cui le energie sono uguali la correzione è nulla).Quindi il punto dove le due psi si scambiano rimane anche il punto dove le energie si incrociano!	(e noo ho le brutture che avevo con il primo metodo). In compenso posso aumentare una differenza di energia in una zona di geometrie mettendo un F > 1 oppure diminuirla in un altra regione mettendo un F < 1 (F comunque deve rimanere positivo!).
+
+Ora l'obbiettivo è trovare questa F(Q): in realtà è gia programmato perchè noi (cioè loro) gia per le PES originarie (quelle senza correzione ZPE) avevamo dovuto mettere una correzione comune ai due stati + ancora un fattore sulla differenza differenza di energia dei due stati. Adesso aggiungiamo qualcosa al quel fattore.
+
+dovrebbe essere un termine abbastanza semplice MA  il guaio è che non è lineare! (F moltiplica la dE dei due stati originaria). QUesta energia noi la abbiamo per tutte le geoemtrie che ci interessano, ma è diverso ad ogni geometria. L'idea è aggiungere questa cosa nel programmino, sottoforma di 1 o 2 coefficienti, che fissiamo noi e facciamo un po' prove per vedere come tornano le cose (cioè se riusciamo ad aggiustare abbastanza bene anche gli ZPE di S1).            ---------------------------------------------------------------------------------------------------------------------   ---------------------------------------------------------------------------------------------------------------------
+
+A noi serve alzare un po dalla parte del cis e abbassare unpo dalla parte del trans (e quindi anche a 133, ma li non tanto). --> Il termine di cos(phi) è 1 dalla parte del cis e -1 dalla parte del trans: questo termine dovremmo aumentarlo un pochino in modo che faccia salire ancora un po l'energia del cis e faccia diminuire quella del trans. Al tempo stesso, siccome entrambi hanno di base una correzione negativa bisognerà diminuire il termine costante (abbassa tutte le energie dell'eccitato se è minore di 1 e le alza se è > 1). (QUINDI I PARAMETRI SONO AD ORA B0 e B1rot)
+
+-------
+
+Quindi se noi adesso mettiamo le correzioni per il gs in mopac e gli facciamo fare questi 9 calcoli (perchè 9?) verifichiamo che per le prime 7 geometrie l'effetto sia esattamente quello che volgiamo noi (VERIFICHIAMO DI AVER FATTO LA COSA GIUSTA, cioè che ottengo gli stessi abbassamenti di ZPE previsti). Guardiamo poi cosa si ottiene per S1 e poi andiamo a toccare quel paio di coefficienti che dovrebbero aggiustarci anche lo ZPE di S1. 
+	|
+	|
+	v
+Quindi il prof ha gia i file di input per tutte le geometrie che sto usando, in quanto le ha gia usate per mesi quando ha fatto l'ottimizzazione dei parametri che ci danno le PES senza ZPE (cioè quelle su cui stanno gia lavorando). Perciò ci buttiamoin questa impresa, che non dovrebbe essere tanto difficile. 
+..............................................................................................................
+
+Quindi su elettra-
+Per fare i conti alle varie geoemtrie terremo la geometria ottimizzata che abbiamo (senza riottimizzarla) e useremo quella.
+
+DICE QUALCOSA sul CASSCF (vedi a 52.00)
+qualcosa sulla keyword FLOCC di mopac
+<<<MI SPIEGA IL FILE DI INPUT PER MOPAC>>>>
+Modifichiamo la scripr fatta dal Persico. NON la spiego :perchè non ho voglia. [1.10.00]:
+	>>Eseguiamo la script e vediamo subito se otteniamo gli stessi risultati che avevamo alla fine delle 			ottimizzazioni di geometria (should be like that, but before modify the parameter we have to verify if 			everything work as before). Se adesso io vario i parametri come calcolato nel programma fortran, la differenza 	di energia che viene dovrebbe essere la ZPE. Ovviamente verrà sballata per le geom di S1 ed ecco che dovro poi 	cambiare i parametri per B0 e B1rot
+
+
+
+
+
+
+
+
+
+
+
+                                                                                                                                                             		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

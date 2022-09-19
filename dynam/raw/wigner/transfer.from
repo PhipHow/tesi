@@ -1,0 +1,61 @@
+#!/bin/csh
+
+set where = 'elettra5'
+
+get azmkine.out $where
+get azmkine.pun $where
+get azmkine.x $where
+get azm.semi.par $where
+get azmtraj_badf.x $where
+get azmtraj.x $where
+get diss.x $where
+get gnu.atd $where
+get gnu.cnnc $where
+get gnu.diss $where
+get gnu.E_ini $where
+get gnu.E_trasl $where
+get gnu.E_wigner $where
+get gnu.isom $where
+get gnu.pop $where
+get histogram.x $where
+get histo.spec $where
+get launch $where
+get mergedyn.out $where
+get mergedyn.x $where
+get mkdat $where
+get photo.dat $where
+get photo.inf $where
+get sample.out $where
+get sample.x $where
+get slice.out $where
+get slice.x $where
+get snap.time.cnnc $where
+get snap.time.E0 $where
+get snap.time.E1 $where
+get snap.time.Ecin $where
+get snap.time.Epot $where
+get snap.time.Etot $where
+get snap.time.irk $where
+get snap.time.isurf $where
+get snap.time.n1n2c2 $where
+get snap.time.n2n1c1 $where
+get snap.time.rn1c1 $where
+get snap.time.rn1c2 $where
+get snap.time.rn2c1 $where
+get snap.time.rn2c2 $where
+get snap.time.rnn $where
+get statdyn_equi $where
+get statdyn.out $where
+get statdyn_S1 $where
+get statdyn_tot $where
+get statdyn_tot.out $where
+get Stat.inf.photo $where
+get Stat.inf.trans_equi $where
+# get Stat.pun.photo.tot $where
+get Stat.pun.S1 $where
+get Stat.pun.trans_equi $where
+get thermal.mc_geo01 $where
+# get trans_equi.dyn $where
+get trans_equi.inf $where
+get transfer $where
+get var_statdyn $where

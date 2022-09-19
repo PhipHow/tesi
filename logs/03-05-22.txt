@@ -1,0 +1,41 @@
+MATTINA
+Aggiungiamo alla script fatta ieri un pezzo di codice per verficare il completamento del calcolo se viene trovata la stringa "==MOPAC DONE==" nel file di uscita.
+
+Dopodiche gli facciamo cercare l'energia nei *.s.out e gliela facciamo confrontare con quella degli *.o.out --> La dE è la ZPE. (In questo caso viene 0 la dE perche la correzione per la ZPE non l'abbiamo ancora aggiunta). Se poi mettendoci la correzione per lo ZPE per il fondamentale viene giusta, allora vediamo come fare per l'eccitato. Effettivamente lanciato il conto tutti i dE (cvd) vengono 0. MA non tutte esattamente 0: una delle sorgenti di errore è che gli passiamo la geometria ma non perfetta (con meno cifre significative): se sono in un punto stazionario, un errore al primo ordine nella geometria, porta ad un errore al secondo ordine nell'energia, perchè sono in un punto stazionario e se sbaglio una coordinata avrò un errore che dovrebbe essere la DRV dell' energia rispetto a quella coordinata per la differenza nella coordinata stessa + secondo ordine (se il gradiente è nullo perchè sono in un minimo vado subito al secondo ordine). Quest'ultima cosa detta è vero per quasi tutti i punti, ma non è vero per le energie di transizione verticali (noi invece abbiamo ottimizzato lo stato eccitato per le geometrie S1, quindi questo problema non c'è (S1-trans è lo stato eccitato obbligato a restare trans e quindi viene una sella non un minimo, ma comunque ottimizzato)) perchè li ho determinato il minimo dello stato fondamentale ma leggo l'energia dello stato eccitato --> questo mi crea un errore maggiore perchè li il gradiente non è nullo (nello stato eccitato non ho gradiente nullo, perchè sono nel minimo del fondamentale non dell'eccitato, e quindi è al primo ordine).
+
+nettendoci i parametrei giusti quindi ladE viene fuori la ZPE, da confrontare con i dati di ZPE utilizzati per vfare tutto l'ambaradam.
+......................................................................................................
+POMERIGGIO
+Cerchiamo adesso di variare a mano due o tre dei coefficienti per S1 e vediamo che effetto ha sullo ZPE calcolato per S1 (avranno effetto solo su S1 quindi tutto il resto non lo guardo): quindi ora metto a confronto gli ZPE che ora ottengo per e tre geom. di S1 con questi coeff (ancora non toccati) e gli ZPE che voglio  ottenere. Man mano, variando i coeff a mano dovrei cercare di ottenere lo ZPE voluto.
+
+OSS: B0 è analogo a A0, ma non tanto analogo --> infatti se io ho un fattore seppur costante ma diverso da 1, con cui moltiplico la differenza di energia tra S0 e S1, la SEP di S1 la cambio, la deformo. Infatti oltre a cambiare la sua distanza da S0 se il fattore è minore di 1 la rendo piu piatta, mentre se è maggiore 1 la rendo piu montuosa,piu ripida (questo fattore conta, non è come A0 che sposta solo lo 0 di energia e non ha nessun significato fisico).
+
+B0 è uno dei fattori che probabilmente vale la pena cambiare. Mau cambierebbe poi solo i primi due fattori (o il primo) che moltiplica funzioni che dipendono da phi (diedro) [Quindi B0, B1rot, B2rot] --> Perchè noi vediamo notevoli differenze tra quello che succede alla geometrie trans, cis e nel minimoS1 che è intermedio come angolo di torsione.
+
+Noi abbiamo valori dello ZPE di S1 a tre diverse geometrie che differiscono principalmente per il valore dell'angolo diedro, e quindi mau userebbe i coefficienti che moltiplicano funzioni dell'angolo diedro. Cioè mau vuole che il fattore complessivo che moltiplicherà la dE(S0-S1) venga alterato in maniera diversa ad angoli diedri diversi.
+
+B1rot, B2rot: why? è bene cominciare sempre dalle funzioni piu semplici. MA allora perche prendere B0, che non dipende dall'angolo diedro? Mau pensa che convenga sempre (come regola generale sia dell'interpolazione che del fitting) cercare di usare le funzioni che variano in maniera piu lenta possibile:questo èilcaso tipico di funzioni periodiche, per cui non scelgo quelle di alta frequenza, ma comincio da quelle a piu bassa frequenza e mi fermo il prima possibile, cioé appena sono soddisfatto dell'interpolazione o del fit. (devo evitare le oscillazioni insensate ,quelle che ho usando un polinomio di grado 10 per fittare 10 punti: un troiaio! Interpolano meglio, ma predicono peggio)
+
+E poi guardando i dati di ZPE diminuiscono, quindi secondo mau con B0 eB1,rot ce la caviamo a passare per tutti e tre approssimativamente.
+
+UN GUAIO però è che noi abbiamo delle differenze di energia fra S0 ed S1 che cambiano anche loro con l'angolo diedro molto drasticamente: i nostrei fattori vanno a moltiplicare quelle differenz e di energia --> per cui la previsione di mau non è tanto solida: noi non applichiamo la funzione dell angolo diedro come un fattore che moltiplica una dE costante, cambia anche quella (precisamente è abbastanza simile per il trans e il cis ma è già scesa abbastanza nel caso di minS1, e poi scende ancora di più quando si va verso la CoIn che è 0 (e li non modifichiamo piu niente)). Però c'è anche da tenere presente che abbiamo gia applicato una correzione: quella dello stato fondamentale, e noi stiamo aggiungendo a quella un altra correzione per avere una correzione speficifica di S1. Di conseguenza: bisogna fare delle prove e vedere cosa succede.
+
+<<Adesso cambio pocopoco questi parametri scelti e cercare di ottenere la ZPE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,22 @@
+MATTINA
+Prima di scrivere il programma in fortran il profpropone di escludere la geometria del trans-AZM S1, perchè è quelle che ad occhio (senza troppa sicurezza) gli sembra che potrebbe dare piu difficoltà.
+
+ho commentato il programma in fortran
+
+---------------------------------------------------------
+
+POMERIGGIO
+Corretto qualche porblema nel file di input del programma (messe ZPE al posto di dZPE)
+(altri commenti poco rilevanti sulla matrice A), fino a 19.00
+
+Il trans AZM S1 è stato escluso quindi come geometria 
+
+Cerchiamo il modo di creare un grafico o una mappa. Per fare ciò mi serve un file in cui ci sono le 5 coordinate in sequenza per il valore di una delle 5 coordinate: in fuznione di una distanza, dell'angolo di inversione, dell'angolo di torsione. Oppure posso fare una unappa in funzione di due coordinate.
+
+Il mio programma quindideve leggere i numeri nei file e ritracriverli aggiungendoci i valori di zpe alla fine, come colonna. Dopodiche con GNUPLOT si fa una mappa o un grafico.
+
+Le geometrie utilizzate per costruire i grafici hanno una scansione su una coordinata scelta (se un grafico) o su due coordinate (se è una mappa) lasciando libere le altre coordinate di essere ottimizzate.  I file presentano un ultima colonna che corrisponde all'energia dello stato fondamentale (questo nel file delle distanze dove siamo unicamente su S0)
+
+ho commentato il programma in fortran, la parte fatta nel pomeriggio
+
+     

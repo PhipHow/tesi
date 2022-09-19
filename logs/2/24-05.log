@@ -1,0 +1,108 @@
+
+COMMENTI SULLA TABELLA CHE NON MI TORNAVANO:
+Quelli dello sato eccitato (le geometrie, ndr) hanno phi fissato: vale a dire si cerca il minimo di S1 con phi fissato a 0 (e mi viene il cis) e 180 (e mi viene il trans).
+-----------------------------------------------------------------------------
+
+ANALISI DEL README
+Promemoria sui passi successivi da fare per le simulazioni. Dal quinto punto in poi sono unicamente analisi dei dati. Prima della script alunch vengono preparate le c.i. per le traiettorie. 
+
+S
+Questione condizioni iniziali: centrale per il nostro lavoro
+Sono gia state fatte 8 simulazioni diverse campionando le c.i .in maniere molto diverse e altre simili. Dobbiamo adesso fare la nona simulazione.
+
+La prima cosa che quindi si fa è una lunga traiettoria termostatata sullo stato fondamentale. Ovvero si lancia una traiettoria sul g.s e si fa girare per 50ps (non veramente tanto come tempo ma per una molcolina piccola come l'azometano è sufficiente). Questa traiwettoria non è unatraiettoria che conserva l'energia: non si fa un calcolo a energia fissa con l'azometano che si muove classicamente conservando l'energia. Bensì si aggiunge un termostato computazionale: cioè una cosa che fornisce un po di energia alla molcola con una white noise (uan forza casuale proporzionata alla temperatura) e contemporaneamente si mette un attrito (un atomo puo trovarsi a muoversi un po piu vivacente e poi l'attrito smorza questa ggiunta di energia e contemporaneamente però agiscono le forze del potenziale (tutta la molecola si muove grossomodo intorno ai suoi minimi [a seconda della temepratura posso sicuramente avere i metili che girano come trottole dove vogliono, poi salendo di T potrei vedere anche l'isomerizzazione cis-trans]). Noi lavoreremo a 300K e quindi esploro le conformazioni dei metili e tutte le altre cooridnate vibreazionali si muoveranno avantie indietro con energia media che è il solito kT sostanzialmente.
+
+
+Come secondo passo dovremo pescare a caso da questa traittoria (che rappresenta tutte i punti nello spazio delle fasi da cui è passata la molcoal in 50pse quindi un buon campionamento delle possibili p e q interne). Su 10000 punti generati dalla lunga traiettoria ne scegliamo 400 (come c.i per le nostre 400 traiettorie).
+
+I 10000 punti rappresentano un buon campione della distribuzione di Boltzmann classica per le coordiante e gli impulsi della molcoal perche sono 10000 punti clacolati alla T=300K. A questo noi però aggiungiamo un altra selezione che tiene di conto delle probabilità di transizione: se io mi trovo ad una geoemtria dove ho un certo dipolo di transizione tra g.s e exc. state facendo il modulo quadro del momento di dipolo di transizione mi fornisce la P di transizioen (piu grande è e piu probabile sara che io scelga quella geometria). 
+
+Va tenuto di conto ceh AZM nelal sua geometria piu simmetrica (C2v) ha dipolo di transizione nullo. Quindi per simmetria sarebbe proibita e in effetti è una banda debole nell'UV: non appena si distorce un pò dalla C2v la traansizione diventa permessa. Geometrie piu distorte che saranno più rare (perche non sono il minimo di energia naturalmente) sono però favorite dalla probabilità di transizione.
+--------------------------------------------------------------------------------
+
+SPIEGAZIONE INPUT MOPAC usando come template trans_equi.dat
+Questo è un calcolo MOPAC fatto in un solo stato senza SH (cioè senza i salti da uno stato a un altro). Lanciando un calcolo partendo dal g.s. è ben difficile che alla molecola venga voglia di saltare sullo stato eccitato (dovrebbe avere moltissima energia per arrivarci e quindi non lo fa). 
+
+DESCRIZIONE DELLE OPZIONI/KEYWORD
+Il Surface Hopping (SH) prevede di lanciare traiettorie nucleari classiche su PES che sono semplicemente le energie adiatiche (ovvero gli autovalori dell' hamiltoniano elettronico) calcolate con uno dei tanti metodi di chimica quantistica a disposiuzione, in generale. SH significa che nella simulazione fotochimica la traiettoria comincia in un certo stato elettronico (in generale nello stato eccitato, in questa prima traiettoria sono unicamente nello stato fondamentale) e man mano che va avanti si calcola una probabilità che possa saltare su un altro stato. Questa probabilità è determinata dagli accopiamenti non adiabatici (quelli trascurati nell'approssimazione di Born-Oppenheimer): se uno tiene conto che quella è solo un approssimazione, salta fuori che c'è una certa probabilità di cambiare stato elettronico nel tempo. In base a questa probabilità e in maniera stocastica (decidendo cioè casualmente: c'è una certa probabilità (mettiamo l'1%) in un certo step temporale (in un deltaT breve) di saltare su un altro stato e si tira a sorte: 99/100 non succede nulla e 1/100 salto sull'altro stato) in una successione di step temporali molto piccoli che si susseguono, dopo 100/200 step con quella probabilità dell'1% (che è grossa!) finisco per saltare. Quindi noi usiamo un algoritmo stocastico, che per ora non ci interessa ancora perche questa traiettoria è in g.s e il SH non è la cosa piu importante. Questo comunque implica che alla fine ho solo un risultato statitistico e devo fare tante traiettorie per 2 motivi:
+
+1. io voglio simulare una situazione fisica in maniera corretta in cui le molcole vengon oeccitate in exc state con coordinate interne e impulsi diversi (non c'è un unica e precisa scelta di q e p per ragioni fisiche) e quindi è importante rappresentare bene la distribuzione di condizioni iniziali (coordiante e impulsi) con cui parte la molecola: e non posso farlo se non lanciando tante traiettorie diverse. In QM è diverso: se io facessi un calcolo puramente QM farei una certa funzione d'onda iniziale che rappresenta da sola uan distribuzione di coordiante e impulsi --> lanciando traittorie classiche devo lanciarne tante;
+
+2. Siccome il SH fa delle scelte casuali devo lanciare tante traittorie perceh queste scelte casuali coprano ragionevolmente tante possibilità di saltare da uno stato all'altro un po' prima o un po dopo, a una certa geometria o a un altra, e quindi diano un risultato statistically significativo. Nono posso scegliere a caso e dire: Ok, è il risultato unico che ottengo. Mi serve un bel numero di traittorie (400 a seconda di quello che voglio ottnere puo essere sufficiente o anche un po scarso).
+-------------------------------
+
+Per fare questi calcoli su molcole di dimensioni ragionevoli (interessanti, che non siano biatomiche o triatomiche) e per lunghezza della traiettoria nel tempo abbastanza lunga sono costretto a fare milioni di calcoli della struttura elettronica (energia elettronica, accoppiamenti, e tutto quello che serve per avanzare nella traiettoria).
+
+Quindi vediamo le KEYWORD:
+TIME --> è il timestep, cioè la lunghezza del passo temporale con cui noi integriamo le equazioni di Newton per far avanzare la traiettoria. Integriamo anche l'eq. di Shr per gli elettroni per calcolare la probabilità di transizione.
+
+CYCLES --> numero di passi nella traiettoria
+
+
+Per le traittorie fotochimiche faccio solo 100.000 step temporali: 100.000passi*400traiettorie = 40MLN di calcoli. Non si fa quindi con un metodo ab-initio che mi fornisce un accuratezza decente per g.s. e exc.s.: non si riesce a fare (per l'azometano magari si). Anche perchè nessuno impegna un supercalcolatore per fare delle simulazioni sull'AZM che sono gia state fatte 20yrs ago. Inoltrem, oltre all'AZM non riuscirei a fare cose più interessanti di questa. 
+
+Noi quindi lavoriamo con un metodo semiempirico: metodo estremamente piu veloce, mi fa uno di questi calcoli di struttura elettronica in una frazione di secondo, che però di suo non da nessuna affidabilità (rispetto ai metodi ab-initio non è paragonabile come affidabilità). Il trucco è che abbiamo truccato i paramentri del semiempirico per riprodurre al meglio le PES calcoalte ab-initio (gia calcolate da Persico et al in passato o da altri) e dati sperimentali. Fatto questo lavoro il metodo semiempirico è alla pari con un buon metodo ab.initio e ci sono qui alcune keyword che si riferiscono al metodo semiempirico.
+
+PM3--> sigla del metodo semiempirico di base che noi stiamo usando (alcuni paramentri non sono stati toccati e sono quelli standard del metodo PM3)
+
+OPEN(6,6)--> significa che usiamo un interazione di configurazioni con tutti determinati di Slater che possono essere generati disponendo in varia maniera 6 elettroni in 6 orbitali. Cioè visto che l'AZM ha 24 elettroni di valenza, che starebbero quindi in 12 orbitali se facciamo doppia occupazione come in un calcolo HF, dei 12 orbitali 9 sono DAVVERO doppiamente occupati (sempre, in tutti i determinanti che consideriamo), mentre gli ultimi 3 (+ altri 3 che sarebbero orbitali virtuali) sono usati per l'interazione di configurazioni, e si fanno tutte le eccitazioni possibili dentro questi 6 orbitali che contengono 6 elettroni (tutti gli orbitali più alti ancora non ci interessano, non vengono usati). é una piccola funzione d'onda tutto sommato! Chi fa calcoli ab-initio mira molto piu in alto: si fann ocose d iquesto genere con 12-15 orbitali e altrettanti elettroni però sono un po al limite: a 20 si arriva a stento e non danno ancora delel energie sufficientemente accurate per fare bene la fotochimica (forse su AZM si ma su uan molecola piu grossa no: usare 10 robitali di AZM ne sto uasndo uan bella quota del totale, ma gia usare 10 orbitali per l'azobenzene ad esempio è poco --> calcolo ridicolo, di scarsa accuratezza).
+
+-------------------parentesi lamentela--------------
+Purtroppo la tendenza è un po' l'opposto: molcole  grosse mi accontento un po con il metodo (già è faticoso tutto il resto) ma in realtà bisognerebbe andare piu in su con le specifiche del metodo per tenere il passo con il numero di elettroni e di orbitali della molecola.
+---------------------------------------------------
+
+Nel semiempirico è diverso: io scelgo un certo livello che mi da giusto la decenza (mi garantisce di rappresentare bene per esempio in questo caso le dissociazioni della molecola) e poi aggiusto i parametri in maniera che vengano bene le energie. E poi per giuta noi c'abbiamo anche il potenziale correttivo.
+
+Un altra cosa importante del nostro metodo è che gli orbitali vengono calcolati con un calcolo SCF in cui pero l'occupazione degli orbitali non è la solita (2,2,2... fino all HOMO) ma per gli orbitali attivi (quelli coinvolti nella interazione di configurazioni), l'occupazione è frazionaria e fluttuante, cioè si adatta all'energia degli orbitali stessi. Gli  orbitali piu bassi fra quesi 6 hanno un occupazione di quasi 2, mentre quelli più alti di quasi 0 e quelli a metà strada un occupazione 1 (come se ci fosse un unico elettrone dentro). Questo si aggiusta con un certo algoritmo, complica un po'  i nostri calcoli, rende l'energia SCF fisicamente non significativa (non vuol dire niente quell'energia lì: un energia che corrispoende ad una funzione d'onda con orbitali occupati con 0.23 elettroni non ha alcun senso), però ottimimzza gli orbitlai virtuali piu bassi un po meglio e soprattutto consente di fare il calcolo HF adattandosi alla rottura di un legame (ad esempio a distanze corte mi vengono 3 orbitali ad eenrgia bassa con occupazione quasi 2 e 3 orbitali ad energia alta virtuali con occupazione quasi 0; man mano che allungo un egmae si vanno a formare due orbitali [uno su un frammento e uno sull'altro] che hanno enrgia quasi uguali e occupazione quasi 1 entrambi all incirca, che è quello che deve succedere nella rottura omolitica). Ma l'HF la rottura omolotica non la sa rappresentare: se va bene converge a 2 ioni, regalando un elettrone al frammento più elettroniegativo, oppure a qualcosa di ibrido che però è sempre a doppia occupazione. Naturalmente posso fare l'openshell (def openshell := si intende di avere 1 o piu orbitali con un solo elettrone dentro; dovendo rappresentare un radicale è necessariamente così, ma posso anche raprresentare uno stato eccitato con l'HF [mettendo un elettrone nell'HOMO e uno nel LUMO] --> ma non è questa la soluzione della dissociazione del legame perche in quel modo non raprresento bene lo stato fondamentale a corte distanze) ma allora ho il difetto opposto a corte distanze: dovevo avere doppia occupazione e invece gli ho imposto due orbitali singolarmente occupati. L'occupazione fluttuante ci dà un certo vantaggio nel rappresentare rotture di legame e anche altre situazioni di degenerazione (e.g. metalli di trnasizione con tutti i loro elettroni spaiati).
+
+FLOCC=... --> PArola chiave che dice "usa l'occupazione fluttuante" e questo è un parametro praticamente semiempirico anche lui ma inventato da noi che dice come si calcola l'occupazione fluttuante (parametro che rientra nel calcolo dei numeri di occupazione).
+
+VECTORS --> dice di scrive i coefficienti degli orbitali
+
+MECI = 10 --> dice di calcolare e scrivere 10 stati
+
+NSTAT =2 --> dice che a noi ce ne interessano 2 soltanto di stati (g.s. e 1st.exc.s)
+
+DYNAM --> dice che vogliamo fare una dinamica.
+Il programma potrebbe farmi un solo calcolo a una determinata geometria, oppure potrebbe farmi un ottimizzazione di geometria o infine una volta ottimizzata la geometria calcolarmi i modi normali e le frequenze vibrazionali.
+
+TIME =0.1 --> il passo temporale scelto per integrare la traiettoria, espresso in fs.
+
+ISTAT =1 --> lo stato di partenzza è il primo dei due
+
+CYCLE = 500000 --> dice facciamo 500.000 passi
+
+NCYPR =50 --> vuol dire stampa i risultati ogni 50 passi (cioè ogni 5fs)
+In realtà non è soltanto stampare: lui, il programma, produce essenzialmente tre fiel e due di questi contengono irisultati propio della traiettoria: uno è un file leggibile, formattato, mentre l'altro è un file binario che è utile per scambiare informazioni con altri programmi nella maniera più efficiente. 
+
+ITHERMO =3 --> dice qual'è il tipo di termostato computazionale che usiamo. Quello che usiamo qui è Langevin: usa un equazione inventata i primi del 900 da Langevin per descrivere il moto browniano. --> Gli servono 3 parametri:
+TAU =100--> determina i coeff. di attrito. =100 vuul dire che la costante tempo per smorzare con l'attrito l'energia cinetica di un atomo è 100fs (in 100fs l'energia cinetica sarà ridotta di un fattore grazie all'attrito, ma c'è la forza random che ri-dà una scossa e mantiene la tmepratura pari a 300K)
+TEMP --> è la temperatura
+NBROWN --> dice ogni quanti passi viene applicata la forza random che ripristina l'energia dissipata dall'attrito sostanzialmente.
+
+GEO-OK --> qualunque geoemtria, la piu pazza che ti presento, accettala: MOPAC infatti fa un controllo delle geometrie e si blocca se la geoemtria è troppo diversa da quelle che normalmente un metodo semiempirico accetta. MA Il nostro semiemepirico è abbastanza robusto e accetta geometrie anche molto distorte.
+
+ITRY,SCFCRT --> riguardano il calcolo SCF.
+ITRY --> dice che l'SCF può usare un massimo di 1500 passi
+SCFCRT --> soglia di convergenza per l'SCF
+
+INCO =8 --> abbiamo 8 coordinate interne monitorate.
+Si include nelle coordiante interne anche la lunghezza di legame N-N; poi quando i legami N-C si allungano non è più così ovvio a quale azoto sia attaccato ciascun atomo di carbonio e quinid si scrive tutte e quattro le distanze N-C (non solo quelle due con cui la molecola comincia). C'è poi un modo complicato di scegliere quelle che ci interessano.
+
+S2 --> calcolami lo spin degli stati che vengono calcolati (oltre ai singoletti capita che vengano calcolati dei tripletti come minimo o stati di molteplicità piu alta). In questo modo lui calcola lo spin degli stati e poi se gli dico SINGLET b utta via gli stati che non ci interessano (a noi interessano solo i primi 2 singoletti).
+
+Per questo all'inizio c'era MECI = 10 perchè c'è il rischio che ci siano diversi tripletti mescolati ai nostri 2 singoletti e quindi volendo due singoletti per starci larghi gli facciamo calcoalre 10 autovettori e poi scartiamo quelli che non ci servono.
+
+STATESPEC, NMULT =2 sono due keyword che servono per introdurre le correzioni statespecific (cioè specifiche degli stati elettronici, in sostanza quella storia del fattore F chep rermette di distinguare la correzione che faccio per uno stato da quella dell'altro).
+
+NMULT =2 --> vuol dire che nella prima molteplicità di spin (che è singoletto ed ho solo quella) ci sono 2 stati, perche queste correzioni in teoria potrei applicarle ai singoletti che vanno per conto loro, poi ai tripletti che vanno per conto loro, ecc.. ma qui facciamo solo singoletti --> gli devo unicamente dire che sono 2.
+
+EXTERNAL --> dice dove prendere i parametri semiempirici 
+
+------------
+
+OCCUP --> indica l'occupazione di quei 6 orbitali. Questo vale solo per iniziare il primo SCF che fa, quindi se la dimentica ben presto, ha poca importanza. 
+
+Poi sotto ho le coordiante interne che ci piacciono_
+
+ADDED POTENTIAL --> questo potenziale aggiuntivo sono dei Lennard-Jones di repulsione/dispersione fra H e C, che è gia uan correzione fatta da noi rispetto al semiempirico e poi i termini state specific che io ho manipiolato --> quindi li devo sostituire con quelli nuovi decisi da me per includere lo ZPE. 

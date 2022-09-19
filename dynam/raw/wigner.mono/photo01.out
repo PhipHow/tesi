@@ -1,0 +1,247 @@
+ *******************************************************************************
+ **                            MOPAC2002 (c) Fujitsu                          **
+ *******************************************************************************
+
+                              PM3 CALCULATION RESULTS
+
+
+ *******************************************************************************
+ *                  MOPAC2002 Version 1.01     CALC.'D. Mon Feb 21 19:15:00 2022
+ *  PM3      - THE PM3 HAMILTONIAN TO BE USED
+ *  GEO-OK   - OVERRIDE INTERATOMIC DISTANCE CHECK
+ *  SINGLET  - SPIN STATE DEFINED AS A SINGLET
+ *  OPEN(N,N)- THERE ARE 6 ELECTRONS IN 6 LEVELS
+ *  EXTERNAL - USE ATOMIC PARAMETERS FROM THE FOLLOWING FILE
+               azm.semi.par 
+ *  DYNAM    - NONADIABATIC ON THE FLY DINAMICS
+ *  PULAY    - PULAY'S METHOD TO BE USED IN SCF
+ *  MEMORY=n - TRY TO KEEP MEMORY USAGE BELOW 1100 Mb
+ *  T=       - A TIME OF 86400.0 SECONDS REQUESTED
+ *  DUMP=N   - RESTART FILE WRITTEN EVERY  7200.000 SECONDS
+ *  CYCLES=  - DO A MAXIMUM OF100000 STEPS
+ *  SCFCRT   - DEFAULT SCF CRITERION REPLACED BY   0.100E-08
+ *  SHIFT    - A DAMPING FACTOR OF    0.00 DEFINED
+ *  ITRY=    - DO A MAXIMUM OF  2000 ITERATIONS FOR SCF
+ *  FLOCC    - FLOATING OCCUPATION MO's. GAUSSIAN WIDTH=   0.1528
+ *  TIME     -TIME STEP IN DYNAMICS CALCULATION
+ *  NSTAT    -NUMBER OF STATES IN THE DYNAM CALCN.
+ *  ISTAT    -STARTING STATE IN THE DYNAM CALCN.
+ *  NTRAJ    -NUMBER OF TRAJECTORIES IN THE DYNAM CALCN.
+ *  VECTORS  - FINAL EIGENVECTORS TO BE PRINTED
+ *  MECI     - M.E.C.I. WORKING TO BE PRINTED
+ *******************************************************************************
+MEMORY=1100 PM3 VECTORS MECI=10 MXROOT=10 NSTAT=2 OPEN(6,6) FLOCC=0.1528096665 +
+DYNAM NTRAJ=20 ISTAT=2 RDINI=wigner.mc_geo01_01 +
+TIME=0.1 CYCLES=100000 NCYPR=10 INCO=8 DECOVLP=1.0 FIXE=0.001 +
+GEO-OK SCFMAU ITRX=2000 ITRY=2000 ITRZ=200 PULAY SHIFT SCFCRT=1.D-9 +
+SINGLET S2 STATESPEC NMULT=2 EXTERNAL=azm.semi.par
+ trans-azometano eclipsed eclipsed fondamentale
+ 
+  ATOM    CHEMICAL     BOND LENGTH    BOND ANGLE    TWIST ANGLE 
+ NUMBER    SYMBOL      (ANGSTROMS)    (DEGREES)     (DEGREES) 
+   (I)                   NA:I          NB:NA:I       NC:NB:NA:I       NA    NB    NC 
+    1       XX            0.000000      0.000000       0.000000                      
+    2       XX            1.000000      0.000000       0.000000        1             
+    3        N            0.610782  *  90.000000       0.000000        1     2       
+    4        N            0.610781  * 180.000000      90.000000        1     3     2 
+    5        C            1.435000  * 120.000000  *    0.000000  *     3     1     2 
+    6        H            1.000000  * 110.000000  *    0.000000  *     5     3     1 
+    7        H            1.000000  * 110.000000  *  120.000000  *     5     3     6 
+    8        H            1.000000  * 110.000000  * -120.000000  *     5     3     6 
+    9        C            1.435000  * 130.000000  *  170.000000  *     4     1     2 
+   10        H            1.000000  * 110.000000  *    0.000000  *     9     4     1 
+   11        H            1.000000  * 110.000000  *  120.000000  *     9     4    10 
+   12        H            1.000000  * 110.000000  * -120.000000  *     9     4    10 
+
+
+          CARTESIAN COORDINATES 
+
+    NO.       ATOM           X             Y             Z
+
+     1         N        0.00000000    0.61078200    0.00000000
+     2         N       -0.00000000   -0.61078100    0.00000000
+     3         C        1.24274645    1.32828200    0.00000000
+     4         H        2.00879090    0.68549439    0.00000000
+     5         H        1.30402143    1.90619091   -0.81379768
+     6         H        1.30402143    1.90619091    0.81379768
+     7         C       -1.08257334   -1.53318122    0.19088689
+     8         H       -1.93544187   -1.03318122    0.34127062
+     9         H       -1.18448689   -2.11295069   -0.61749483
+    10         H       -0.90185792   -2.11295069    0.98537371
+
+
+      PARAMETER TYPE      ELEMENT      PARAMETER
+            USS           H       -13.073321
+            ZS            H         0.967807
+            BETAS         H        -5.626512
+            GSS           H        14.794208
+            ALP           H         3.356386
+            FN11          H         1.128750
+            FN12          H        -1.060329
+            FN21          H         5.096282
+            FN22          H         6.003788
+            FN31          H         1.537465
+            FN32          H         1.570189
+            USS           C       -47.263124
+            UPP           C       -36.272231
+            ZS            C         1.563621
+            ZP            C         1.846822
+            BETAS         C       -11.279906
+            BETAP         C       -10.012044
+            GSS           C        11.205139
+            GSP           C        10.253550
+            GPP           C        10.551440
+            GP2           C         9.042122
+            HSP           C         2.395477
+            ALP           C         2.706056
+            FN11          C         0.051813
+            FN12          C         0.050845
+            FN21          C         6.101937
+            FN22          C         6.006275
+            FN31          C         1.640596
+            FN32          C         0.896329
+            USS           N       -52.488710
+            UPP           N       -44.630836
+            ZS            N         1.996386
+            ZP            N         2.314363
+            BETAS         N       -13.851126
+            BETAP         N       -20.271564
+            GSS           N        11.754031
+            GSP           N         7.167137
+            GPP           N        11.598902
+            GP2           N        10.844542
+            HSP           N         1.089151
+            ALP           N         2.862407
+            FN11          N         1.495919
+            FN12          N        -1.507120
+            FN21          N         6.043735
+            FN22          N         6.031353
+            FN31          N         1.709212
+            FN32          N         1.717014
+            BETST         N       -14.563871
+            BETPT         N       -20.053978
+            UST           N       -50.352756
+            UPT           N       -46.267838
+
+      THERE ARE    9 DOUBLY FILLED LEVELS
+
+
+      RHF CALCULATION, NO. OF DOUBLY OCCUPIED LEVELS =    9
+
+                       NO. OF SINGLY OCCUPIED LEVELS =    6
+
+   FRACTIONAL OCCUPATION:
+ 10  2.00000000 11  2.00000000 12  2.00000000 13  0.00000000 14  0.00000000
+ 15  0.00000000
+  
+
+   FLOATING OCCUPATION  :     GAUSS
+
+                FLOWID  =    0.1528
+ 
+    Memory needed:  1059302636 bytes
+ Memory available:  1153433600 bytes
+ 
+  H: (PM3): J. J. P. STEWART, J. COMP. CHEM. 10, 209 (1989).                    
+  C: (PM3): J. J. P. STEWART, J. COMP. CHEM. 10, 209 (1989).                    
+  N: (PM3): J. J. P. STEWART, J. COMP. CHEM. 10, 209 (1989).                    
+
+           EMPIRICAL FORMULA: C2 H6 N2
+
+
+
+      MOLECULAR POINT GROUP   :   C1  
+In ADDP0:  numcos,numexp,numlj,numharm=     0     0    16     0
+
+ TIME STEP IN THE DYNAMIC CALCULATION (fs) =         0.10000
+ INITIAL RANDOM NUMBER SEED =      21641
+
+ Atomic masses (in amu and a.u.)
+           1   14.0067000000000        25532.6525630505     
+           2   14.0067000000000        25532.6525630505     
+           3   12.0110000000000        21894.7139536650     
+           4   1.00790000000000        1837.28933426850     
+           5   1.00790000000000        1837.28933426850     
+           6   1.00790000000000        1837.28933426850     
+           7   12.0110000000000        21894.7139536650     
+           8   1.00790000000000        1837.28933426850     
+           9   1.00790000000000        1837.28933426850     
+          10   1.00790000000000        1837.28933426850     
+ INITIAL VELOCITY IN DYNAM (a.u.)
+         0.00000         0.00000         0.00000
+         0.00000         0.00000         0.00000
+         0.00000         0.00000         0.00000
+         0.00000         0.00000         0.00000
+         0.00000         0.00000         0.00000
+         0.00000         0.00000         0.00000
+         0.00000         0.00000         0.00000
+         0.00000         0.00000         0.00000
+         0.00000         0.00000         0.00000
+         0.00000         0.00000         0.00000
+ NUMBER OF TRAJECTORIES =        20
+ NUMBER OF CYCLES       =    100000
+ NCYPR                  =        10
+
+
+  File with initial Q and V = wigner.mc_geo01_01
+
+
+--- Overlap driven decoherence ---
+  Delta(X)         Delta(P)     (a.u.)
+    0.7910902211D-01    0.6320391615D+01
+    0.7910902211D-01    0.6320391615D+01
+    0.8220820794D-01    0.6082117742D+01
+    0.1527409936D+00    0.3273515433D+01
+    0.1527409936D+00    0.3273515433D+01
+    0.1527409936D+00    0.3273515433D+01
+    0.8220820794D-01    0.6082117742D+01
+    0.1527409936D+00    0.3273515433D+01
+    0.1527409936D+00    0.3273515433D+01
+    0.1527409936D+00    0.3273515433D+01
+Threshold on wp overlap:   0.206115D-08
+Ancillary wp created each        1 timesteps
+  SCF CRITERION =    0.1000E-08
+
+Choice of converger, IRST =  1
+
+Number of states for the given multiplicity:
+     2  SINGLETS    S2 =  0.000000
+ 
+
+STATE SPECIFIC CORRECTIONS TO THE PESs
+
+Azomethane PES corrections, energies in eV, distances in Angstrom
+Additive potential
+Constant term                A0 651.56478576
+Sum of quartics V(R1)+V(R2)  A1  -1.54772158
+Variability range,    R0 - Rasy   1.60000000   3.50000000
+Product of quartics,         A2   0.58102178
+Variability range,    R0 - Rasy   1.60000000   3.50000000
+Sum of squared quartics      A3   1.06300300
+Variability range,    R0 - Rasy   1.60000000   3.50000000
+COS(NNC) terms            Ainv1  -0.00885972
+COS(2*NNC) terms          Ainv2  -0.02485516
+COS(CNNC) term            Arot1   0.13852855
+COS(2*CNNC) term          Arot2  -0.20938551
+COS(3*CNNC) term          Arot3  -0.00422011
+COS(4*CNNC) term          Arot4   0.02628657
+Var. range ang. terms R0 - Rasy   1.60000000   3.50000000
+Var. range CNNC min - 180.0     126.81761850
+Barrier sym. diss. Hbar, R, W 1   0.550   2.100   0.90000000
+Barrier sym. diss. Hbar, R, W 2   0.500   2.500   0.90000000
+Corr. II dissoc., Hcorr, R0, R1   0.20000000   1.600   3.100
+                         R2, R3   3.200   5.000
+S0-S1 gap factor
+Constant term,               B0   0.17145079
+Sum of quartics,             B1   1.48994972
+Product of quartics,         B2   0.00000000
+Sum of squared quartics,     B3   0.00000000
+COS(NNC) terms            Binv1  -0.63077604
+COS(2*NNC) terms          Binv2  -0.39351314
+COS(CNNC) term,           Brot1   0.10125279
+COS(2*CNNC) term,         Brot2   0.05805135
+COS(3*CNNC) term,         Brot3  -0.13516104
+COS(4*CNNC) term,         Brot4  -0.08226280
+
+ NSTATI  =     2
+ NSTAT_T =     2
