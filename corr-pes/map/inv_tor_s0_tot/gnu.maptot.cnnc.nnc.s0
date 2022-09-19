@@ -35,8 +35,8 @@ set label 'A' at 185.0, 114.0 center
 set label 'B' at  -5.0, 128.6 center
 
 set encoding iso_8859_1
-set xlabel 'CNNC, degrees' offset 0,0
-set ylabel 'NNC_1, degrees' offset 0,0
+set xlabel 'Angolo CNNC, gradi' offset 0,0
+set ylabel 'Angolo NNC_1, gradi' offset 0,0
 set style textbox opaque noborder
 plot \
 'tab1'   u 1:2 with lines lt 1 lc 3 lw 0.5, \

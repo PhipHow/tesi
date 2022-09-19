@@ -42,8 +42,8 @@ set label 'F' at 101.8, 121.1 center front
 set label 'F' at 104.0, 148.0 center front
 
 set encoding iso_8859_1
-set xlabel 'CNNC, degrees' offset 0,0
-set ylabel 'NNC_1, degrees' offset 0,0
+set xlabel 'Angolo CNNC, gradi' offset 0,0
+set ylabel 'Angolo NNC_1, gradi' offset 0,0
 set style textbox opaque noborder
 plot \
 'tab3' u 1:2 with filledcurves lc 6, \
